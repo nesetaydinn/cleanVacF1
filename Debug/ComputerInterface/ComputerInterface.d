@@ -34,7 +34,8 @@ ComputerInterface/ComputerInterface.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
- ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
+ C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h
 
 ../ComputerInterface/ComputerInterface.h:
 
@@ -107,3 +108,5 @@ ComputerInterface/ComputerInterface.o: \
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 
 ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
+
+C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h:

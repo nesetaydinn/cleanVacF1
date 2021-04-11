@@ -30,11 +30,12 @@ typedef struct{
     int32_t steer_pos;
     int32_t drive_speed;
 	int32_t drive_pos;
+	uint8_t switch_vals;
 }Com_SenderInterface;
 
 
 void CI_sendDataChannel(uint16_t lenght, int32_t steer_poss,
-		int32_t driver_poss, int32_t driver_speed,uint8_t batt_per);
+		int32_t driver_poss, int32_t driver_speed,uint8_t inputStatus,uint8_t batt_per);
 void CI_enableGetDataChannel(void);
 void CI_getDataChannel_IT(UART_HandleTypeDef *callBackHandle);
 void testCIsend(void);

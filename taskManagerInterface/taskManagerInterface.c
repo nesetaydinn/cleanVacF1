@@ -129,13 +129,15 @@ void computerValTask(void *params){
 		if(((getDriver2ReceiveVal().encoder)%1200)<0)tmp2 = -0.1*((getDriver2ReceiveVal().encoder)%600);
 		else tmp2=((getDriver2ReceiveVal().encoder)%1200);
 		llsendComputerVals.drive_pos= (tmp+valuesMapforFloat(tmp2,0,1200,0.0f,1.0f))*10000;
+
+		llsendComputerVals.switch_vals=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
 	}
 
 }
 void computerSendTask(void *params){
 	while(1){
 		CI_sendDataChannel(0x11,llsendComputerVals.steer_pos ,llsendComputerVals.drive_pos,
-				llsendComputerVals.drive_speed,50);
+				llsendComputerVals.drive_speed,llsendComputerVals.switch_vals,50);
 	}
 }
 void sendDataUart1Task(void *params){

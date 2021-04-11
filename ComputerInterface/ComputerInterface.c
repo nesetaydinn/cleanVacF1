@@ -5,6 +5,7 @@
  *      Author: neset
  */
 #include "ComputerInterface.h"
+#include "InputOutputInterface.h"
 
 #if COMPUTERINTERFACE_ACTIVE
 Com_interface getVals;
@@ -30,15 +31,15 @@ void CI_writeSmallDataWithRegister(UART_HandleTypeDef *uartChannel, uint8_t data
  */
 uint32_t time1,time2,deltaTime;
 void CI_sendDataChannel(uint16_t lenght, int32_t steer_poss,
-		int32_t driver_poss, int32_t driver_speed,uint8_t batt_per){
+		int32_t driver_poss, int32_t driver_speed,uint8_t inputStatus,uint8_t batt_per){
 	time1=HAL_GetTick();
 	uint8_t sendBuff[] = { 0x43, 0X64,
 			lenght & 0xFF,lenght >> 8,
 			steer_poss & 0xFF,steer_poss >> 8,steer_poss >> 16,steer_poss >> 24,
 			driver_poss & 0xFF,driver_poss >> 8,driver_poss >> 16,driver_poss >> 24,
 			driver_speed & 0xFF,driver_speed >> 8,driver_speed >> 16,driver_speed >> 24,
-			batt_per };
-	for (uint8_t counter = 0; counter < 17; counter++) {
+			inputStatus,batt_per };
+	for (uint8_t counter = 0; counter < 18; counter++) {
 		CI_writeSmallDataWithRegister(&ComputerChannel, sendBuff[counter]);
 	#if SEND_VAL_CHECK==0
 		vTaskDelay(50);
@@ -54,8 +55,9 @@ static int32_t ctSpeed=0;
 void testCIsend(void){
 
 	test+=0.01;
-	ctSpeed=(int32_t)test*10000;
-	CI_sendDataChannel(0x11,getVals.steer_pos,ctSpeed,getVals.drive_speed,90);
+		ctSpeed=(int32_t)test*10000;
+		uint8_t tmp=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
+		CI_sendDataChannel(0x11,getVals.steer_pos,ctSpeed,getVals.drive_speed,tmp,90);
 
 
 }
@@ -70,7 +72,7 @@ void CI_enableGetDataChannel(void){
 	HAL_UART_Receive_IT(&ComputerChannel,&getTmpCH,1);
 }
 
-static uint8_t tmpArr[12];
+static uint8_t tmpArr[13];
 /**
  * @brief get to Motor Driver 1 values
  * @return none
@@ -88,13 +90,13 @@ void CI_getDataChannel_IT(UART_HandleTypeDef *callBackHandle) {
 			tmpArr[counter] = getTmpCH;
 				getTmpBeff = getTmpCH;
 				counter++;
-				if (counter > 11) {
+				if (counter > 12) {
 					counter = 0;
 					if (0x43 == tmpArr[0] && 0x64 == tmpArr[1]) {
 						getVals.size=(tmpArr[2] & 0xFF )| (tmpArr[3] << 8);
 						getVals.steer_pos=(tmpArr[4] & 0xFF )| (tmpArr[5] << 8) | (tmpArr[6] << 16) | (tmpArr[7] << 24);
 						getVals.drive_speed=(tmpArr[8] & 0xFF) | (tmpArr[9] << 8) | (tmpArr[10] << 16) | (tmpArr[11] << 24);
-
+						IO_outputByteToBitsPackage(tmpArr[12]);
 					}
 				}
 				HAL_UART_Receive_IT(callBackHandle, &getTmpCH, 1);
