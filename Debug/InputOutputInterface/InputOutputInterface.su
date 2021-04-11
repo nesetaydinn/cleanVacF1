@@ -1,0 +1,7 @@
+InputOutputInterface.c:11:6:IO_init	4	static
+InputOutputInterface.c:31:6:IO_readInputSwitchs	8	static
+InputOutputInterface.c:41:6:IO_writeOutputRelay	8	static
+InputOutputInterface.c:52:6:IO_testInputOutput	16	static
+InputOutputInterface.c:67:9:IO_inputsBitsPackageToByte	32	static
+InputOutputInterface.c:76:6:IO_outputByteToBitsPackage	16	static
+InputOutputInterface.c:87:14:IO_getInputOutputsVal	16	static
