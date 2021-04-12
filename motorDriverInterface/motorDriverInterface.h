@@ -18,7 +18,7 @@
 
 // SEND_VAL_CHECK->0 realtime
 // SEND_VAL_CHECK->1 pc debug
-#define SEND_VAL_CHECK 1
+#define SEND_VAL_CHECK 0
 
 typedef struct{
     uint8_t pid_kd;

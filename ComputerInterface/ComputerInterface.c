@@ -41,7 +41,7 @@ void CI_sendDataChannel(uint16_t lenght, int32_t steer_poss,
 			inputStatus,batt_per };
 	for (uint8_t counter = 0; counter < 18; counter++) {
 		CI_writeSmallDataWithRegister(&ComputerChannel, sendBuff[counter]);
-	#if SEND_VAL_CHECK==0
+	#if SEND_VAL_CHECK==1
 		vTaskDelay(50);
 	#endif
 	}
