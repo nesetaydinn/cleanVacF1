@@ -127,15 +127,20 @@ void computerGetTask(void *params){
 void computerValTask(void *params){
 	while(1){
 		llsendComputerVals.drive_speed=(int32_t)(getDriver2ReceiveVal().speed)*10000;
-		llsendComputerVals.steer_pos =(int32_t)(getDriver1ReceiveVal().angle)*10000;
-		int16_t tmp =((getDriver2ReceiveVal().encoder)/1200);
-		uint16_t tmp2;
-	//	if(((getDriver2ReceiveVal().encoder)%1200)<0)tmp2 = -0.1*((getDriver2ReceiveVal().encoder)%600);
-	//	else
-			tmp2=((getDriver2ReceiveVal().encoder)%1200);
-		llsendComputerVals.drive_pos= (tmp+valuesMapforFloat(tmp2,0,1200,0.0f,1.0f))*10000;
-
-		llsendComputerVals.switch_vals=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
+			llsendComputerVals.steer_pos =(int32_t)(getDriver1ReceiveVal().angle)*10000;
+			if(getDriver2ReceiveVal().encoder<0){
+				int intToUint =getDriver2ReceiveVal().encoder;
+				intToUint=(~intToUint+1);
+				uint16_t tmp =(intToUint/790);
+				uint16_t tmp2=(intToUint%790);
+				llsendComputerVals.drive_pos= -(tmp+valuesMapforFloat(tmp2,0,790,0.0f,1.0f))*10000;
+			}
+			else {
+				uint16_t tmp =((getDriver2ReceiveVal().encoder)/790);
+				uint16_t tmp2=((getDriver2ReceiveVal().encoder)%790);
+				llsendComputerVals.drive_pos= (tmp+valuesMapforFloat(tmp2,0,790,0.0f,1.0f))*10000;
+			}
+			llsendComputerVals.switch_vals=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
 	}
 
 }

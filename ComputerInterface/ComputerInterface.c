@@ -40,12 +40,14 @@ void CI_sendDataChannel(uint16_t lenght, int32_t steer_poss,
 			driver_poss & 0xFF,driver_poss >> 8,driver_poss >> 16,driver_poss >> 24,
 			driver_speed & 0xFF,driver_speed >> 8,driver_speed >> 16,driver_speed >> 24,
 			inputStatus,batt_per };
-	for (uint8_t counter = 0; counter < 18; counter++) {
+	HAL_UART_Transmit_DMA(&ComputerChannel, sendBuff, sizeof(sendBuff));
+	/*for (uint8_t counter = 0; counter < 18; counter++) {
 		CI_writeSmallDataWithRegister(&ComputerChannel, sendBuff[counter]);
 	#if SEND_VAL_CHECK==1
 		vTaskDelay(50);
 	#endif
-	}
+
+	}*/
 	time2=HAL_GetTick();
 	deltaTime=time2-time1;
 	if(deltaTime<10) vTaskDelay((10-deltaTime));
