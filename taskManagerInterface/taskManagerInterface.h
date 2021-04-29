@@ -23,4 +23,7 @@ uint16_t valuesMapWFloat(float inValue, float inMin, float inMax, uint16_t outMi
 int16_t valuesMapFloat(float inValue, float inMin, float inMax, int16_t outMin, int16_t outMax);
 float valuesMapforFloat(uint16_t inValue, uint16_t inMin, uint16_t inMax, float outMin, float outMax);
 
+void setStartConnection(uint8_t tmp);
+uint8_t getStartConnection(void);
+
 #endif /* TASKMANAGERINTERFACE_H_ */

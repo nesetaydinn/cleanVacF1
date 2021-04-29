@@ -5,45 +5,45 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   0000010c  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         00006bdc  08000110  08000110  00010110  2**4
+  1 .text         00006bfc  08000110  08000110  00010110  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       000000f4  08006cec  08006cec  00016cec  2**2
+  2 .rodata       000000f4  08006d0c  08006d0c  00016d0c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  08006de0  08006de0  00020010  2**0
+  3 .ARM.extab    00000000  08006e00  08006e00  00020010  2**0
                   CONTENTS
-  4 .ARM          00000000  08006de0  08006de0  00020010  2**0
+  4 .ARM          00000000  08006e00  08006e00  00020010  2**0
                   CONTENTS
-  5 .preinit_array 00000000  08006de0  08006de0  00020010  2**0
+  5 .preinit_array 00000000  08006e00  08006e00  00020010  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08006de0  08006de0  00016de0  2**2
+  6 .init_array   00000004  08006e00  08006e00  00016e00  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  08006de4  08006de4  00016de4  2**2
+  7 .fini_array   00000004  08006e04  08006e04  00016e04  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000010  20000000  08006de8  00020000  2**2
+  8 .data         00000010  20000000  08006e08  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00003754  20000010  08006df8  00020010  2**2
+  9 .bss          00003754  20000010  08006e18  00020010  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  20003764  08006df8  00023764  2**0
+ 10 ._user_heap_stack 00000604  20003764  08006e18  00023764  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00020010  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00019c9b  00000000  00000000  00020039  2**0
+ 12 .debug_info   00019ce5  00000000  00000000  00020039  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 0000394f  00000000  00000000  00039cd4  2**0
+ 13 .debug_abbrev 00003996  00000000  00000000  00039d1e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00001598  00000000  00000000  0003d628  2**3
+ 14 .debug_aranges 000015a8  00000000  00000000  0003d6b8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 00001410  00000000  00000000  0003ebc0  2**3
+ 15 .debug_ranges 00001420  00000000  00000000  0003ec60  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  000193f5  00000000  00000000  0003ffd0  2**0
+ 16 .debug_macro  000193fd  00000000  00000000  00040080  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000171c4  00000000  00000000  000593c5  2**0
+ 17 .debug_line   00017218  00000000  00000000  0005947d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0009424f  00000000  00000000  00070589  2**0
+ 18 .debug_str    0009427d  00000000  00000000  00070695  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  001047d8  2**0
+ 19 .comment      00000053  00000000  00000000  00104912  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00005b2c  00000000  00000000  0010482c  2**2
+ 20 .debug_frame  00005b74  00000000  00000000  00104968  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  8000126:	bd10      	pop	{r4, pc}
  8000128:	20000010 	.word	0x20000010
  800012c:	00000000 	.word	0x00000000
- 8000130:	08006cd4 	.word	0x08006cd4
+ 8000130:	08006cf4 	.word	0x08006cf4
 
 08000134 <frame_dummy>:
  8000134:	b508      	push	{r3, lr}
@@ -74,7 +74,7 @@ Disassembly of section .text:
  8000142:	bd08      	pop	{r3, pc}
  8000144:	00000000 	.word	0x00000000
  8000148:	20000014 	.word	0x20000014
- 800014c:	08006cd4 	.word	0x08006cd4
+ 800014c:	08006cf4 	.word	0x08006cf4
 
 08000150 <__aeabi_dmul>:
  8000150:	b570      	push	{r4, r5, r6, lr}
@@ -1386,7 +1386,9 @@ void CI_getDataChannel_IT(UART_HandleTypeDef *callBackHandle) {
  8000eb4:	7b1b      	ldrb	r3, [r3, #12]
  8000eb6:	4618      	mov	r0, r3
  8000eb8:	f002 f9de 	bl	8003278 <IO_outputByteToBitsPackage>
+
 					}
+
 				}
 				HAL_UART_Receive_IT(callBackHandle, &getTmpCH, 1);
  8000ebc:	2201      	movs	r2, #1
@@ -1496,7 +1498,7 @@ int main(void)
   while (1)
  8000f40:	e7fe      	b.n	8000f40 <main+0x38>
  8000f42:	bf00      	nop
- 8000f44:	08006da4 	.word	0x08006da4
+ 8000f44:	08006dc4 	.word	0x08006dc4
  8000f48:	0800122d 	.word	0x0800122d
  8000f4c:	20003590 	.word	0x20003590
 
@@ -1515,7 +1517,7 @@ void SystemClock_Config(void)
  8000f5a:	2228      	movs	r2, #40	; 0x28
  8000f5c:	2100      	movs	r1, #0
  8000f5e:	4618      	mov	r0, r3
- 8000f60:	f005 feb0 	bl	8006cc4 <memset>
+ 8000f60:	f005 fec0 	bl	8006ce4 <memset>
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  8000f64:	1d3b      	adds	r3, r7, #4
  8000f66:	2200      	movs	r2, #0
@@ -2791,14 +2793,14 @@ LoopFillZerobss:
  80015e6:	f7ff ffe5 	bl	80015b4 <SystemInit>
 /* Call static constructors */
     bl __libc_init_array
- 80015ea:	f005 fb39 	bl	8006c60 <__libc_init_array>
+ 80015ea:	f005 fb49 	bl	8006c80 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
  80015ee:	f7ff fc8b 	bl	8000f08 <main>
   bx lr
  80015f2:	4770      	bx	lr
   ldr r3, =_sidata
- 80015f4:	08006de8 	.word	0x08006de8
+ 80015f4:	08006e08 	.word	0x08006e08
   ldr r0, =_sdata
  80015f8:	20000000 	.word	0x20000000
   ldr r3, =_edata
@@ -5208,7 +5210,7 @@ if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK
  8002372:	bf00      	nop
  8002374:	40022000 	.word	0x40022000
  8002378:	40021000 	.word	0x40021000
- 800237c:	08006dc8 	.word	0x08006dc8
+ 800237c:	08006de8 	.word	0x08006de8
  8002380:	20000000 	.word	0x20000000
  8002384:	20000004 	.word	0x20000004
 
@@ -5356,7 +5358,7 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  8002432:	bc90      	pop	{r4, r7}
  8002434:	4770      	bx	lr
  8002436:	bf00      	nop
- 8002438:	08006cf8 	.word	0x08006cf8
+ 8002438:	08006d18 	.word	0x08006d18
  800243c:	40021000 	.word	0x40021000
  8002440:	007a1200 	.word	0x007a1200
  8002444:	003d0900 	.word	0x003d0900
@@ -5404,7 +5406,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8002478:	4618      	mov	r0, r3
  800247a:	bd80      	pop	{r7, pc}
  800247c:	40021000 	.word	0x40021000
- 8002480:	08006dd8 	.word	0x08006dd8
+ 8002480:	08006df8 	.word	0x08006df8
 
 08002484 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -5430,7 +5432,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  80024a0:	4618      	mov	r0, r3
  80024a2:	bd80      	pop	{r7, pc}
  80024a4:	40021000 	.word	0x40021000
- 80024a8:	08006dd8 	.word	0x08006dd8
+ 80024a8:	08006df8 	.word	0x08006df8
 
 080024ac <HAL_RCC_GetClockConfig>:
   * contains the current clock configuration.
@@ -10834,7 +10836,7 @@ UBaseType_t uxMessagesWaiting;
  8004190:	6c1b      	ldr	r3, [r3, #64]	; 0x40
  8004192:	461a      	mov	r2, r3
  8004194:	68b9      	ldr	r1, [r7, #8]
- 8004196:	f002 fd87 	bl	8006ca8 <memcpy>
+ 8004196:	f002 fd97 	bl	8006cc8 <memcpy>
 		pxQueue->pcWriteTo += pxQueue->uxItemSize;
  800419a:	68fb      	ldr	r3, [r7, #12]
  800419c:	689a      	ldr	r2, [r3, #8]
@@ -10869,7 +10871,7 @@ UBaseType_t uxMessagesWaiting;
  80041c4:	6c1b      	ldr	r3, [r3, #64]	; 0x40
  80041c6:	461a      	mov	r2, r3
  80041c8:	68b9      	ldr	r1, [r7, #8]
- 80041ca:	f002 fd6d 	bl	8006ca8 <memcpy>
+ 80041ca:	f002 fd7d 	bl	8006cc8 <memcpy>
 		pxQueue->u.pcReadFrom -= pxQueue->uxItemSize;
  80041ce:	68fb      	ldr	r3, [r7, #12]
  80041d0:	68da      	ldr	r2, [r3, #12]
@@ -10987,7 +10989,7 @@ static void prvCopyDataFromQueue( Queue_t * const pxQueue, void * const pvBuffer
  8004258:	6c1b      	ldr	r3, [r3, #64]	; 0x40
  800425a:	461a      	mov	r2, r3
  800425c:	6838      	ldr	r0, [r7, #0]
- 800425e:	f002 fd23 	bl	8006ca8 <memcpy>
+ 800425e:	f002 fd33 	bl	8006cc8 <memcpy>
 	}
 }
  8004262:	bf00      	nop
@@ -11640,7 +11642,7 @@ BaseType_t xReturn;
  800457a:	009b      	lsls	r3, r3, #2
  800457c:	461a      	mov	r2, r3
  800457e:	21a5      	movs	r1, #165	; 0xa5
- 8004580:	f002 fba0 	bl	8006cc4 <memset>
+ 8004580:	f002 fbb0 	bl	8006ce4 <memset>
 	grows from high memory to low (as per the 80x86) or vice versa.
 	portSTACK_GROWTH is used to make the result positive or negative as required
 	by the port. */
@@ -12230,7 +12232,7 @@ BaseType_t xReturn;
  800486a:	3718      	adds	r7, #24
  800486c:	46bd      	mov	sp, r7
  800486e:	bd80      	pop	{r7, pc}
- 8004870:	08006d08 	.word	0x08006d08
+ 8004870:	08006d28 	.word	0x08006d28
  8004874:	08004ea1 	.word	0x08004ea1
  8004878:	20000bf4 	.word	0x20000bf4
  800487c:	20000bf0 	.word	0x20000bf0
@@ -14534,7 +14536,7 @@ BaseType_t xReturn = pdFAIL;
  80054a0:	46bd      	mov	sp, r7
  80054a2:	bd80      	pop	{r7, pc}
  80054a4:	20000c2c 	.word	0x20000c2c
- 80054a8:	08006d10 	.word	0x08006d10
+ 80054a8:	08006d30 	.word	0x08006d30
  80054ac:	080055d1 	.word	0x080055d1
  80054b0:	20000c30 	.word	0x20000c30
 
@@ -15583,7 +15585,7 @@ static void prvCheckForValidListAndQueue( void )
  8005a38:	20000c28 	.word	0x20000c28
  8005a3c:	20000cd8 	.word	0x20000cd8
  8005a40:	20000c38 	.word	0x20000c38
- 8005a44:	08006d18 	.word	0x08006d18
+ 8005a44:	08006d38 	.word	0x08006d38
 
 08005a48 <pxPortInitialiseStack>:
 
@@ -17957,7 +17959,7 @@ void tasks_init(void){
 
 
 		driverInit();
- 800682c:	f000 f9ba 	bl	8006ba4 <driverInit>
+ 800682c:	f000 f9ca 	bl	8006bc4 <driverInit>
 		IO_init();
  8006830:	f7fc fc2e 	bl	8003090 <IO_init>
 		vTaskStartScheduler();
@@ -17971,25 +17973,25 @@ void tasks_init(void){
  8006840:	2000356c 	.word	0x2000356c
  8006844:	20003570 	.word	0x20003570
  8006848:	20003574 	.word	0x20003574
- 800684c:	08006d20 	.word	0x08006d20
+ 800684c:	08006d40 	.word	0x08006d40
  8006850:	08006909 	.word	0x08006909
- 8006854:	08006d30 	.word	0x08006d30
+ 8006854:	08006d50 	.word	0x08006d50
  8006858:	080068d9 	.word	0x080068d9
- 800685c:	08006d3c 	.word	0x08006d3c
+ 800685c:	08006d5c 	.word	0x08006d5c
  8006860:	08006a75 	.word	0x08006a75
- 8006864:	08006d48 	.word	0x08006d48
+ 8006864:	08006d68 	.word	0x08006d68
  8006868:	08006aa1 	.word	0x08006aa1
- 800686c:	08006d54 	.word	0x08006d54
- 8006870:	08006aed 	.word	0x08006aed
- 8006874:	08006d60 	.word	0x08006d60
- 8006878:	08006b45 	.word	0x08006b45
- 800687c:	08006d6c 	.word	0x08006d6c
- 8006880:	08006b75 	.word	0x08006b75
- 8006884:	08006d78 	.word	0x08006d78
+ 800686c:	08006d74 	.word	0x08006d74
+ 8006870:	08006afd 	.word	0x08006afd
+ 8006874:	08006d80 	.word	0x08006d80
+ 8006878:	08006b65 	.word	0x08006b65
+ 800687c:	08006d8c 	.word	0x08006d8c
+ 8006880:	08006b95 	.word	0x08006b95
+ 8006884:	08006d98 	.word	0x08006d98
  8006888:	0800689d 	.word	0x0800689d
- 800688c:	08006d88 	.word	0x08006d88
+ 800688c:	08006da8 	.word	0x08006da8
  8006890:	080068ab 	.word	0x080068ab
- 8006894:	08006d98 	.word	0x08006d98
+ 8006894:	08006db8 	.word	0x08006db8
  8006898:	080068b9 	.word	0x080068b9
 
 0800689c <readSwitchsTask>:
@@ -18177,7 +18179,7 @@ void computerValTask(void *params){
  8006a0c:	f04f 0300 	mov.w	r3, #0
  8006a10:	f44f 6296 	mov.w	r2, #1200	; 0x4b0
  8006a14:	2100      	movs	r1, #0
- 8006a16:	f000 f8f1 	bl	8006bfc <valuesMapforFloat>
+ 8006a16:	f000 f901 	bl	8006c1c <valuesMapforFloat>
  8006a1a:	4603      	mov	r3, r0
  8006a1c:	4619      	mov	r1, r3
  8006a1e:	4620      	mov	r0, r4
@@ -18248,329 +18250,341 @@ void computerSendTask(void *params){
 }
 void sendDataUart1Task(void *params){
  8006aa0:	b590      	push	{r4, r7, lr}
- 8006aa2:	b089      	sub	sp, #36	; 0x24
+ 8006aa2:	b08b      	sub	sp, #44	; 0x2c
  8006aa4:	af02      	add	r7, sp, #8
  8006aa6:	6078      	str	r0, [r7, #4]
 
 	while(1){
-		driveDriver.angle=(uint16_t)((getComputerVals().steer_pos)/10000);
- 8006aa8:	f107 030c 	add.w	r3, r7, #12
+		if(getComputerVals().size)	driveDriver.angle=(uint16_t)((getComputerVals().steer_pos)/10000);
+ 8006aa8:	f107 0308 	add.w	r3, r7, #8
  8006aac:	4618      	mov	r0, r3
  8006aae:	f7fa fa1b 	bl	8000ee8 <getComputerVals>
- 8006ab2:	693b      	ldr	r3, [r7, #16]
- 8006ab4:	4a0b      	ldr	r2, [pc, #44]	; (8006ae4 <sendDataUart1Task+0x44>)
- 8006ab6:	fb82 1203 	smull	r1, r2, r2, r3
- 8006aba:	1312      	asrs	r2, r2, #12
- 8006abc:	17db      	asrs	r3, r3, #31
- 8006abe:	1ad3      	subs	r3, r2, r3
- 8006ac0:	b29a      	uxth	r2, r3
- 8006ac2:	4b09      	ldr	r3, [pc, #36]	; (8006ae8 <sendDataUart1Task+0x48>)
- 8006ac4:	809a      	strh	r2, [r3, #4]
-		MDI_sendDataChannel1Ver2(driveDriver.angle,driveDriver.pid_kp,driveDriver.pid_ki,driveDriver.pid_kd,driveDriver.factor);
- 8006ac6:	4b08      	ldr	r3, [pc, #32]	; (8006ae8 <sendDataUart1Task+0x48>)
- 8006ac8:	8898      	ldrh	r0, [r3, #4]
- 8006aca:	4b07      	ldr	r3, [pc, #28]	; (8006ae8 <sendDataUart1Task+0x48>)
- 8006acc:	7899      	ldrb	r1, [r3, #2]
- 8006ace:	4b06      	ldr	r3, [pc, #24]	; (8006ae8 <sendDataUart1Task+0x48>)
- 8006ad0:	785a      	ldrb	r2, [r3, #1]
- 8006ad2:	4b05      	ldr	r3, [pc, #20]	; (8006ae8 <sendDataUart1Task+0x48>)
- 8006ad4:	781c      	ldrb	r4, [r3, #0]
- 8006ad6:	4b04      	ldr	r3, [pc, #16]	; (8006ae8 <sendDataUart1Task+0x48>)
- 8006ad8:	78db      	ldrb	r3, [r3, #3]
- 8006ada:	9300      	str	r3, [sp, #0]
- 8006adc:	4623      	mov	r3, r4
- 8006ade:	f7ff fb9d 	bl	800621c <MDI_sendDataChannel1Ver2>
-		driveDriver.angle=(uint16_t)((getComputerVals().steer_pos)/10000);
- 8006ae2:	e7e1      	b.n	8006aa8 <sendDataUart1Task+0x8>
- 8006ae4:	68db8bad 	.word	0x68db8bad
- 8006ae8:	2000375c 	.word	0x2000375c
+ 8006ab2:	893b      	ldrh	r3, [r7, #8]
+ 8006ab4:	2b00      	cmp	r3, #0
+ 8006ab6:	d00e      	beq.n	8006ad6 <sendDataUart1Task+0x36>
+ 8006ab8:	f107 0314 	add.w	r3, r7, #20
+ 8006abc:	4618      	mov	r0, r3
+ 8006abe:	f7fa fa13 	bl	8000ee8 <getComputerVals>
+ 8006ac2:	69bb      	ldr	r3, [r7, #24]
+ 8006ac4:	4a0b      	ldr	r2, [pc, #44]	; (8006af4 <sendDataUart1Task+0x54>)
+ 8006ac6:	fb82 1203 	smull	r1, r2, r2, r3
+ 8006aca:	1312      	asrs	r2, r2, #12
+ 8006acc:	17db      	asrs	r3, r3, #31
+ 8006ace:	1ad3      	subs	r3, r2, r3
+ 8006ad0:	b29a      	uxth	r2, r3
+ 8006ad2:	4b09      	ldr	r3, [pc, #36]	; (8006af8 <sendDataUart1Task+0x58>)
+ 8006ad4:	809a      	strh	r2, [r3, #4]
+			MDI_sendDataChannel1Ver2(driveDriver.angle,driveDriver.pid_kp,driveDriver.pid_ki,driveDriver.pid_kd,driveDriver.factor);
+ 8006ad6:	4b08      	ldr	r3, [pc, #32]	; (8006af8 <sendDataUart1Task+0x58>)
+ 8006ad8:	8898      	ldrh	r0, [r3, #4]
+ 8006ada:	4b07      	ldr	r3, [pc, #28]	; (8006af8 <sendDataUart1Task+0x58>)
+ 8006adc:	7899      	ldrb	r1, [r3, #2]
+ 8006ade:	4b06      	ldr	r3, [pc, #24]	; (8006af8 <sendDataUart1Task+0x58>)
+ 8006ae0:	785a      	ldrb	r2, [r3, #1]
+ 8006ae2:	4b05      	ldr	r3, [pc, #20]	; (8006af8 <sendDataUart1Task+0x58>)
+ 8006ae4:	781c      	ldrb	r4, [r3, #0]
+ 8006ae6:	4b04      	ldr	r3, [pc, #16]	; (8006af8 <sendDataUart1Task+0x58>)
+ 8006ae8:	78db      	ldrb	r3, [r3, #3]
+ 8006aea:	9300      	str	r3, [sp, #0]
+ 8006aec:	4623      	mov	r3, r4
+ 8006aee:	f7ff fb95 	bl	800621c <MDI_sendDataChannel1Ver2>
+		if(getComputerVals().size)	driveDriver.angle=(uint16_t)((getComputerVals().steer_pos)/10000);
+ 8006af2:	e7d9      	b.n	8006aa8 <sendDataUart1Task+0x8>
+ 8006af4:	68db8bad 	.word	0x68db8bad
+ 8006af8:	2000375c 	.word	0x2000375c
 
-08006aec <sendDataUart2Task>:
+08006afc <sendDataUart2Task>:
 
 	}
 }
 void sendDataUart2Task(void *params){
- 8006aec:	b5b0      	push	{r4, r5, r7, lr}
- 8006aee:	b088      	sub	sp, #32
- 8006af0:	af02      	add	r7, sp, #8
- 8006af2:	6078      	str	r0, [r7, #4]
+ 8006afc:	b5b0      	push	{r4, r5, r7, lr}
+ 8006afe:	b08a      	sub	sp, #40	; 0x28
+ 8006b00:	af02      	add	r7, sp, #8
+ 8006b02:	6078      	str	r0, [r7, #4]
 	while(1){
-		travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000);
- 8006af4:	f107 030c 	add.w	r3, r7, #12
- 8006af8:	4618      	mov	r0, r3
- 8006afa:	f7fa f9f5 	bl	8000ee8 <getComputerVals>
- 8006afe:	697b      	ldr	r3, [r7, #20]
- 8006b00:	4a0e      	ldr	r2, [pc, #56]	; (8006b3c <sendDataUart2Task+0x50>)
- 8006b02:	fb82 1203 	smull	r1, r2, r2, r3
- 8006b06:	1312      	asrs	r2, r2, #12
- 8006b08:	17db      	asrs	r3, r3, #31
- 8006b0a:	1ad3      	subs	r3, r2, r3
- 8006b0c:	b21a      	sxth	r2, r3
- 8006b0e:	4b0c      	ldr	r3, [pc, #48]	; (8006b40 <sendDataUart2Task+0x54>)
- 8006b10:	809a      	strh	r2, [r3, #4]
-		MDI_sendDataChannel2Ver2(travelDriver.speed,travelDriver.pid_kp,travelDriver.pid_ki,travelDriver.pid_kd,travelDriver.soft_k,travelDriver.soft_f);
- 8006b12:	4b0b      	ldr	r3, [pc, #44]	; (8006b40 <sendDataUart2Task+0x54>)
- 8006b14:	f9b3 0004 	ldrsh.w	r0, [r3, #4]
- 8006b18:	4b09      	ldr	r3, [pc, #36]	; (8006b40 <sendDataUart2Task+0x54>)
- 8006b1a:	7819      	ldrb	r1, [r3, #0]
- 8006b1c:	4b08      	ldr	r3, [pc, #32]	; (8006b40 <sendDataUart2Task+0x54>)
- 8006b1e:	785c      	ldrb	r4, [r3, #1]
- 8006b20:	4b07      	ldr	r3, [pc, #28]	; (8006b40 <sendDataUart2Task+0x54>)
- 8006b22:	789d      	ldrb	r5, [r3, #2]
- 8006b24:	4b06      	ldr	r3, [pc, #24]	; (8006b40 <sendDataUart2Task+0x54>)
- 8006b26:	79db      	ldrb	r3, [r3, #7]
- 8006b28:	4a05      	ldr	r2, [pc, #20]	; (8006b40 <sendDataUart2Task+0x54>)
- 8006b2a:	7992      	ldrb	r2, [r2, #6]
- 8006b2c:	9201      	str	r2, [sp, #4]
- 8006b2e:	9300      	str	r3, [sp, #0]
- 8006b30:	462b      	mov	r3, r5
- 8006b32:	4622      	mov	r2, r4
- 8006b34:	f7ff fc78 	bl	8006428 <MDI_sendDataChannel2Ver2>
-		travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000);
- 8006b38:	e7dc      	b.n	8006af4 <sendDataUart2Task+0x8>
- 8006b3a:	bf00      	nop
- 8006b3c:	68db8bad 	.word	0x68db8bad
- 8006b40:	20003740 	.word	0x20003740
+		if(getComputerVals().size)	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000);
+ 8006b04:	f107 0308 	add.w	r3, r7, #8
+ 8006b08:	4618      	mov	r0, r3
+ 8006b0a:	f7fa f9ed 	bl	8000ee8 <getComputerVals>
+ 8006b0e:	893b      	ldrh	r3, [r7, #8]
+ 8006b10:	2b00      	cmp	r3, #0
+ 8006b12:	d00e      	beq.n	8006b32 <sendDataUart2Task+0x36>
+ 8006b14:	f107 0314 	add.w	r3, r7, #20
+ 8006b18:	4618      	mov	r0, r3
+ 8006b1a:	f7fa f9e5 	bl	8000ee8 <getComputerVals>
+ 8006b1e:	69fb      	ldr	r3, [r7, #28]
+ 8006b20:	4a0e      	ldr	r2, [pc, #56]	; (8006b5c <sendDataUart2Task+0x60>)
+ 8006b22:	fb82 1203 	smull	r1, r2, r2, r3
+ 8006b26:	1312      	asrs	r2, r2, #12
+ 8006b28:	17db      	asrs	r3, r3, #31
+ 8006b2a:	1ad3      	subs	r3, r2, r3
+ 8006b2c:	b21a      	sxth	r2, r3
+ 8006b2e:	4b0c      	ldr	r3, [pc, #48]	; (8006b60 <sendDataUart2Task+0x64>)
+ 8006b30:	809a      	strh	r2, [r3, #4]
+				MDI_sendDataChannel2Ver2(travelDriver.speed,travelDriver.pid_kp,travelDriver.pid_ki,travelDriver.pid_kd,travelDriver.soft_k,travelDriver.soft_f);
+ 8006b32:	4b0b      	ldr	r3, [pc, #44]	; (8006b60 <sendDataUart2Task+0x64>)
+ 8006b34:	f9b3 0004 	ldrsh.w	r0, [r3, #4]
+ 8006b38:	4b09      	ldr	r3, [pc, #36]	; (8006b60 <sendDataUart2Task+0x64>)
+ 8006b3a:	7819      	ldrb	r1, [r3, #0]
+ 8006b3c:	4b08      	ldr	r3, [pc, #32]	; (8006b60 <sendDataUart2Task+0x64>)
+ 8006b3e:	785c      	ldrb	r4, [r3, #1]
+ 8006b40:	4b07      	ldr	r3, [pc, #28]	; (8006b60 <sendDataUart2Task+0x64>)
+ 8006b42:	789d      	ldrb	r5, [r3, #2]
+ 8006b44:	4b06      	ldr	r3, [pc, #24]	; (8006b60 <sendDataUart2Task+0x64>)
+ 8006b46:	79db      	ldrb	r3, [r3, #7]
+ 8006b48:	4a05      	ldr	r2, [pc, #20]	; (8006b60 <sendDataUart2Task+0x64>)
+ 8006b4a:	7992      	ldrb	r2, [r2, #6]
+ 8006b4c:	9201      	str	r2, [sp, #4]
+ 8006b4e:	9300      	str	r3, [sp, #0]
+ 8006b50:	462b      	mov	r3, r5
+ 8006b52:	4622      	mov	r2, r4
+ 8006b54:	f7ff fc68 	bl	8006428 <MDI_sendDataChannel2Ver2>
+		if(getComputerVals().size)	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000);
+ 8006b58:	e7d4      	b.n	8006b04 <sendDataUart2Task+0x8>
+ 8006b5a:	bf00      	nop
+ 8006b5c:	68db8bad 	.word	0x68db8bad
+ 8006b60:	20003740 	.word	0x20003740
 
-08006b44 <getDataUart1Task>:
+08006b64 <getDataUart1Task>:
 	}
 }
 void getDataUart1Task(void *params){
- 8006b44:	b580      	push	{r7, lr}
- 8006b46:	b082      	sub	sp, #8
- 8006b48:	af00      	add	r7, sp, #0
- 8006b4a:	6078      	str	r0, [r7, #4]
+ 8006b64:	b580      	push	{r7, lr}
+ 8006b66:	b082      	sub	sp, #8
+ 8006b68:	af00      	add	r7, sp, #0
+ 8006b6a:	6078      	str	r0, [r7, #4]
 	while(1){
 		xSemaphoreTake(uart1SemphrHandle, portMAX_DELAY);
- 8006b4c:	4b08      	ldr	r3, [pc, #32]	; (8006b70 <getDataUart1Task+0x2c>)
- 8006b4e:	681b      	ldr	r3, [r3, #0]
- 8006b50:	f04f 31ff 	mov.w	r1, #4294967295
- 8006b54:	4618      	mov	r0, r3
- 8006b56:	f7fd f9d5 	bl	8003f04 <xQueueSemaphoreTake>
+ 8006b6c:	4b08      	ldr	r3, [pc, #32]	; (8006b90 <getDataUart1Task+0x2c>)
+ 8006b6e:	681b      	ldr	r3, [r3, #0]
+ 8006b70:	f04f 31ff 	mov.w	r1, #4294967295
+ 8006b74:	4618      	mov	r0, r3
+ 8006b76:	f7fd f9c5 	bl	8003f04 <xQueueSemaphoreTake>
 		MDI_enableGetDataChannel1();
- 8006b5a:	f7ff fbcf 	bl	80062fc <MDI_enableGetDataChannel1>
+ 8006b7a:	f7ff fbbf 	bl	80062fc <MDI_enableGetDataChannel1>
 		xSemaphoreGive(uart1SemphrHandle);
- 8006b5e:	4b04      	ldr	r3, [pc, #16]	; (8006b70 <getDataUart1Task+0x2c>)
- 8006b60:	6818      	ldr	r0, [r3, #0]
- 8006b62:	2300      	movs	r3, #0
- 8006b64:	2200      	movs	r2, #0
- 8006b66:	2100      	movs	r1, #0
- 8006b68:	f7fc ff56 	bl	8003a18 <xQueueGenericSend>
+ 8006b7e:	4b04      	ldr	r3, [pc, #16]	; (8006b90 <getDataUart1Task+0x2c>)
+ 8006b80:	6818      	ldr	r0, [r3, #0]
+ 8006b82:	2300      	movs	r3, #0
+ 8006b84:	2200      	movs	r2, #0
+ 8006b86:	2100      	movs	r1, #0
+ 8006b88:	f7fc ff46 	bl	8003a18 <xQueueGenericSend>
 		xSemaphoreTake(uart1SemphrHandle, portMAX_DELAY);
- 8006b6c:	e7ee      	b.n	8006b4c <getDataUart1Task+0x8>
- 8006b6e:	bf00      	nop
- 8006b70:	2000356c 	.word	0x2000356c
+ 8006b8c:	e7ee      	b.n	8006b6c <getDataUart1Task+0x8>
+ 8006b8e:	bf00      	nop
+ 8006b90:	2000356c 	.word	0x2000356c
 
-08006b74 <getDataUart2Task>:
+08006b94 <getDataUart2Task>:
 
 	}
 }
 void getDataUart2Task(void *params){
- 8006b74:	b580      	push	{r7, lr}
- 8006b76:	b082      	sub	sp, #8
- 8006b78:	af00      	add	r7, sp, #0
- 8006b7a:	6078      	str	r0, [r7, #4]
+ 8006b94:	b580      	push	{r7, lr}
+ 8006b96:	b082      	sub	sp, #8
+ 8006b98:	af00      	add	r7, sp, #0
+ 8006b9a:	6078      	str	r0, [r7, #4]
 	while(1){
 		xSemaphoreTake(uart2SemphrHandle, portMAX_DELAY);
- 8006b7c:	4b08      	ldr	r3, [pc, #32]	; (8006ba0 <getDataUart2Task+0x2c>)
- 8006b7e:	681b      	ldr	r3, [r3, #0]
- 8006b80:	f04f 31ff 	mov.w	r1, #4294967295
- 8006b84:	4618      	mov	r0, r3
- 8006b86:	f7fd f9bd 	bl	8003f04 <xQueueSemaphoreTake>
+ 8006b9c:	4b08      	ldr	r3, [pc, #32]	; (8006bc0 <getDataUart2Task+0x2c>)
+ 8006b9e:	681b      	ldr	r3, [r3, #0]
+ 8006ba0:	f04f 31ff 	mov.w	r1, #4294967295
+ 8006ba4:	4618      	mov	r0, r3
+ 8006ba6:	f7fd f9ad 	bl	8003f04 <xQueueSemaphoreTake>
 		MDI_enableGetDataChannel2();
- 8006b8a:	f7ff fcc7 	bl	800651c <MDI_enableGetDataChannel2>
+ 8006baa:	f7ff fcb7 	bl	800651c <MDI_enableGetDataChannel2>
 		xSemaphoreGive(uart2SemphrHandle);
- 8006b8e:	4b04      	ldr	r3, [pc, #16]	; (8006ba0 <getDataUart2Task+0x2c>)
- 8006b90:	6818      	ldr	r0, [r3, #0]
- 8006b92:	2300      	movs	r3, #0
- 8006b94:	2200      	movs	r2, #0
- 8006b96:	2100      	movs	r1, #0
- 8006b98:	f7fc ff3e 	bl	8003a18 <xQueueGenericSend>
+ 8006bae:	4b04      	ldr	r3, [pc, #16]	; (8006bc0 <getDataUart2Task+0x2c>)
+ 8006bb0:	6818      	ldr	r0, [r3, #0]
+ 8006bb2:	2300      	movs	r3, #0
+ 8006bb4:	2200      	movs	r2, #0
+ 8006bb6:	2100      	movs	r1, #0
+ 8006bb8:	f7fc ff2e 	bl	8003a18 <xQueueGenericSend>
 		xSemaphoreTake(uart2SemphrHandle, portMAX_DELAY);
- 8006b9c:	e7ee      	b.n	8006b7c <getDataUart2Task+0x8>
- 8006b9e:	bf00      	nop
- 8006ba0:	20003570 	.word	0x20003570
+ 8006bbc:	e7ee      	b.n	8006b9c <getDataUart2Task+0x8>
+ 8006bbe:	bf00      	nop
+ 8006bc0:	20003570 	.word	0x20003570
 
-08006ba4 <driverInit>:
+08006bc4 <driverInit>:
 	}
 }
 
 void driverInit(void){
- 8006ba4:	b480      	push	{r7}
- 8006ba6:	af00      	add	r7, sp, #0
+ 8006bc4:	b480      	push	{r7}
+ 8006bc6:	af00      	add	r7, sp, #0
 	driveDriver.angle=500;
- 8006ba8:	4b12      	ldr	r3, [pc, #72]	; (8006bf4 <driverInit+0x50>)
- 8006baa:	f44f 72fa 	mov.w	r2, #500	; 0x1f4
- 8006bae:	809a      	strh	r2, [r3, #4]
+ 8006bc8:	4b12      	ldr	r3, [pc, #72]	; (8006c14 <driverInit+0x50>)
+ 8006bca:	f44f 72fa 	mov.w	r2, #500	; 0x1f4
+ 8006bce:	809a      	strh	r2, [r3, #4]
 	driveDriver.pid_kp=100;
- 8006bb0:	4b10      	ldr	r3, [pc, #64]	; (8006bf4 <driverInit+0x50>)
- 8006bb2:	2264      	movs	r2, #100	; 0x64
- 8006bb4:	709a      	strb	r2, [r3, #2]
+ 8006bd0:	4b10      	ldr	r3, [pc, #64]	; (8006c14 <driverInit+0x50>)
+ 8006bd2:	2264      	movs	r2, #100	; 0x64
+ 8006bd4:	709a      	strb	r2, [r3, #2]
 	driveDriver.pid_ki=1;
- 8006bb6:	4b0f      	ldr	r3, [pc, #60]	; (8006bf4 <driverInit+0x50>)
- 8006bb8:	2201      	movs	r2, #1
- 8006bba:	705a      	strb	r2, [r3, #1]
+ 8006bd6:	4b0f      	ldr	r3, [pc, #60]	; (8006c14 <driverInit+0x50>)
+ 8006bd8:	2201      	movs	r2, #1
+ 8006bda:	705a      	strb	r2, [r3, #1]
 	driveDriver.pid_kd=200;
- 8006bbc:	4b0d      	ldr	r3, [pc, #52]	; (8006bf4 <driverInit+0x50>)
- 8006bbe:	22c8      	movs	r2, #200	; 0xc8
- 8006bc0:	701a      	strb	r2, [r3, #0]
+ 8006bdc:	4b0d      	ldr	r3, [pc, #52]	; (8006c14 <driverInit+0x50>)
+ 8006bde:	22c8      	movs	r2, #200	; 0xc8
+ 8006be0:	701a      	strb	r2, [r3, #0]
 	driveDriver.factor=100;
- 8006bc2:	4b0c      	ldr	r3, [pc, #48]	; (8006bf4 <driverInit+0x50>)
- 8006bc4:	2264      	movs	r2, #100	; 0x64
- 8006bc6:	70da      	strb	r2, [r3, #3]
+ 8006be2:	4b0c      	ldr	r3, [pc, #48]	; (8006c14 <driverInit+0x50>)
+ 8006be4:	2264      	movs	r2, #100	; 0x64
+ 8006be6:	70da      	strb	r2, [r3, #3]
 
 	travelDriver.speed =0;
- 8006bc8:	4b0b      	ldr	r3, [pc, #44]	; (8006bf8 <driverInit+0x54>)
- 8006bca:	2200      	movs	r2, #0
- 8006bcc:	809a      	strh	r2, [r3, #4]
+ 8006be8:	4b0b      	ldr	r3, [pc, #44]	; (8006c18 <driverInit+0x54>)
+ 8006bea:	2200      	movs	r2, #0
+ 8006bec:	809a      	strh	r2, [r3, #4]
 	travelDriver.pid_kp=70;
- 8006bce:	4b0a      	ldr	r3, [pc, #40]	; (8006bf8 <driverInit+0x54>)
- 8006bd0:	2246      	movs	r2, #70	; 0x46
- 8006bd2:	701a      	strb	r2, [r3, #0]
+ 8006bee:	4b0a      	ldr	r3, [pc, #40]	; (8006c18 <driverInit+0x54>)
+ 8006bf0:	2246      	movs	r2, #70	; 0x46
+ 8006bf2:	701a      	strb	r2, [r3, #0]
 	travelDriver.pid_ki=1;
- 8006bd4:	4b08      	ldr	r3, [pc, #32]	; (8006bf8 <driverInit+0x54>)
- 8006bd6:	2201      	movs	r2, #1
- 8006bd8:	705a      	strb	r2, [r3, #1]
+ 8006bf4:	4b08      	ldr	r3, [pc, #32]	; (8006c18 <driverInit+0x54>)
+ 8006bf6:	2201      	movs	r2, #1
+ 8006bf8:	705a      	strb	r2, [r3, #1]
 	travelDriver.pid_kd=1;
- 8006bda:	4b07      	ldr	r3, [pc, #28]	; (8006bf8 <driverInit+0x54>)
- 8006bdc:	2201      	movs	r2, #1
- 8006bde:	709a      	strb	r2, [r3, #2]
+ 8006bfa:	4b07      	ldr	r3, [pc, #28]	; (8006c18 <driverInit+0x54>)
+ 8006bfc:	2201      	movs	r2, #1
+ 8006bfe:	709a      	strb	r2, [r3, #2]
 	travelDriver.soft_k =1;
- 8006be0:	4b05      	ldr	r3, [pc, #20]	; (8006bf8 <driverInit+0x54>)
- 8006be2:	2201      	movs	r2, #1
- 8006be4:	71da      	strb	r2, [r3, #7]
+ 8006c00:	4b05      	ldr	r3, [pc, #20]	; (8006c18 <driverInit+0x54>)
+ 8006c02:	2201      	movs	r2, #1
+ 8006c04:	71da      	strb	r2, [r3, #7]
 	travelDriver.soft_f =1;
- 8006be6:	4b04      	ldr	r3, [pc, #16]	; (8006bf8 <driverInit+0x54>)
- 8006be8:	2201      	movs	r2, #1
- 8006bea:	719a      	strb	r2, [r3, #6]
+ 8006c06:	4b04      	ldr	r3, [pc, #16]	; (8006c18 <driverInit+0x54>)
+ 8006c08:	2201      	movs	r2, #1
+ 8006c0a:	719a      	strb	r2, [r3, #6]
 
 }
- 8006bec:	bf00      	nop
- 8006bee:	46bd      	mov	sp, r7
- 8006bf0:	bc80      	pop	{r7}
- 8006bf2:	4770      	bx	lr
- 8006bf4:	2000375c 	.word	0x2000375c
- 8006bf8:	20003740 	.word	0x20003740
+ 8006c0c:	bf00      	nop
+ 8006c0e:	46bd      	mov	sp, r7
+ 8006c10:	bc80      	pop	{r7}
+ 8006c12:	4770      	bx	lr
+ 8006c14:	2000375c 	.word	0x2000375c
+ 8006c18:	20003740 	.word	0x20003740
 
-08006bfc <valuesMapforFloat>:
+08006c1c <valuesMapforFloat>:
 	return (inValue - inMin)*(outMax - outMin) / (inMax - inMin) + outMin;
 }
 int16_t valuesMapFloat(float inValue, float inMin, float inMax, int16_t outMin, int16_t outMax) {
 	return (inValue - inMin)*(outMax - outMin) / (inMax - inMin) + outMin;
 }
 float valuesMapforFloat(uint16_t inValue, uint16_t inMin, uint16_t inMax, float outMin, float outMax) {
- 8006bfc:	b590      	push	{r4, r7, lr}
- 8006bfe:	b085      	sub	sp, #20
- 8006c00:	af00      	add	r7, sp, #0
- 8006c02:	607b      	str	r3, [r7, #4]
- 8006c04:	4603      	mov	r3, r0
- 8006c06:	81fb      	strh	r3, [r7, #14]
- 8006c08:	460b      	mov	r3, r1
- 8006c0a:	81bb      	strh	r3, [r7, #12]
- 8006c0c:	4613      	mov	r3, r2
- 8006c0e:	817b      	strh	r3, [r7, #10]
+ 8006c1c:	b590      	push	{r4, r7, lr}
+ 8006c1e:	b085      	sub	sp, #20
+ 8006c20:	af00      	add	r7, sp, #0
+ 8006c22:	607b      	str	r3, [r7, #4]
+ 8006c24:	4603      	mov	r3, r0
+ 8006c26:	81fb      	strh	r3, [r7, #14]
+ 8006c28:	460b      	mov	r3, r1
+ 8006c2a:	81bb      	strh	r3, [r7, #12]
+ 8006c2c:	4613      	mov	r3, r2
+ 8006c2e:	817b      	strh	r3, [r7, #10]
 	return (inValue - inMin)*(outMax - outMin) / (inMax - inMin) + outMin;
- 8006c10:	89fa      	ldrh	r2, [r7, #14]
- 8006c12:	89bb      	ldrh	r3, [r7, #12]
- 8006c14:	1ad3      	subs	r3, r2, r3
- 8006c16:	4618      	mov	r0, r3
- 8006c18:	f7f9 fe5a 	bl	80008d0 <__aeabi_i2f>
- 8006c1c:	4604      	mov	r4, r0
- 8006c1e:	6879      	ldr	r1, [r7, #4]
- 8006c20:	6a38      	ldr	r0, [r7, #32]
- 8006c22:	f7f9 fd9f 	bl	8000764 <__aeabi_fsub>
- 8006c26:	4603      	mov	r3, r0
- 8006c28:	4619      	mov	r1, r3
- 8006c2a:	4620      	mov	r0, r4
- 8006c2c:	f7f9 fea4 	bl	8000978 <__aeabi_fmul>
- 8006c30:	4603      	mov	r3, r0
- 8006c32:	461c      	mov	r4, r3
- 8006c34:	897a      	ldrh	r2, [r7, #10]
- 8006c36:	89bb      	ldrh	r3, [r7, #12]
- 8006c38:	1ad3      	subs	r3, r2, r3
- 8006c3a:	4618      	mov	r0, r3
- 8006c3c:	f7f9 fe48 	bl	80008d0 <__aeabi_i2f>
- 8006c40:	4603      	mov	r3, r0
- 8006c42:	4619      	mov	r1, r3
- 8006c44:	4620      	mov	r0, r4
- 8006c46:	f7f9 ff4b 	bl	8000ae0 <__aeabi_fdiv>
- 8006c4a:	4603      	mov	r3, r0
- 8006c4c:	6879      	ldr	r1, [r7, #4]
- 8006c4e:	4618      	mov	r0, r3
- 8006c50:	f7f9 fd8a 	bl	8000768 <__addsf3>
- 8006c54:	4603      	mov	r3, r0
+ 8006c30:	89fa      	ldrh	r2, [r7, #14]
+ 8006c32:	89bb      	ldrh	r3, [r7, #12]
+ 8006c34:	1ad3      	subs	r3, r2, r3
+ 8006c36:	4618      	mov	r0, r3
+ 8006c38:	f7f9 fe4a 	bl	80008d0 <__aeabi_i2f>
+ 8006c3c:	4604      	mov	r4, r0
+ 8006c3e:	6879      	ldr	r1, [r7, #4]
+ 8006c40:	6a38      	ldr	r0, [r7, #32]
+ 8006c42:	f7f9 fd8f 	bl	8000764 <__aeabi_fsub>
+ 8006c46:	4603      	mov	r3, r0
+ 8006c48:	4619      	mov	r1, r3
+ 8006c4a:	4620      	mov	r0, r4
+ 8006c4c:	f7f9 fe94 	bl	8000978 <__aeabi_fmul>
+ 8006c50:	4603      	mov	r3, r0
+ 8006c52:	461c      	mov	r4, r3
+ 8006c54:	897a      	ldrh	r2, [r7, #10]
+ 8006c56:	89bb      	ldrh	r3, [r7, #12]
+ 8006c58:	1ad3      	subs	r3, r2, r3
+ 8006c5a:	4618      	mov	r0, r3
+ 8006c5c:	f7f9 fe38 	bl	80008d0 <__aeabi_i2f>
+ 8006c60:	4603      	mov	r3, r0
+ 8006c62:	4619      	mov	r1, r3
+ 8006c64:	4620      	mov	r0, r4
+ 8006c66:	f7f9 ff3b 	bl	8000ae0 <__aeabi_fdiv>
+ 8006c6a:	4603      	mov	r3, r0
+ 8006c6c:	6879      	ldr	r1, [r7, #4]
+ 8006c6e:	4618      	mov	r0, r3
+ 8006c70:	f7f9 fd7a 	bl	8000768 <__addsf3>
+ 8006c74:	4603      	mov	r3, r0
 }
- 8006c56:	4618      	mov	r0, r3
- 8006c58:	3714      	adds	r7, #20
- 8006c5a:	46bd      	mov	sp, r7
- 8006c5c:	bd90      	pop	{r4, r7, pc}
+ 8006c76:	4618      	mov	r0, r3
+ 8006c78:	3714      	adds	r7, #20
+ 8006c7a:	46bd      	mov	sp, r7
+ 8006c7c:	bd90      	pop	{r4, r7, pc}
 	...
 
-08006c60 <__libc_init_array>:
- 8006c60:	b570      	push	{r4, r5, r6, lr}
- 8006c62:	2600      	movs	r6, #0
- 8006c64:	4d0c      	ldr	r5, [pc, #48]	; (8006c98 <__libc_init_array+0x38>)
- 8006c66:	4c0d      	ldr	r4, [pc, #52]	; (8006c9c <__libc_init_array+0x3c>)
- 8006c68:	1b64      	subs	r4, r4, r5
- 8006c6a:	10a4      	asrs	r4, r4, #2
- 8006c6c:	42a6      	cmp	r6, r4
- 8006c6e:	d109      	bne.n	8006c84 <__libc_init_array+0x24>
- 8006c70:	f000 f830 	bl	8006cd4 <_init>
- 8006c74:	2600      	movs	r6, #0
- 8006c76:	4d0a      	ldr	r5, [pc, #40]	; (8006ca0 <__libc_init_array+0x40>)
- 8006c78:	4c0a      	ldr	r4, [pc, #40]	; (8006ca4 <__libc_init_array+0x44>)
- 8006c7a:	1b64      	subs	r4, r4, r5
- 8006c7c:	10a4      	asrs	r4, r4, #2
- 8006c7e:	42a6      	cmp	r6, r4
- 8006c80:	d105      	bne.n	8006c8e <__libc_init_array+0x2e>
- 8006c82:	bd70      	pop	{r4, r5, r6, pc}
- 8006c84:	f855 3b04 	ldr.w	r3, [r5], #4
- 8006c88:	4798      	blx	r3
- 8006c8a:	3601      	adds	r6, #1
- 8006c8c:	e7ee      	b.n	8006c6c <__libc_init_array+0xc>
- 8006c8e:	f855 3b04 	ldr.w	r3, [r5], #4
- 8006c92:	4798      	blx	r3
- 8006c94:	3601      	adds	r6, #1
- 8006c96:	e7f2      	b.n	8006c7e <__libc_init_array+0x1e>
- 8006c98:	08006de0 	.word	0x08006de0
- 8006c9c:	08006de0 	.word	0x08006de0
- 8006ca0:	08006de0 	.word	0x08006de0
- 8006ca4:	08006de4 	.word	0x08006de4
+08006c80 <__libc_init_array>:
+ 8006c80:	b570      	push	{r4, r5, r6, lr}
+ 8006c82:	2600      	movs	r6, #0
+ 8006c84:	4d0c      	ldr	r5, [pc, #48]	; (8006cb8 <__libc_init_array+0x38>)
+ 8006c86:	4c0d      	ldr	r4, [pc, #52]	; (8006cbc <__libc_init_array+0x3c>)
+ 8006c88:	1b64      	subs	r4, r4, r5
+ 8006c8a:	10a4      	asrs	r4, r4, #2
+ 8006c8c:	42a6      	cmp	r6, r4
+ 8006c8e:	d109      	bne.n	8006ca4 <__libc_init_array+0x24>
+ 8006c90:	f000 f830 	bl	8006cf4 <_init>
+ 8006c94:	2600      	movs	r6, #0
+ 8006c96:	4d0a      	ldr	r5, [pc, #40]	; (8006cc0 <__libc_init_array+0x40>)
+ 8006c98:	4c0a      	ldr	r4, [pc, #40]	; (8006cc4 <__libc_init_array+0x44>)
+ 8006c9a:	1b64      	subs	r4, r4, r5
+ 8006c9c:	10a4      	asrs	r4, r4, #2
+ 8006c9e:	42a6      	cmp	r6, r4
+ 8006ca0:	d105      	bne.n	8006cae <__libc_init_array+0x2e>
+ 8006ca2:	bd70      	pop	{r4, r5, r6, pc}
+ 8006ca4:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8006ca8:	4798      	blx	r3
+ 8006caa:	3601      	adds	r6, #1
+ 8006cac:	e7ee      	b.n	8006c8c <__libc_init_array+0xc>
+ 8006cae:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8006cb2:	4798      	blx	r3
+ 8006cb4:	3601      	adds	r6, #1
+ 8006cb6:	e7f2      	b.n	8006c9e <__libc_init_array+0x1e>
+ 8006cb8:	08006e00 	.word	0x08006e00
+ 8006cbc:	08006e00 	.word	0x08006e00
+ 8006cc0:	08006e00 	.word	0x08006e00
+ 8006cc4:	08006e04 	.word	0x08006e04
 
-08006ca8 <memcpy>:
- 8006ca8:	440a      	add	r2, r1
- 8006caa:	4291      	cmp	r1, r2
- 8006cac:	f100 33ff 	add.w	r3, r0, #4294967295
- 8006cb0:	d100      	bne.n	8006cb4 <memcpy+0xc>
- 8006cb2:	4770      	bx	lr
- 8006cb4:	b510      	push	{r4, lr}
- 8006cb6:	f811 4b01 	ldrb.w	r4, [r1], #1
- 8006cba:	4291      	cmp	r1, r2
- 8006cbc:	f803 4f01 	strb.w	r4, [r3, #1]!
- 8006cc0:	d1f9      	bne.n	8006cb6 <memcpy+0xe>
- 8006cc2:	bd10      	pop	{r4, pc}
+08006cc8 <memcpy>:
+ 8006cc8:	440a      	add	r2, r1
+ 8006cca:	4291      	cmp	r1, r2
+ 8006ccc:	f100 33ff 	add.w	r3, r0, #4294967295
+ 8006cd0:	d100      	bne.n	8006cd4 <memcpy+0xc>
+ 8006cd2:	4770      	bx	lr
+ 8006cd4:	b510      	push	{r4, lr}
+ 8006cd6:	f811 4b01 	ldrb.w	r4, [r1], #1
+ 8006cda:	4291      	cmp	r1, r2
+ 8006cdc:	f803 4f01 	strb.w	r4, [r3, #1]!
+ 8006ce0:	d1f9      	bne.n	8006cd6 <memcpy+0xe>
+ 8006ce2:	bd10      	pop	{r4, pc}
 
-08006cc4 <memset>:
- 8006cc4:	4603      	mov	r3, r0
- 8006cc6:	4402      	add	r2, r0
- 8006cc8:	4293      	cmp	r3, r2
- 8006cca:	d100      	bne.n	8006cce <memset+0xa>
- 8006ccc:	4770      	bx	lr
- 8006cce:	f803 1b01 	strb.w	r1, [r3], #1
- 8006cd2:	e7f9      	b.n	8006cc8 <memset+0x4>
+08006ce4 <memset>:
+ 8006ce4:	4603      	mov	r3, r0
+ 8006ce6:	4402      	add	r2, r0
+ 8006ce8:	4293      	cmp	r3, r2
+ 8006cea:	d100      	bne.n	8006cee <memset+0xa>
+ 8006cec:	4770      	bx	lr
+ 8006cee:	f803 1b01 	strb.w	r1, [r3], #1
+ 8006cf2:	e7f9      	b.n	8006ce8 <memset+0x4>
 
-08006cd4 <_init>:
- 8006cd4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8006cd6:	bf00      	nop
- 8006cd8:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8006cda:	bc08      	pop	{r3}
- 8006cdc:	469e      	mov	lr, r3
- 8006cde:	4770      	bx	lr
+08006cf4 <_init>:
+ 8006cf4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8006cf6:	bf00      	nop
+ 8006cf8:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8006cfa:	bc08      	pop	{r3}
+ 8006cfc:	469e      	mov	lr, r3
+ 8006cfe:	4770      	bx	lr
 
-08006ce0 <_fini>:
- 8006ce0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8006ce2:	bf00      	nop
- 8006ce4:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8006ce6:	bc08      	pop	{r3}
- 8006ce8:	469e      	mov	lr, r3
- 8006cea:	4770      	bx	lr
+08006d00 <_fini>:
+ 8006d00:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8006d02:	bf00      	nop
+ 8006d04:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8006d06:	bc08      	pop	{r3}
+ 8006d08:	469e      	mov	lr, r3
+ 8006d0a:	4770      	bx	lr

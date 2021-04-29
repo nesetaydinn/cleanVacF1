@@ -6,6 +6,7 @@
  */
 #include "ComputerInterface.h"
 #include "InputOutputInterface.h"
+#include "taskManagerInterface.h"
 
 #if COMPUTERINTERFACE_ACTIVE
 Com_interface getVals;
@@ -97,13 +98,14 @@ void CI_getDataChannel_IT(UART_HandleTypeDef *callBackHandle) {
 						getVals.steer_pos=(tmpArr[4] & 0xFF )| (tmpArr[5] << 8) | (tmpArr[6] << 16) | (tmpArr[7] << 24);
 						getVals.drive_speed=(tmpArr[8] & 0xFF) | (tmpArr[9] << 8) | (tmpArr[10] << 16) | (tmpArr[11] << 24);
 						IO_outputByteToBitsPackage(tmpArr[12]);
+
 					}
+
 				}
 				HAL_UART_Receive_IT(callBackHandle, &getTmpCH, 1);
 	}
 }
 
 Com_interface getComputerVals(void) {return getVals;}
-
 
 #endif

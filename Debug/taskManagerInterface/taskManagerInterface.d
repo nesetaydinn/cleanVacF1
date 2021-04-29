@@ -37,9 +37,9 @@ taskManagerInterface/taskManagerInterface.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
- C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/motorDriverInterface/motorDriverInterface.h \
- C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/ComputerInterface/ComputerInterface.h \
- C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h
+ C:/Users/90551/Downloads/cleanVacF1-main/motorDriverInterface/motorDriverInterface.h \
+ C:/Users/90551/Downloads/cleanVacF1-main/ComputerInterface/ComputerInterface.h \
+ C:/Users/90551/Downloads/cleanVacF1-main/InputOutputInterface/InputOutputInterface.h
 
 ../taskManagerInterface/taskManagerInterface.h:
 
@@ -117,8 +117,8 @@ taskManagerInterface/taskManagerInterface.o: \
 
 ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
 
-C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/motorDriverInterface/motorDriverInterface.h:
+C:/Users/90551/Downloads/cleanVacF1-main/motorDriverInterface/motorDriverInterface.h:
 
-C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/ComputerInterface/ComputerInterface.h:
+C:/Users/90551/Downloads/cleanVacF1-main/ComputerInterface/ComputerInterface.h:
 
-C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h:
+C:/Users/90551/Downloads/cleanVacF1-main/InputOutputInterface/InputOutputInterface.h:

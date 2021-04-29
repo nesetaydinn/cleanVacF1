@@ -41,6 +41,10 @@ Com_SenderInterface llsendComputerVals;
 mD_interface driveDriver;
 tMD_interface travelDriver;
 
+uint8_t isStartConnection=0;
+void setStartConnection(uint8_t tmp){isStartConnection=tmp;}
+
+uint8_t getStartConnection(void){return isStartConnection; }
 xSemaphoreHandle uart1SemphrHandle=NULL;
 xSemaphoreHandle uart2SemphrHandle=NULL;
 xSemaphoreHandle uart3SemphrHandle=NULL;
@@ -126,8 +130,9 @@ void computerValTask(void *params){
 		llsendComputerVals.steer_pos =(int32_t)(getDriver1ReceiveVal().angle)*10000;
 		int16_t tmp =((getDriver2ReceiveVal().encoder)/1200);
 		uint16_t tmp2;
-		if(((getDriver2ReceiveVal().encoder)%1200)<0)tmp2 = -0.1*((getDriver2ReceiveVal().encoder)%600);
-		else tmp2=((getDriver2ReceiveVal().encoder)%1200);
+	//	if(((getDriver2ReceiveVal().encoder)%1200)<0)tmp2 = -0.1*((getDriver2ReceiveVal().encoder)%600);
+	//	else
+			tmp2=((getDriver2ReceiveVal().encoder)%1200);
 		llsendComputerVals.drive_pos= (tmp+valuesMapforFloat(tmp2,0,1200,0.0f,1.0f))*10000;
 
 		llsendComputerVals.switch_vals=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
@@ -143,15 +148,15 @@ void computerSendTask(void *params){
 void sendDataUart1Task(void *params){
 
 	while(1){
-		driveDriver.angle=(uint16_t)((getComputerVals().steer_pos)/10000);
-		MDI_sendDataChannel1Ver2(driveDriver.angle,driveDriver.pid_kp,driveDriver.pid_ki,driveDriver.pid_kd,driveDriver.factor);
+		if(getComputerVals().size)	driveDriver.angle=(uint16_t)((getComputerVals().steer_pos)/10000);
+			MDI_sendDataChannel1Ver2(driveDriver.angle,driveDriver.pid_kp,driveDriver.pid_ki,driveDriver.pid_kd,driveDriver.factor);
 
 	}
 }
 void sendDataUart2Task(void *params){
 	while(1){
-		travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000);
-		MDI_sendDataChannel2Ver2(travelDriver.speed,travelDriver.pid_kp,travelDriver.pid_ki,travelDriver.pid_kd,travelDriver.soft_k,travelDriver.soft_f);
+		if(getComputerVals().size)	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000);
+				MDI_sendDataChannel2Ver2(travelDriver.speed,travelDriver.pid_kp,travelDriver.pid_ki,travelDriver.pid_kd,travelDriver.soft_k,travelDriver.soft_f);
 	}
 }
 void getDataUart1Task(void *params){

@@ -15,6 +15,7 @@
 #include "main.h"
 #include "FreeRTOS.h"
 #include "task.h"
+#include "stdbool.h"
 
 #define ComputerChannel huart1
 extern UART_HandleTypeDef ComputerChannel;
@@ -40,7 +41,6 @@ void CI_enableGetDataChannel(void);
 void CI_getDataChannel_IT(UART_HandleTypeDef *callBackHandle);
 void testCIsend(void);
 Com_interface getComputerVals(void);
-
 #endif
 
 #endif /* COMPUTERINTERFACE_H_ */

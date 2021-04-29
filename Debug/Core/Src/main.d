@@ -33,7 +33,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
- C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/taskManagerInterface/taskManagerInterface.h
+ C:/Users/90551/Downloads/cleanVacF1-main/taskManagerInterface/taskManagerInterface.h
 
 ../Core/Inc/main.h:
 
@@ -105,4 +105,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
 
-C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/taskManagerInterface/taskManagerInterface.h:
+C:/Users/90551/Downloads/cleanVacF1-main/taskManagerInterface/taskManagerInterface.h:

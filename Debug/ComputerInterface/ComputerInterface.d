@@ -35,7 +35,8 @@ ComputerInterface/ComputerInterface.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
- C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h
+ C:/Users/90551/Downloads/cleanVacF1-main/InputOutputInterface/InputOutputInterface.h \
+ C:/Users/90551/Downloads/cleanVacF1-main/taskManagerInterface/taskManagerInterface.h
 
 ../ComputerInterface/ComputerInterface.h:
 
@@ -109,4 +110,6 @@ ComputerInterface/ComputerInterface.o: \
 
 ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 
-C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h:
+C:/Users/90551/Downloads/cleanVacF1-main/InputOutputInterface/InputOutputInterface.h:
+
+C:/Users/90551/Downloads/cleanVacF1-main/taskManagerInterface/taskManagerInterface.h:
