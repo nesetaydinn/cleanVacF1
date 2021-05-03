@@ -76,7 +76,7 @@ void tasks_init(void){
 
 		xTaskCreate(computerValTask, "calc Uart 3val", configMINIMAL_STACK_SIZE, NULL,  55, NULL);
 		xTaskCreate(computerGetTask, "send Uart 3", configMINIMAL_STACK_SIZE, NULL,  55, NULL);
-		xTaskCreate(computerSendTask, "get Uart 3", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
+	//	xTaskCreate(computerSendTask, "get Uart 3", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
 
 		xTaskCreate(sendDataUart1Task, "send Uart 1", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
 		xTaskCreate(sendDataUart2Task, "send Uart 2", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
@@ -133,14 +133,14 @@ void computerValTask(void *params){
 			if(getDriver2ReceiveVal().encoder<0){
 				int intToUint =getDriver2ReceiveVal().encoder;
 				intToUint=(~intToUint+1);
-				uint16_t tmp =(intToUint/790);
-				uint16_t tmp2=(intToUint%790);
-				llsendComputerVals.drive_pos= -(tmp+valuesMapforFloat(tmp2,0,790,0.0f,1.0f))*10000;
+				uint16_t tmp =(intToUint/800);
+				uint16_t tmp2=(intToUint%800);
+				llsendComputerVals.drive_pos= -(tmp+valuesMapforFloat(tmp2,0,800,0.0f,1.0f))*10000;
 			}
 			else {
-				uint16_t tmp =((getDriver2ReceiveVal().encoder)/790);
-				uint16_t tmp2=((getDriver2ReceiveVal().encoder)%790);
-				llsendComputerVals.drive_pos= (tmp+valuesMapforFloat(tmp2,0,790,0.0f,1.0f))*10000;
+				uint16_t tmp =((getDriver2ReceiveVal().encoder)/800);
+				uint16_t tmp2=((getDriver2ReceiveVal().encoder)%800);
+				llsendComputerVals.drive_pos= (tmp+valuesMapforFloat(tmp2,0,800,0.0f,1.0f))*10000;
 			}
 			llsendComputerVals.switch_vals=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
 	}
