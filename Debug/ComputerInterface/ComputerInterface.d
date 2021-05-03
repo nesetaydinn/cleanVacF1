@@ -26,6 +26,9 @@ ComputerInterface/ComputerInterface.o: \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
  ../Core/Inc/FreeRTOSConfig.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
@@ -35,8 +38,17 @@ ComputerInterface/ComputerInterface.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
- C:/Users/90551/Downloads/cleanVacF1-main/InputOutputInterface/InputOutputInterface.h \
- C:/Users/90551/Downloads/cleanVacF1-main/taskManagerInterface/taskManagerInterface.h
+ C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h \
+ C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/taskManagerInterface/taskManagerInterface.h \
+ ../USB_DEVICE/App/usb_device.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
+ ../USB_DEVICE/Target/usbd_conf.h ../USB_DEVICE/App/usbd_cdc_if.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 
 ../ComputerInterface/ComputerInterface.h:
 
@@ -92,6 +104,12 @@ ComputerInterface/ComputerInterface.o: \
 
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h:
+
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h:
+
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd_ex.h:
+
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 
 ../Core/Inc/FreeRTOSConfig.h:
@@ -110,6 +128,26 @@ ComputerInterface/ComputerInterface.o: \
 
 ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
 
-C:/Users/90551/Downloads/cleanVacF1-main/InputOutputInterface/InputOutputInterface.h:
+C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h:
 
-C:/Users/90551/Downloads/cleanVacF1-main/taskManagerInterface/taskManagerInterface.h:
+C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/taskManagerInterface/taskManagerInterface.h:
+
+../USB_DEVICE/App/usb_device.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
+
+../USB_DEVICE/Target/usbd_conf.h:
+
+../USB_DEVICE/App/usbd_cdc_if.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:

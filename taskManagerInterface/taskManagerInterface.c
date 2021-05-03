@@ -14,6 +14,7 @@
 #include "ComputerInterface.h"
 #include "InputOutputInterface.h"
 
+#include "usb_device.h"
 
 void driverInit(void);
 
@@ -90,6 +91,7 @@ void tasks_init(void){
 		xTaskCreate(ledTestTask, "led task", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
 
 
+		 MX_USB_DEVICE_Init();
 
 		driverInit();
 		IO_init();
@@ -144,10 +146,15 @@ void computerValTask(void *params){
 	}
 
 }
+char *test="deneme 1 2 3 4\n";
 void computerSendTask(void *params){
 	while(1){
 		CI_sendDataChannel(0x11,llsendComputerVals.steer_pos ,llsendComputerVals.drive_pos,
 				llsendComputerVals.drive_speed,llsendComputerVals.switch_vals,50);
+
+
+	/*	CDC_Transmit_FS(test, sizeof(test));
+		vTaskDelay(10);*/
 	}
 }
 void sendDataUart1Task(void *params){

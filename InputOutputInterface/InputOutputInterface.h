@@ -59,8 +59,8 @@ typedef enum
 #define R_3_O_HIGH HAL_GPIO_WritePin(relay_3_GPIO_Port,relay_3_Pin,GPIO_PIN_RESET)
 #define R_4_O_HIGH HAL_GPIO_WritePin(relay_4_GPIO_Port,relay_4_Pin,GPIO_PIN_RESET)
 #define R_5_O_HIGH HAL_GPIO_WritePin(relay_5_GPIO_Port,relay_5_Pin,GPIO_PIN_RESET)
-#define R_6_O_HIGH HAL_GPIO_WritePin(relay_6_GPIO_Port,relay_6_Pin,GPIO_PIN_RESET)
-#define R_7_O_HIGH HAL_GPIO_WritePin(relay_7_GPIO_Port,relay_7_Pin,GPIO_PIN_RESET)
+//#define R_6_O_HIGH HAL_GPIO_WritePin(relay_6_GPIO_Port,relay_6_Pin,GPIO_PIN_RESET)
+//#define R_7_O_HIGH HAL_GPIO_WritePin(relay_7_GPIO_Port,relay_7_Pin,GPIO_PIN_RESET)
 #define R_8_O_HIGH HAL_GPIO_WritePin(relay_8_GPIO_Port,relay_8_Pin,GPIO_PIN_RESET)
 
 
@@ -69,8 +69,8 @@ typedef enum
 #define R_3_O_LOW HAL_GPIO_WritePin(relay_3_GPIO_Port,relay_3_Pin,GPIO_PIN_SET)
 #define R_4_O_LOW HAL_GPIO_WritePin(relay_4_GPIO_Port,relay_4_Pin,GPIO_PIN_SET)
 #define R_5_O_LOW HAL_GPIO_WritePin(relay_5_GPIO_Port,relay_5_Pin,GPIO_PIN_SET)
-#define R_6_O_LOW HAL_GPIO_WritePin(relay_6_GPIO_Port,relay_6_Pin,GPIO_PIN_SET)
-#define R_7_O_LOW HAL_GPIO_WritePin(relay_7_GPIO_Port,relay_7_Pin,GPIO_PIN_SET)
+//#define R_6_O_LOW HAL_GPIO_WritePin(relay_6_GPIO_Port,relay_6_Pin,GPIO_PIN_SET)
+//#define R_7_O_LOW HAL_GPIO_WritePin(relay_7_GPIO_Port,relay_7_Pin,GPIO_PIN_SET)
 #define R_8_O_LOW HAL_GPIO_WritePin(relay_8_GPIO_Port,relay_8_Pin,GPIO_PIN_SET)
 
 void IO_init(void);

@@ -39,6 +39,7 @@ void CI_sendDataChannel(uint16_t lenght, int32_t steer_poss,
 		int32_t driver_poss, int32_t driver_speed,uint8_t inputStatus,uint8_t batt_per);
 void CI_enableGetDataChannel(void);
 void CI_getDataChannel_IT(UART_HandleTypeDef *callBackHandle);
+void CI_getDataChannel_USB(uint8_t byte);
 void testCIsend(void);
 Com_interface getComputerVals(void);
 #endif

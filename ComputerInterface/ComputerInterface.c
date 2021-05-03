@@ -8,6 +8,10 @@
 #include "InputOutputInterface.h"
 #include "taskManagerInterface.h"
 
+#include "usb_device.h"
+
+#include "usbd_cdc_if.h"
+
 #if COMPUTERINTERFACE_ACTIVE
 Com_interface getVals;
 /**
@@ -40,7 +44,9 @@ void CI_sendDataChannel(uint16_t lenght, int32_t steer_poss,
 			driver_poss & 0xFF,driver_poss >> 8,driver_poss >> 16,driver_poss >> 24,
 			driver_speed & 0xFF,driver_speed >> 8,driver_speed >> 16,driver_speed >> 24,
 			inputStatus,batt_per };
-	HAL_UART_Transmit_DMA(&ComputerChannel, sendBuff, sizeof(sendBuff));
+	//uint8_t * tmp =;
+	CDC_Transmit_FS(sendBuff, 20);
+//	HAL_UART_Transmit_DMA(&ComputerChannel, sendBuff, sizeof(sendBuff));
 	/*for (uint8_t counter = 0; counter < 18; counter++) {
 		CI_writeSmallDataWithRegister(&ComputerChannel, sendBuff[counter]);
 	#if SEND_VAL_CHECK==1
@@ -106,6 +112,37 @@ void CI_getDataChannel_IT(UART_HandleTypeDef *callBackHandle) {
 				}
 				HAL_UART_Receive_IT(callBackHandle, &getTmpCH, 1);
 	}
+}
+
+
+static uint8_t tmpArrUSB[13];
+/**
+ * @brief get to Motor Driver 1 values
+ * @return none
+ */
+void CI_getDataChannel_USB(uint8_t byte) {
+
+		static uint8_t counter = 0, getTmpBeff = 0;
+			if (0x64 == byte && 0x43 == getTmpBeff) {
+				tmpArrUSB[0] = 0x43;
+				tmpArrUSB[1] = 0x64;
+					counter = 1;
+				}
+			tmpArrUSB[counter] = byte;
+				getTmpBeff = byte;
+				counter++;
+				if (counter > 12) {
+					counter = 0;
+					if (0x43 == tmpArrUSB[0] && 0x64 == tmpArrUSB[1]) {
+						getVals.size=(tmpArrUSB[2] & 0xFF )| (tmpArrUSB[3] << 8);
+						getVals.steer_pos=(tmpArrUSB[4] & 0xFF )| (tmpArrUSB[5] << 8) | (tmpArrUSB[6] << 16) | (tmpArrUSB[7] << 24);
+						getVals.drive_speed=(tmpArrUSB[8] & 0xFF) | (tmpArrUSB[9] << 8) | (tmpArrUSB[10] << 16) | (tmpArrUSB[11] << 24);
+						IO_outputByteToBitsPackage(tmpArrUSB[12]);
+
+					}
+
+				}
+
 }
 
 Com_interface getComputerVals(void) {return getVals;}

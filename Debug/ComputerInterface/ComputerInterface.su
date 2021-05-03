@@ -1,6 +1,7 @@
-ComputerInterface.c:19:6:CI_writeSmallDataWithRegister	16	static
-ComputerInterface.c:34:6:CI_sendDataChannel	48	static
-ComputerInterface.c:56:6:testCIsend	40	static
-ComputerInterface.c:72:6:CI_enableGetDataChannel	8	static
-ComputerInterface.c:81:6:CI_getDataChannel_IT	24	static
-ComputerInterface.c:109:15:getComputerVals	16	static
+ComputerInterface.c:23:6:CI_writeSmallDataWithRegister	16	static
+ComputerInterface.c:38:6:CI_sendDataChannel	48	static
+ComputerInterface.c:64:6:testCIsend	40	static
+ComputerInterface.c:80:6:CI_enableGetDataChannel	8	static
+ComputerInterface.c:89:6:CI_getDataChannel_IT	24	static
+ComputerInterface.c:123:6:CI_getDataChannel_USB	16	static
+ComputerInterface.c:148:15:getComputerVals	16	static

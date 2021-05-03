@@ -44,8 +44,8 @@ void IO_writeOutputRelay(void){
 	if(inputOutputs.relay_3)R_3_O_HIGH; else R_3_O_LOW;
 	if(inputOutputs.relay_4)R_4_O_HIGH; else R_4_O_LOW;
 	if(inputOutputs.relay_5)R_5_O_HIGH; else R_5_O_LOW;
-	if(inputOutputs.relay_6)R_6_O_HIGH; else R_6_O_LOW;
-	if(inputOutputs.relay_7)R_7_O_HIGH; else R_7_O_LOW;
+//	if(inputOutputs.relay_6)R_6_O_HIGH; else R_6_O_LOW;
+	//if(inputOutputs.relay_7)R_7_O_HIGH; else R_7_O_LOW;
 	if(inputOutputs.relay_8)R_8_O_HIGH; else R_8_O_LOW;
 }
 uint8_t testBtye[1];
