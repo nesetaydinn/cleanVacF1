@@ -51,8 +51,8 @@
 /* USER CODE BEGIN EXPORTED_DEFINES */
 /* Define size for the receive and transmit buffer over CDC */
 /* It's up to user to redefine and/or remove those define */
-#define APP_RX_DATA_SIZE  1
-#define APP_TX_DATA_SIZE  20
+#define APP_RX_DATA_SIZE  13
+#define APP_TX_DATA_SIZE  18
 
 /* USER CODE END EXPORTED_DEFINES */
 

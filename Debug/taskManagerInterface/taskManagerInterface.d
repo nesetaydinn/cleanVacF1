@@ -42,10 +42,15 @@ taskManagerInterface/taskManagerInterface.o: \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
  C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/motorDriverInterface/motorDriverInterface.h \
  C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/ComputerInterface/ComputerInterface.h \
- C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h \
  ../USB_DEVICE/App/usb_device.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- ../USB_DEVICE/Target/usbd_conf.h
+ ../USB_DEVICE/Target/usbd_conf.h ../USB_DEVICE/App/usbd_cdc_if.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
+ ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h
 
 ../taskManagerInterface/taskManagerInterface.h:
 
@@ -133,10 +138,22 @@ C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/motorDriverInterface/motorDri
 
 C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/ComputerInterface/ComputerInterface.h:
 
-C:/Users/nesat/STM32CubeIDE/workspace_1.6.0/testF1/InputOutputInterface/InputOutputInterface.h:
-
 ../USB_DEVICE/App/usb_device.h:
 
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
 
 ../USB_DEVICE/Target/usbd_conf.h:
+
+../USB_DEVICE/App/usbd_cdc_if.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
+
+../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:

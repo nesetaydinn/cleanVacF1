@@ -45,7 +45,8 @@ void CI_sendDataChannel(uint16_t lenght, int32_t steer_poss,
 			driver_speed & 0xFF,driver_speed >> 8,driver_speed >> 16,driver_speed >> 24,
 			inputStatus,batt_per };
 	//uint8_t * tmp =;
-	CDC_Transmit_FS(sendBuff, 20);
+	if(0x0D==getVals.size)CDC_Transmit_FS(sendBuff, 18);
+	getVals.size=0;
 //	HAL_UART_Transmit_DMA(&ComputerChannel, sendBuff, sizeof(sendBuff));
 	/*for (uint8_t counter = 0; counter < 18; counter++) {
 		CI_writeSmallDataWithRegister(&ComputerChannel, sendBuff[counter]);
@@ -62,89 +63,44 @@ void CI_sendDataChannel(uint16_t lenght, int32_t steer_poss,
 static double test=0;
 static int32_t ctSpeed=0;
 void testCIsend(void){
-
 	test+=0.01;
 		ctSpeed=(int32_t)test*10000;
 		uint8_t tmp=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
 		CI_sendDataChannel(0x11,getVals.steer_pos,ctSpeed,getVals.drive_speed,tmp,90);
 
-
 }
 
 
-uint8_t  getTmpCH = 0;
-/**
- * @brief set enable for MDI channel 1 receive
- * @return none
- */
-void CI_enableGetDataChannel(void){
-	HAL_UART_Receive_IT(&ComputerChannel,&getTmpCH,1);
-}
 
-static uint8_t tmpArr[13];
 /**
- * @brief get to Motor Driver 1 values
+ * @brief get to Computer Variables
  * @return none
  */
-void CI_getDataChannel_IT(UART_HandleTypeDef *callBackHandle) {
-	volatile UART_HandleTypeDef *tmpHandle;
-	tmpHandle = &ComputerChannel;
-	if(callBackHandle->Instance == tmpHandle->Instance){
-		static uint8_t counter = 0, getTmpBeff = 0;
-			if (0x64 == getTmpCH && 0x43 == getTmpBeff) {
-				tmpArr[0] = 0x43;
-				tmpArr[1] = 0x64;
-					counter = 1;
+void CI_getDataChannel_USB(uint8_t *bytes) {
+
+		//static uint8_t counter = 0, getTmpBeff = 0;
+	//for(uint8_t c;c<13;c++)tmpArrUSB[c]=bytes[c];
+	if (0x64 == bytes[0] && 0x43 == bytes[1]) {
+				bytes[0] = 0x43;
+				bytes[1] = 0x64;
+				//	counter = 1;
 				}
-			tmpArr[counter] = getTmpCH;
-				getTmpBeff = getTmpCH;
-				counter++;
-				if (counter > 12) {
-					counter = 0;
-					if (0x43 == tmpArr[0] && 0x64 == tmpArr[1]) {
-						getVals.size=(tmpArr[2] & 0xFF )| (tmpArr[3] << 8);
-						getVals.steer_pos=(tmpArr[4] & 0xFF )| (tmpArr[5] << 8) | (tmpArr[6] << 16) | (tmpArr[7] << 24);
-						getVals.drive_speed=(tmpArr[8] & 0xFF) | (tmpArr[9] << 8) | (tmpArr[10] << 16) | (tmpArr[11] << 24);
-						IO_outputByteToBitsPackage(tmpArr[12]);
+			/*bytes[counter] = byte;
+				getTmpBeff = byte;*/
+				//counter++;
+				/*if (counter > 12) {
+					counter = 0;*/
+					if (0x43 == bytes[0] && 0x64 == bytes[1]) {
+						getVals.size=(bytes[2] & 0xFF )| (bytes[3] << 8);
+						getVals.steer_pos=(bytes[4] & 0xFF )| (bytes[5] << 8) | (bytes[6] << 16) | (bytes[7] << 24);
+						getVals.drive_speed=(bytes[8] & 0xFF) | (bytes[9] << 8) | (bytes[10] << 16) | (bytes[11] << 24);
+						IO_outputByteToBitsPackage(bytes[12]);
 
 					}
 
-				}
-				HAL_UART_Receive_IT(callBackHandle, &getTmpCH, 1);
-	}
-}
-
-
-static uint8_t tmpArrUSB[13];
-/**
- * @brief get to Motor Driver 1 values
- * @return none
- */
-void CI_getDataChannel_USB(uint8_t byte) {
-
-		static uint8_t counter = 0, getTmpBeff = 0;
-			if (0x64 == byte && 0x43 == getTmpBeff) {
-				tmpArrUSB[0] = 0x43;
-				tmpArrUSB[1] = 0x64;
-					counter = 1;
-				}
-			tmpArrUSB[counter] = byte;
-				getTmpBeff = byte;
-				counter++;
-				if (counter > 12) {
-					counter = 0;
-					if (0x43 == tmpArrUSB[0] && 0x64 == tmpArrUSB[1]) {
-						getVals.size=(tmpArrUSB[2] & 0xFF )| (tmpArrUSB[3] << 8);
-						getVals.steer_pos=(tmpArrUSB[4] & 0xFF )| (tmpArrUSB[5] << 8) | (tmpArrUSB[6] << 16) | (tmpArrUSB[7] << 24);
-						getVals.drive_speed=(tmpArrUSB[8] & 0xFF) | (tmpArrUSB[9] << 8) | (tmpArrUSB[10] << 16) | (tmpArrUSB[11] << 24);
-						IO_outputByteToBitsPackage(tmpArrUSB[12]);
-
-					}
-
-				}
+			//	}
 
 }
 
 Com_interface getComputerVals(void) {return getVals;}
-
 #endif

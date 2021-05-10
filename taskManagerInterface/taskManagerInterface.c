@@ -12,9 +12,11 @@
 
 #include "motorDriverInterface.h"
 #include "ComputerInterface.h"
-#include "InputOutputInterface.h"
+//#include "InputOutputInterface.h"
 
 #include "usb_device.h"
+
+#include "usbd_cdc_if.h"
 
 void driverInit(void);
 
@@ -54,10 +56,12 @@ xSemaphoreHandle uart3SemphrHandle=NULL;
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	MDI_getDataChannel1_IT(huart);
 	MDI_getDataChannel2_IT(huart);
-	CI_getDataChannel_IT(huart);
+
 }
 
 void tasks_init(void){
+
+	 MX_USB_DEVICE_Init();
 	/* xTaskCreate(pxTaskCode, pcName, usStackDepth, pvParameters, uxPriority, pxCreatedTask)
 	 * @param pxTaskCode-> function name
 	 * @param pcName-> task name (string)
@@ -75,8 +79,8 @@ void tasks_init(void){
 
 
 		xTaskCreate(computerValTask, "calc Uart 3val", configMINIMAL_STACK_SIZE, NULL,  55, NULL);
-		xTaskCreate(computerGetTask, "send Uart 3", configMINIMAL_STACK_SIZE, NULL,  55, NULL);
-	//	xTaskCreate(computerSendTask, "get Uart 3", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
+		xTaskCreate(computerSendTask, "send Uart 3", configMINIMAL_STACK_SIZE, NULL,  55, NULL);
+		//xTaskCreate(computerGetTask, "get Uart 3", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
 
 		xTaskCreate(sendDataUart1Task, "send Uart 1", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
 		xTaskCreate(sendDataUart2Task, "send Uart 2", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
@@ -88,10 +92,8 @@ void tasks_init(void){
 		xTaskCreate(writeRelaysTask, "write relays", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
 
 
-		xTaskCreate(ledTestTask, "led task", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
+	//	xTaskCreate(ledTestTask, "led task", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
 
-
-		 MX_USB_DEVICE_Init();
 
 		driverInit();
 		IO_init();
@@ -106,7 +108,7 @@ void readSwitchsTask(void *params){
 }
 void writeRelaysTask(void *params){
 	while(1){
-		IO_testInputOutput();
+		IO_writeOutputRelay();
 	}
 }
 void ledTestTask(void *params){
@@ -143,20 +145,19 @@ void computerValTask(void *params){
 				llsendComputerVals.drive_pos= (tmp+valuesMapforFloat(tmp2,0,800,0.0f,1.0f))*10000;
 			}
 			llsendComputerVals.switch_vals=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
+
 	}
 
 }
-char *test="deneme 1 2 3 4\n";
+
 void computerSendTask(void *params){
 	while(1){
-		CI_sendDataChannel(0x11,llsendComputerVals.steer_pos ,llsendComputerVals.drive_pos,
+	CI_sendDataChannel(0x11,llsendComputerVals.steer_pos ,llsendComputerVals.drive_pos,
 				llsendComputerVals.drive_speed,llsendComputerVals.switch_vals,50);
 
-
-	/*	CDC_Transmit_FS(test, sizeof(test));
-		vTaskDelay(10);*/
 	}
 }
+
 void sendDataUart1Task(void *params){
 
 	while(1){
@@ -165,9 +166,12 @@ void sendDataUart1Task(void *params){
 
 	}
 }
+uint8_t messageWait;
 void sendDataUart2Task(void *params){
 	while(1){
-		if(getComputerVals().size)	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000);
+		if(getComputerVals().size){	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000); messageWait=0;}
+		else messageWait++;
+		if(messageWait>50)travelDriver.speed=0;
 				MDI_sendDataChannel2Ver2(travelDriver.speed,travelDriver.pid_kp,travelDriver.pid_ki,travelDriver.pid_kd,travelDriver.soft_k,travelDriver.soft_f);
 	}
 }
