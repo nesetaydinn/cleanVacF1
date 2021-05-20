@@ -18,7 +18,7 @@
 
 // SEND_VAL_CHECK->0 realtime
 // SEND_VAL_CHECK->1 pc debug
-#define SEND_VAL_CHECK 0
+#define SEND_VAL_CHECK 1
 
 typedef struct{
     uint8_t pid_kd;
@@ -26,8 +26,21 @@ typedef struct{
     uint8_t pid_kp;
     uint8_t factor;
     uint16_t angle;
+    uint8_t bit_1:1;
+    uint8_t bit_2:1;
 }mD_interface;
 
+typedef enum
+{
+	MDI_BIT_0 = 1u,
+	MDI_BIT_1 = 2u,
+	MDI_BIT_2 = 4u,
+	MDI_BIT_3 = 8u,
+	MDI_BIT_4 = 16u,
+	MDI_BIT_5 = 32u,
+	MDI_BIT_6 = 64u,
+	MDI_BIT_7 = 128u
+} MDI_bitValue;
 
 typedef struct{
 	uint8_t pid_kp;
@@ -37,6 +50,8 @@ typedef struct{
     uint8_t soft_f;
     uint8_t soft_k;
     int32_t encoder;
+    uint8_t bit_1:1;
+    uint8_t bit_2:1;
 }tMD_interface;
 
 
@@ -83,7 +98,7 @@ uint8_t getDriver2factor(void);
 uint16_t getDriver2angle(void);
 
 void MDI_sendDataChannel1(uint16_t angleVal,uint8_t kp,uint8_t ki,uint8_t kd,uint8_t rate );
-void MDI_sendDataChannel1Ver2(uint16_t angleVal,uint8_t kp,uint8_t ki,uint8_t kd,uint8_t rate );
+void MDI_sendDataChannel1Ver2(uint16_t angleVal,uint8_t kp,uint8_t ki,uint8_t kd,uint8_t rate ,uint8_t last_Bits);
 void MDI_getDataChannel1(void);
 void MDI_getDataChannel1Ver2(void);
 void MDI_getDataChannel1Ver3(void);
@@ -92,7 +107,7 @@ void MDI_enableGetDataChannel1(void);
 void MDI_getDataChannel1_IT(UART_HandleTypeDef *callBackHandle);
 void MDI_sendDataChannel2(uint16_t angleVal,uint8_t kp,uint8_t ki,uint8_t kd,uint8_t rate );
 void MDI_sendDataChannel2Ver2(int16_t speed, uint8_t kp, uint8_t ki,uint8_t kd,
-		uint8_t soft_k, uint8_t soft_f );
+		uint8_t soft_k, uint8_t soft_f,uint8_t last_Bits) ;
 void MDI_getDataChannel2(void);
 void MDI_getDataChannel2Ver2(void);
 void MDI_getDataChannel2Ver3(void);

@@ -128,6 +128,8 @@ void computerGetTask(void *params){
 		xSemaphoreGive(uart3SemphrHandle);
 	}
 }
+
+uint16_t mySpeed;
 void computerValTask(void *params){
 	while(1){
 		llsendComputerVals.drive_speed=(int32_t)(getDriver2ReceiveVal().speed)*10000;
@@ -145,6 +147,10 @@ void computerValTask(void *params){
 				llsendComputerVals.drive_pos= (tmp+valuesMapforFloat(tmp2,0,800,0.0f,1.0f))*10000;
 			}
 			llsendComputerVals.switch_vals=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
+			if(mySpeed<5000)mySpeed+=10;
+			else mySpeed=0;
+			travelDriver.speed=mySpeed;
+			vTaskDelay(250);
 
 	}
 
@@ -162,17 +168,18 @@ void sendDataUart1Task(void *params){
 
 	while(1){
 		if(getComputerVals().size)	driveDriver.angle=(uint16_t)((getComputerVals().steer_pos)/10000);
-			MDI_sendDataChannel1Ver2(driveDriver.angle,driveDriver.pid_kp,driveDriver.pid_ki,driveDriver.pid_kd,driveDriver.factor);
+			MDI_sendDataChannel1Ver2(driveDriver.angle,driveDriver.pid_kp,driveDriver.pid_ki,driveDriver.pid_kd,driveDriver.factor,0);
 
 	}
 }
 uint8_t messageWait;
 void sendDataUart2Task(void *params){
 	while(1){
-		if(getComputerVals().size){	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000); messageWait=0;}
+		/*if(getComputerVals().size){	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000); messageWait=0;}
 		else messageWait++;
-		if(messageWait>50)travelDriver.speed=0;
-				MDI_sendDataChannel2Ver2(travelDriver.speed,travelDriver.pid_kp,travelDriver.pid_ki,travelDriver.pid_kd,travelDriver.soft_k,travelDriver.soft_f);
+		if(messageWait>50)travelDriver.speed=0;*/
+		messageWait=IO_getInputOutputsVal() >> 6;
+				MDI_sendDataChannel2Ver2(travelDriver.speed,travelDriver.pid_kp,travelDriver.pid_ki,travelDriver.pid_kd,travelDriver.soft_k,travelDriver.soft_f,messageWait);
 	}
 }
 void getDataUart1Task(void *params){

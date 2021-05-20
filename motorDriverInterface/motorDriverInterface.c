@@ -227,7 +227,7 @@ void MDI_sendDataChannel1(uint16_t angleVal, uint8_t kd, uint8_t ki, uint8_t kp,
  * @return none
  */
 void MDI_sendDataChannel1Ver2(uint16_t angleVal, uint8_t kp, uint8_t ki,
-		uint8_t kd, uint8_t factor) {
+		uint8_t kd, uint8_t factor,uint8_t last_Bits) {
 	uint16_t checksumTmp = 0;
 	uint8_t tmpArr[] = { angleVal >> 8, angleVal & 0xFF };
 	checksumTmp += tmpArr[0];
@@ -236,11 +236,12 @@ void MDI_sendDataChannel1Ver2(uint16_t angleVal, uint8_t kp, uint8_t ki,
 	checksumTmp += ki;
 	checksumTmp += kd;
 	checksumTmp += factor;
+	checksumTmp += last_Bits;
 	uint8_t tmp = checksumTmp % 256;
 	uint8_t tmpComp = ~tmp;
-	uint8_t sendBuff[10] = { 0XFF, 0XFF, tmpArr[0], tmpArr[1], kp, ki, kd,
-			factor, tmp, tmpComp };
-	for (uint8_t counter = 0; counter < 10; counter++) {
+	uint8_t sendBuff[11] = { 0XFF, 0XFF, tmpArr[0], tmpArr[1], kp, ki, kd,
+			factor, last_Bits,tmp, tmpComp };
+	for (uint8_t counter = 0; counter < 11; counter++) {
 		MDI_writeSmallDataWithRegister(&MDI_channel1TX, sendBuff[counter]);
 #if SEND_VAL_CHECK==0
 		vTaskDelay(1);
@@ -383,7 +384,7 @@ void MDI_enableGetDataChannel1(void){
 	HAL_UART_Receive_IT(&MDI_channel1RX,&getTmpCH1,1);
 }
 
-static uint8_t tmpArr1[10];
+static uint8_t tmpArr1[11];
 /**
  * @brief get to Motor Driver 1 values
  * @return none
@@ -401,19 +402,21 @@ void MDI_getDataChannel1_IT(UART_HandleTypeDef *callBackHandle) {
 				tmpArr1[counter] = getTmpCH1;
 				getTmpBeff = getTmpCH1;
 				counter++;
-				if (counter > 9) {
+				if (counter > 10) {
 					counter = 0;
 					uint16_t checksumTmp = 0;
-					for (uint8_t c = 2; c < 8; c++)
+					for (uint8_t c = 2; c < 9; c++)
 						checksumTmp += tmpArr1[c];
 					uint8_t tmp = checksumTmp % 256;
 					uint8_t tmpComp = ~tmp;
-					if (tmp == tmpArr1[8] && tmpComp == tmpArr1[9]) {
+					if (tmp == tmpArr1[9] && tmpComp == tmpArr1[10]) {
 						driver1.angle = ((uint16_t) tmpArr1[2] << 8) | tmpArr1[3];
 						driver1.pid_kp = tmpArr1[4];
 						driver1.pid_ki = tmpArr1[5];
 						driver1.pid_kd = tmpArr1[6];
 						driver1.factor = tmpArr1[7];
+						driver1.bit_1=(MDI_BIT_0 &  tmpArr1[8]);
+						driver1.bit_2=(MDI_BIT_1 &  tmpArr1[8])>>1;
 					}
 				}
 				HAL_UART_Receive_IT(callBackHandle, &getTmpCH1, 1);
@@ -460,7 +463,7 @@ void MDI_sendDataChannel2(uint16_t angleVal, uint8_t kp, uint8_t ki, uint8_t kd,
  * @return none
  */
 void MDI_sendDataChannel2Ver2(int16_t speed, uint8_t kp, uint8_t ki,uint8_t kd,
-		uint8_t soft_k, uint8_t soft_f) {
+		uint8_t soft_k, uint8_t soft_f,uint8_t last_Bits) {
 	uint16_t checksumTmp = 0;
 	uint8_t tmpArr[] = { speed >> 8, speed & 0xFF };
 	checksumTmp += tmpArr[0];
@@ -470,11 +473,12 @@ void MDI_sendDataChannel2Ver2(int16_t speed, uint8_t kp, uint8_t ki,uint8_t kd,
 	checksumTmp += kd;
 	checksumTmp += soft_k;
 	checksumTmp += soft_f;
+	checksumTmp += last_Bits;
 	uint8_t tmp = checksumTmp % 256;
 	uint8_t tmpComp = ~tmp;
-	uint8_t sendBuff[11] = { 0XFF, 0XFF,kp, tmpArr[0],ki, tmpArr[1], kd,
-			soft_k,soft_f, tmp, tmpComp };
-	for (uint8_t counter = 0; counter < 11; counter++) {
+	uint8_t sendBuff[12] = { 0XFF, 0XFF,kp, tmpArr[0],ki, tmpArr[1], kd,
+			soft_k,soft_f,last_Bits, tmp, tmpComp };
+	for (uint8_t counter = 0; counter < 12; counter++) {
 		MDI_writeSmallDataWithRegister(&MDI_channel2TX, sendBuff[counter]);
 	#if SEND_VAL_CHECK==0
 		vTaskDelay(1);
@@ -618,7 +622,7 @@ void MDI_enableGetDataChannel2(void){
  * @brief get to Motor Driver 2 values
  * @return callBackHandle-> get u(s)art handle
  */
-static uint8_t tmpArr2[16];
+static uint8_t tmpArr2[17];
 void MDI_getDataChannel2_IT(UART_HandleTypeDef *callBackHandle) {
 	volatile UART_HandleTypeDef *tmpHandle;
 	tmpHandle = &MDI_channel2RX;
@@ -632,14 +636,14 @@ void MDI_getDataChannel2_IT(UART_HandleTypeDef *callBackHandle) {
 			tmpArr2[counter] = getTmpCH2;
 			getTmpBeff = getTmpCH2;
 			counter++;
-			if (counter > 15) {
+			if (counter > 16) {
 				counter = 0;
 				uint16_t checksumTmp = 0;
-				for (uint8_t c = 2; c < 14; c++)
+				for (uint8_t c = 2; c < 15; c++)
 					checksumTmp += tmpArr2[c];
 				uint8_t tmp = checksumTmp % 256;
 				uint8_t tmpComp = ~tmp;
-				if (tmp == tmpArr2[14] && tmpComp == tmpArr2[15]) {
+				if (tmp == tmpArr2[15] && tmpComp == tmpArr2[16]) {
 					travelMotor.encoder =(((tmpArr2[7] << 24)) | ((tmpArr2[9]<< 16)) | ((tmpArr2[11]<< 8)) | (tmpArr2[13] & 0xFF));
 					travelMotor.speed = ( (tmpArr2[3] << 8) |(tmpArr2[5] & 0xFF));
 					travelMotor.pid_kp = tmpArr2[2];
@@ -647,6 +651,8 @@ void MDI_getDataChannel2_IT(UART_HandleTypeDef *callBackHandle) {
 					travelMotor.pid_kd = tmpArr2[6];
 					travelMotor.soft_k = tmpArr2[8];
 					travelMotor.soft_f = tmpArr2[10];
+					travelMotor.bit_1=(MDI_BIT_0 &  tmpArr2[14]);
+					travelMotor.bit_2=(MDI_BIT_1 &  tmpArr2[14])>>1;
 				}
 			}
 			HAL_UART_Receive_IT(callBackHandle, &getTmpCH2, 1);

@@ -5,45 +5,45 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   0000010c  08000000  08000000  00010000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         0000c000  08000110  08000110  00010110  2**4
+  1 .text         0000c080  08000110  08000110  00010110  2**4
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000118  0800c110  0800c110  0001c110  2**2
+  2 .rodata       00000118  0800c190  0800c190  0001c190  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  0800c228  0800c228  00020180  2**0
+  3 .ARM.extab    00000000  0800c2a8  0800c2a8  00020180  2**0
                   CONTENTS
-  4 .ARM          00000000  0800c228  0800c228  00020180  2**0
+  4 .ARM          00000000  0800c2a8  0800c2a8  00020180  2**0
                   CONTENTS
-  5 .preinit_array 00000000  0800c228  0800c228  00020180  2**0
+  5 .preinit_array 00000000  0800c2a8  0800c2a8  00020180  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  0800c228  0800c228  0001c228  2**2
+  6 .init_array   00000004  0800c2a8  0800c2a8  0001c2a8  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .fini_array   00000004  0800c22c  0800c22c  0001c22c  2**2
+  7 .fini_array   00000004  0800c2ac  0800c2ac  0001c2ac  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000180  20000000  0800c230  00020000  2**2
+  8 .data         00000180  20000000  0800c2b0  00020000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00003f30  20000180  0800c3b0  00020180  2**2
+  9 .bss          00003f3c  20000180  0800c430  00020180  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  200040b0  0800c3b0  000240b0  2**0
+ 10 ._user_heap_stack 00000604  200040bc  0800c430  000240bc  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00020180  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00029ab4  00000000  00000000  000201a9  2**0
+ 12 .debug_info   00029bcc  00000000  00000000  000201a9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00005821  00000000  00000000  00049c5d  2**0
+ 13 .debug_abbrev 0000584f  00000000  00000000  00049d75  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00001c20  00000000  00000000  0004f480  2**3
+ 14 .debug_aranges 00001c20  00000000  00000000  0004f5c8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_ranges 000019d8  00000000  00000000  000510a0  2**3
+ 15 .debug_ranges 000019d8  00000000  00000000  000511e8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001d9a7  00000000  00000000  00052a78  2**0
+ 16 .debug_macro  0001d9a7  00000000  00000000  00052bc0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000216a0  00000000  00000000  0007041f  2**0
+ 17 .debug_line   000216b9  00000000  00000000  00070567  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0009a172  00000000  00000000  00091abf  2**0
+ 18 .debug_str    0009a1e0  00000000  00000000  00091c20  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  0012bc31  2**0
+ 19 .comment      00000053  00000000  00000000  0012be00  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000748c  00000000  00000000  0012bc84  2**2
+ 20 .debug_frame  00007494  00000000  00000000  0012be54  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  8000126:	bd10      	pop	{r4, pc}
  8000128:	20000180 	.word	0x20000180
  800012c:	00000000 	.word	0x00000000
- 8000130:	0800c0f8 	.word	0x0800c0f8
+ 8000130:	0800c178 	.word	0x0800c178
 
 08000134 <frame_dummy>:
  8000134:	b508      	push	{r3, lr}
@@ -74,7 +74,7 @@ Disassembly of section .text:
  8000142:	bd08      	pop	{r3, pc}
  8000144:	00000000 	.word	0x00000000
  8000148:	20000184 	.word	0x20000184
- 800014c:	0800c0f8 	.word	0x0800c0f8
+ 800014c:	0800c178 	.word	0x0800c178
 
 08000150 <__aeabi_frsub>:
  8000150:	f080 4000 	eor.w	r0, r0, #2147483648	; 0x80000000
@@ -669,10 +669,10 @@ void CI_sendDataChannel(uint16_t lenght, int32_t steer_poss,
  8000746:	3728      	adds	r7, #40	; 0x28
  8000748:	46bd      	mov	sp, r7
  800074a:	bd80      	pop	{r7, pc}
- 800074c:	200038f8 	.word	0x200038f8
- 8000750:	200038fc 	.word	0x200038fc
- 8000754:	20003908 	.word	0x20003908
- 8000758:	2000390c 	.word	0x2000390c
+ 800074c:	200038fc 	.word	0x200038fc
+ 8000750:	20003900 	.word	0x20003900
+ 8000754:	2000390c 	.word	0x2000390c
+ 8000758:	20003910 	.word	0x20003910
 
 0800075c <CI_getDataChannel_USB>:
 
@@ -798,7 +798,7 @@ void CI_getDataChannel_USB(uint8_t *bytes) {
  8000816:	46bd      	mov	sp, r7
  8000818:	bd80      	pop	{r7, pc}
  800081a:	bf00      	nop
- 800081c:	200038fc 	.word	0x200038fc
+ 800081c:	20003900 	.word	0x20003900
 
 08000820 <getComputerVals>:
 
@@ -816,7 +816,7 @@ Com_interface getComputerVals(void) {return getVals;}
  8000836:	46bd      	mov	sp, r7
  8000838:	bc80      	pop	{r7}
  800083a:	4770      	bx	lr
- 800083c:	200038fc 	.word	0x200038fc
+ 800083c:	20003900 	.word	0x20003900
 
 08000840 <main>:
 /**
@@ -854,7 +854,7 @@ int main(void)
  8000854:	f000 f89a 	bl	800098c <MX_USART3_UART_Init>
   /* USER CODE BEGIN 2 */
   tasks_init();
- 8000858:	f00b f95e 	bl	800bb18 <tasks_init>
+ 8000858:	f00b f99e 	bl	800bb98 <tasks_init>
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -887,9 +887,9 @@ int main(void)
   while (1)
  8000874:	e7fe      	b.n	8000874 <main+0x34>
  8000876:	bf00      	nop
- 8000878:	0800c1ec 	.word	0x0800c1ec
+ 8000878:	0800c26c 	.word	0x0800c26c
  800087c:	08000b41 	.word	0x08000b41
- 8000880:	20003910 	.word	0x20003910
+ 8000880:	20003914 	.word	0x20003914
 
 08000884 <SystemClock_Config>:
 /**
@@ -906,7 +906,7 @@ void SystemClock_Config(void)
  800088e:	2228      	movs	r2, #40	; 0x28
  8000890:	2100      	movs	r1, #0
  8000892:	4618      	mov	r0, r3
- 8000894:	f00b fc28 	bl	800c0e8 <memset>
+ 8000894:	f00b fc68 	bl	800c168 <memset>
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  8000898:	f107 0314 	add.w	r3, r7, #20
  800089c:	2200      	movs	r2, #0
@@ -1076,7 +1076,7 @@ static void MX_USART2_UART_Init(void)
  800097e:	bf00      	nop
  8000980:	bd80      	pop	{r7, pc}
  8000982:	bf00      	nop
- 8000984:	20003954 	.word	0x20003954
+ 8000984:	20003958 	.word	0x20003958
  8000988:	40004400 	.word	0x40004400
 
 0800098c <MX_USART3_UART_Init>:
@@ -1143,7 +1143,7 @@ static void MX_USART3_UART_Init(void)
  80009d2:	bf00      	nop
  80009d4:	bd80      	pop	{r7, pc}
  80009d6:	bf00      	nop
- 80009d8:	20003914 	.word	0x20003914
+ 80009d8:	20003918 	.word	0x20003918
  80009dc:	40004800 	.word	0x40004800
 
 080009e0 <MX_GPIO_Init>:
@@ -1801,7 +1801,7 @@ HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
  8000dba:	bd80      	pop	{r7, pc}
  8000dbc:	40021000 	.word	0x40021000
  8000dc0:	431bde83 	.word	0x431bde83
- 8000dc4:	20003994 	.word	0x20003994
+ 8000dc4:	20003998 	.word	0x20003998
  8000dc8:	40012c00 	.word	0x40012c00
 
 08000dcc <NMI_Handler>:
@@ -1923,7 +1923,7 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
  8000e02:	bf00      	nop
  8000e04:	bd80      	pop	{r7, pc}
  8000e06:	bf00      	nop
- 8000e08:	20003d50 	.word	0x20003d50
+ 8000e08:	20003d54 	.word	0x20003d54
 
 08000e0c <TIM1_UP_IRQHandler>:
 
@@ -1947,7 +1947,7 @@ void TIM1_UP_IRQHandler(void)
  8000e16:	bf00      	nop
  8000e18:	bd80      	pop	{r7, pc}
  8000e1a:	bf00      	nop
- 8000e1c:	20003994 	.word	0x20003994
+ 8000e1c:	20003998 	.word	0x20003998
 
 08000e20 <USART2_IRQHandler>:
 
@@ -1971,7 +1971,7 @@ void USART2_IRQHandler(void)
  8000e2a:	bf00      	nop
  8000e2c:	bd80      	pop	{r7, pc}
  8000e2e:	bf00      	nop
- 8000e30:	20003954 	.word	0x20003954
+ 8000e30:	20003958 	.word	0x20003958
 
 08000e34 <USART3_IRQHandler>:
 
@@ -1995,7 +1995,7 @@ void USART3_IRQHandler(void)
  8000e3e:	bf00      	nop
  8000e40:	bd80      	pop	{r7, pc}
  8000e42:	bf00      	nop
- 8000e44:	20003914 	.word	0x20003914
+ 8000e44:	20003918 	.word	0x20003918
 
 08000e48 <SystemInit>:
   * @note   This function should be used only after reset.
@@ -2081,14 +2081,14 @@ LoopFillZerobss:
  8000e7a:	f7ff ffe5 	bl	8000e48 <SystemInit>
 /* Call static constructors */
     bl __libc_init_array
- 8000e7e:	f00b f901 	bl	800c084 <__libc_init_array>
+ 8000e7e:	f00b f941 	bl	800c104 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
  8000e82:	f7ff fcdd 	bl	8000840 <main>
   bx lr
  8000e86:	4770      	bx	lr
   ldr r3, =_sidata
- 8000e88:	0800c230 	.word	0x0800c230
+ 8000e88:	0800c2b0 	.word	0x0800c2b0
   ldr r0, =_sdata
  8000e8c:	20000000 	.word	0x20000000
   ldr r3, =_edata
@@ -2096,7 +2096,7 @@ LoopFillZerobss:
   ldr r2, =_sbss
  8000e94:	20000180 	.word	0x20000180
   ldr r3, = _ebss
- 8000e98:	200040b0 	.word	0x200040b0
+ 8000e98:	200040bc 	.word	0x200040bc
 
 08000e9c <ADC1_2_IRQHandler>:
  * @retval : None
@@ -2178,7 +2178,7 @@ __weak void HAL_IncTick(void)
  8000ee4:	bc80      	pop	{r7}
  8000ee6:	4770      	bx	lr
  8000ee8:	20000008 	.word	0x20000008
- 8000eec:	200039dc 	.word	0x200039dc
+ 8000eec:	200039e0 	.word	0x200039e0
 
 08000ef0 <HAL_GetTick>:
   * @note  This function is declared as __weak to be overwritten in case of other
@@ -2197,7 +2197,7 @@ __weak uint32_t HAL_GetTick(void)
  8000efa:	46bd      	mov	sp, r7
  8000efc:	bc80      	pop	{r7}
  8000efe:	4770      	bx	lr
- 8000f00:	200039dc 	.word	0x200039dc
+ 8000f00:	200039e0 	.word	0x200039e0
 
 08000f04 <__NVIC_SetPriorityGrouping>:
            In case of a conflict between priority grouping and available
@@ -7981,7 +7981,7 @@ if (((RCC_ClkInitStruct->ClockType) & RCC_CLOCKTYPE_PCLK1) == RCC_CLOCKTYPE_PCLK
  80032f6:	bf00      	nop
  80032f8:	40022000 	.word	0x40022000
  80032fc:	40021000 	.word	0x40021000
- 8003300:	0800c210 	.word	0x0800c210
+ 8003300:	0800c290 	.word	0x0800c290
  8003304:	20000000 	.word	0x20000000
  8003308:	20000004 	.word	0x20000004
 
@@ -8129,7 +8129,7 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  80033b6:	bc90      	pop	{r4, r7}
  80033b8:	4770      	bx	lr
  80033ba:	bf00      	nop
- 80033bc:	0800c11c 	.word	0x0800c11c
+ 80033bc:	0800c19c 	.word	0x0800c19c
  80033c0:	40021000 	.word	0x40021000
  80033c4:	007a1200 	.word	0x007a1200
  80033c8:	003d0900 	.word	0x003d0900
@@ -8177,7 +8177,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  80033fc:	4618      	mov	r0, r3
  80033fe:	bd80      	pop	{r7, pc}
  8003400:	40021000 	.word	0x40021000
- 8003404:	0800c220 	.word	0x0800c220
+ 8003404:	0800c2a0 	.word	0x0800c2a0
 
 08003408 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -8203,7 +8203,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8003424:	4618      	mov	r0, r3
  8003426:	bd80      	pop	{r7, pc}
  8003428:	40021000 	.word	0x40021000
- 800342c:	0800c220 	.word	0x0800c220
+ 800342c:	0800c2a0 	.word	0x0800c2a0
 
 08003430 <HAL_RCC_GetClockConfig>:
   * contains the current clock configuration.
@@ -10537,7 +10537,7 @@ static HAL_StatusTypeDef UART_Receive_IT(UART_HandleTypeDef *huart)
       /*Call legacy weak Rx complete callback*/
       HAL_UART_RxCpltCallback(huart);
  800404c:	6878      	ldr	r0, [r7, #4]
- 800404e:	f007 fd55 	bl	800bafc <HAL_UART_RxCpltCallback>
+ 800404e:	f007 fd95 	bl	800bb7c <HAL_UART_RxCpltCallback>
 #endif /* USE_HAL_UART_REGISTER_CALLBACKS */
 
       return HAL_OK;
@@ -14939,7 +14939,7 @@ void IO_init(void){
  800638e:	46bd      	mov	sp, r7
  8006390:	bc80      	pop	{r7}
  8006392:	4770      	bx	lr
- 8006394:	200039e4 	.word	0x200039e4
+ 8006394:	200039e8 	.word	0x200039e8
 
 08006398 <IO_readInputSwitchs>:
 
@@ -15062,7 +15062,7 @@ void IO_readInputSwitchs(void){
  800648c:	bf00      	nop
  800648e:	bd80      	pop	{r7, pc}
  8006490:	40010c00 	.word	0x40010c00
- 8006494:	200039e4 	.word	0x200039e4
+ 8006494:	200039e8 	.word	0x200039e8
  8006498:	40010800 	.word	0x40010800
 
 0800649c <IO_writeOutputRelay>:
@@ -15202,7 +15202,7 @@ void IO_writeOutputRelay(void){
 }
  80065e0:	bf00      	nop
  80065e2:	bd80      	pop	{r7, pc}
- 80065e4:	200039e4 	.word	0x200039e4
+ 80065e4:	200039e8 	.word	0x200039e8
  80065e8:	40010c00 	.word	0x40010c00
  80065ec:	40010800 	.word	0x40010800
 
@@ -15400,7 +15400,7 @@ void IO_outputByteToBitsPackage(uint8_t byte){
  800675a:	bc80      	pop	{r7}
  800675c:	4770      	bx	lr
  800675e:	bf00      	nop
- 8006760:	200039e4 	.word	0x200039e4
+ 8006760:	200039e8 	.word	0x200039e8
 
 08006764 <IO_getInputOutputsVal>:
 
@@ -15423,7 +15423,7 @@ IO_interface IO_getInputOutputsVal(void){return inputOutputs;}
  8006786:	bc80      	pop	{r7}
  8006788:	4770      	bx	lr
  800678a:	bf00      	nop
- 800678c:	200039e4 	.word	0x200039e4
+ 800678c:	200039e8 	.word	0x200039e8
 
 08006790 <USBD_CDC_Init>:
   * @param  pdev: device instance
@@ -22410,7 +22410,7 @@ UBaseType_t uxMessagesWaiting;
  8008ca8:	6c1b      	ldr	r3, [r3, #64]	; 0x40
  8008caa:	461a      	mov	r2, r3
  8008cac:	68b9      	ldr	r1, [r7, #8]
- 8008cae:	f003 fa0d 	bl	800c0cc <memcpy>
+ 8008cae:	f003 fa4d 	bl	800c14c <memcpy>
 		pxQueue->pcWriteTo += pxQueue->uxItemSize;
  8008cb2:	68fb      	ldr	r3, [r7, #12]
  8008cb4:	689a      	ldr	r2, [r3, #8]
@@ -22445,7 +22445,7 @@ UBaseType_t uxMessagesWaiting;
  8008cdc:	6c1b      	ldr	r3, [r3, #64]	; 0x40
  8008cde:	461a      	mov	r2, r3
  8008ce0:	68b9      	ldr	r1, [r7, #8]
- 8008ce2:	f003 f9f3 	bl	800c0cc <memcpy>
+ 8008ce2:	f003 fa33 	bl	800c14c <memcpy>
 		pxQueue->u.pcReadFrom -= pxQueue->uxItemSize;
  8008ce6:	68fb      	ldr	r3, [r7, #12]
  8008ce8:	68da      	ldr	r2, [r3, #12]
@@ -22563,7 +22563,7 @@ static void prvCopyDataFromQueue( Queue_t * const pxQueue, void * const pvBuffer
  8008d70:	6c1b      	ldr	r3, [r3, #64]	; 0x40
  8008d72:	461a      	mov	r2, r3
  8008d74:	6838      	ldr	r0, [r7, #0]
- 8008d76:	f003 f9a9 	bl	800c0cc <memcpy>
+ 8008d76:	f003 f9e9 	bl	800c14c <memcpy>
 	}
 }
  8008d7a:	bf00      	nop
@@ -22867,7 +22867,7 @@ BaseType_t xReturn;
  8008eca:	46bd      	mov	sp, r7
  8008ecc:	bc80      	pop	{r7}
  8008ece:	4770      	bx	lr
- 8008ed0:	200039e8 	.word	0x200039e8
+ 8008ed0:	200039ec 	.word	0x200039ec
 
 08008ed4 <vQueueWaitForMessageRestricted>:
 /*-----------------------------------------------------------*/
@@ -23216,7 +23216,7 @@ BaseType_t xReturn;
  8009092:	009b      	lsls	r3, r3, #2
  8009094:	461a      	mov	r2, r3
  8009096:	21a5      	movs	r1, #165	; 0xa5
- 8009098:	f003 f826 	bl	800c0e8 <memset>
+ 8009098:	f003 f866 	bl	800c168 <memset>
 	grows from high memory to low (as per the 80x86) or vice versa.
 	portSTACK_GROWTH is used to make the result positive or negative as required
 	by the port. */
@@ -23806,7 +23806,7 @@ BaseType_t xReturn;
  8009382:	3718      	adds	r7, #24
  8009384:	46bd      	mov	sp, r7
  8009386:	bd80      	pop	{r7, pc}
- 8009388:	0800c12c 	.word	0x0800c12c
+ 8009388:	0800c1ac 	.word	0x0800c1ac
  800938c:	080099b9 	.word	0x080099b9
  8009390:	20000d54 	.word	0x20000d54
  8009394:	20000d50 	.word	0x20000d50
@@ -26110,7 +26110,7 @@ BaseType_t xReturn = pdFAIL;
  8009fb8:	46bd      	mov	sp, r7
  8009fba:	bd80      	pop	{r7, pc}
  8009fbc:	20000d8c 	.word	0x20000d8c
- 8009fc0:	0800c134 	.word	0x0800c134
+ 8009fc0:	0800c1b4 	.word	0x0800c1b4
  8009fc4:	0800a0e9 	.word	0x0800a0e9
  8009fc8:	20000d90 	.word	0x20000d90
 
@@ -27159,7 +27159,7 @@ static void prvCheckForValidListAndQueue( void )
  800a550:	20000d88 	.word	0x20000d88
  800a554:	20000e38 	.word	0x20000e38
  800a558:	20000d98 	.word	0x20000d98
- 800a55c:	0800c13c 	.word	0x0800c13c
+ 800a55c:	0800c1bc 	.word	0x0800c1bc
 
 0800a560 <pxPortInitialiseStack>:
 
@@ -28616,7 +28616,7 @@ void MX_USB_DEVICE_Init(void)
  800ad38:	bf00      	nop
  800ad3a:	bd80      	pop	{r7, pc}
  800ad3c:	20000130 	.word	0x20000130
- 800ad40:	20003a28 	.word	0x20003a28
+ 800ad40:	20003a2c 	.word	0x20003a2c
  800ad44:	20000018 	.word	0x20000018
  800ad48:	20000120 	.word	0x20000120
 
@@ -28646,9 +28646,9 @@ static int8_t CDC_Init_FS(void)
 }
  800ad64:	4618      	mov	r0, r3
  800ad66:	bd80      	pop	{r7, pc}
- 800ad68:	20003cfc 	.word	0x20003cfc
- 800ad6c:	20003a28 	.word	0x20003a28
- 800ad70:	20003cec 	.word	0x20003cec
+ 800ad68:	20003d00 	.word	0x20003d00
+ 800ad6c:	20003a2c 	.word	0x20003a2c
+ 800ad70:	20003cf0 	.word	0x20003cf0
 
 0800ad74 <CDC_DeInit_FS>:
 /**
@@ -28779,7 +28779,7 @@ static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
  800ae62:	3708      	adds	r7, #8
  800ae64:	46bd      	mov	sp, r7
  800ae66:	bd80      	pop	{r7, pc}
- 800ae68:	20003a28 	.word	0x20003a28
+ 800ae68:	20003a2c 	.word	0x20003a2c
 
 0800ae6c <CDC_Transmit_FS>:
   * @param  Buf: Buffer of data to be sent
@@ -28831,7 +28831,7 @@ uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
  800aeae:	46bd      	mov	sp, r7
  800aeb0:	bd80      	pop	{r7, pc}
  800aeb2:	bf00      	nop
- 800aeb4:	20003a28 	.word	0x20003a28
+ 800aeb4:	20003a2c 	.word	0x20003a2c
 
 0800aeb8 <USBD_FS_DeviceDescriptor>:
   * @param  speed : Current device speed
@@ -28932,8 +28932,8 @@ uint8_t * USBD_FS_ProductStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length
  800af2e:	46bd      	mov	sp, r7
  800af30:	bd80      	pop	{r7, pc}
  800af32:	bf00      	nop
- 800af34:	20003d10 	.word	0x20003d10
- 800af38:	0800c144 	.word	0x0800c144
+ 800af34:	20003d14 	.word	0x20003d14
+ 800af38:	0800c1c4 	.word	0x0800c1c4
 
 0800af3c <USBD_FS_ManufacturerStrDescriptor>:
   * @param  speed : Current device speed
@@ -28961,8 +28961,8 @@ uint8_t * USBD_FS_ManufacturerStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *l
  800af56:	3708      	adds	r7, #8
  800af58:	46bd      	mov	sp, r7
  800af5a:	bd80      	pop	{r7, pc}
- 800af5c:	20003d10 	.word	0x20003d10
- 800af60:	0800c158 	.word	0x0800c158
+ 800af5c:	20003d14 	.word	0x20003d14
+ 800af60:	0800c1d8 	.word	0x0800c1d8
 
 0800af64 <USBD_FS_SerialStrDescriptor>:
   * @param  speed : Current device speed
@@ -29040,8 +29040,8 @@ uint8_t * USBD_FS_ConfigStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
  800afb6:	46bd      	mov	sp, r7
  800afb8:	bd80      	pop	{r7, pc}
  800afba:	bf00      	nop
- 800afbc:	20003d10 	.word	0x20003d10
- 800afc0:	0800c164 	.word	0x0800c164
+ 800afbc:	20003d14 	.word	0x20003d14
+ 800afc0:	0800c1e4 	.word	0x0800c1e4
 
 0800afc4 <USBD_FS_InterfaceStrDescriptor>:
   * @param  speed : Current device speed
@@ -29084,8 +29084,8 @@ uint8_t * USBD_FS_InterfaceStrDescriptor(USBD_SpeedTypeDef speed, uint16_t *leng
  800aff2:	46bd      	mov	sp, r7
  800aff4:	bd80      	pop	{r7, pc}
  800aff6:	bf00      	nop
- 800aff8:	20003d10 	.word	0x20003d10
- 800affc:	0800c170 	.word	0x0800c170
+ 800aff8:	20003d14 	.word	0x20003d14
+ 800affc:	0800c1f0 	.word	0x0800c1f0
 
 0800b000 <Get_SerialNum>:
   * @brief  Create the serial number string descriptor
@@ -29624,7 +29624,7 @@ USBD_StatusTypeDef USBD_LL_Init(USBD_HandleTypeDef *pdev)
  800b2fe:	46bd      	mov	sp, r7
  800b300:	bd80      	pop	{r7, pc}
  800b302:	bf00      	nop
- 800b304:	20003d50 	.word	0x20003d50
+ 800b304:	20003d54 	.word	0x20003d54
  800b308:	40005c00 	.word	0x40005c00
 
 0800b30c <USBD_LL_Start>:
@@ -30266,7 +30266,7 @@ void MDI_writeSmallDataWithRegister(UART_HandleTypeDef *uartChannel, uint8_t dat
  * @return none
  */
 void MDI_sendDataChannel1Ver2(uint16_t angleVal, uint8_t kp, uint8_t ki,
-		uint8_t kd, uint8_t factor) {
+		uint8_t kd, uint8_t factor,uint8_t last_Bits) {
  800b668:	b590      	push	{r4, r7, lr}
  800b66a:	b089      	sub	sp, #36	; 0x24
  800b66c:	af00      	add	r7, sp, #0
@@ -30330,1476 +30330,1538 @@ void MDI_sendDataChannel1Ver2(uint16_t angleVal, uint8_t kp, uint8_t ki,
  800b6d2:	8bbb      	ldrh	r3, [r7, #28]
  800b6d4:	4413      	add	r3, r2
  800b6d6:	83bb      	strh	r3, [r7, #28]
+	checksumTmp += last_Bits;
+ 800b6d8:	f897 3034 	ldrb.w	r3, [r7, #52]	; 0x34
+ 800b6dc:	b29a      	uxth	r2, r3
+ 800b6de:	8bbb      	ldrh	r3, [r7, #28]
+ 800b6e0:	4413      	add	r3, r2
+ 800b6e2:	83bb      	strh	r3, [r7, #28]
 	uint8_t tmp = checksumTmp % 256;
- 800b6d8:	8bbb      	ldrh	r3, [r7, #28]
- 800b6da:	76fb      	strb	r3, [r7, #27]
+ 800b6e4:	8bbb      	ldrh	r3, [r7, #28]
+ 800b6e6:	76fb      	strb	r3, [r7, #27]
 	uint8_t tmpComp = ~tmp;
- 800b6dc:	7efb      	ldrb	r3, [r7, #27]
- 800b6de:	43db      	mvns	r3, r3
- 800b6e0:	76bb      	strb	r3, [r7, #26]
-	uint8_t sendBuff[10] = { 0XFF, 0XFF, tmpArr[0], tmpArr[1], kp, ki, kd,
- 800b6e2:	23ff      	movs	r3, #255	; 0xff
- 800b6e4:	733b      	strb	r3, [r7, #12]
- 800b6e6:	23ff      	movs	r3, #255	; 0xff
- 800b6e8:	737b      	strb	r3, [r7, #13]
- 800b6ea:	7e3b      	ldrb	r3, [r7, #24]
- 800b6ec:	73bb      	strb	r3, [r7, #14]
- 800b6ee:	7e7b      	ldrb	r3, [r7, #25]
- 800b6f0:	73fb      	strb	r3, [r7, #15]
- 800b6f2:	797b      	ldrb	r3, [r7, #5]
- 800b6f4:	743b      	strb	r3, [r7, #16]
- 800b6f6:	793b      	ldrb	r3, [r7, #4]
- 800b6f8:	747b      	strb	r3, [r7, #17]
- 800b6fa:	78fb      	ldrb	r3, [r7, #3]
- 800b6fc:	74bb      	strb	r3, [r7, #18]
- 800b6fe:	f897 3030 	ldrb.w	r3, [r7, #48]	; 0x30
- 800b702:	74fb      	strb	r3, [r7, #19]
- 800b704:	7efb      	ldrb	r3, [r7, #27]
- 800b706:	753b      	strb	r3, [r7, #20]
- 800b708:	7ebb      	ldrb	r3, [r7, #26]
- 800b70a:	757b      	strb	r3, [r7, #21]
-			factor, tmp, tmpComp };
-	for (uint8_t counter = 0; counter < 10; counter++) {
- 800b70c:	2300      	movs	r3, #0
- 800b70e:	77fb      	strb	r3, [r7, #31]
- 800b710:	e00f      	b.n	800b732 <MDI_sendDataChannel1Ver2+0xca>
+ 800b6e8:	7efb      	ldrb	r3, [r7, #27]
+ 800b6ea:	43db      	mvns	r3, r3
+ 800b6ec:	76bb      	strb	r3, [r7, #26]
+	uint8_t sendBuff[11] = { 0XFF, 0XFF, tmpArr[0], tmpArr[1], kp, ki, kd,
+ 800b6ee:	23ff      	movs	r3, #255	; 0xff
+ 800b6f0:	733b      	strb	r3, [r7, #12]
+ 800b6f2:	23ff      	movs	r3, #255	; 0xff
+ 800b6f4:	737b      	strb	r3, [r7, #13]
+ 800b6f6:	7e3b      	ldrb	r3, [r7, #24]
+ 800b6f8:	73bb      	strb	r3, [r7, #14]
+ 800b6fa:	7e7b      	ldrb	r3, [r7, #25]
+ 800b6fc:	73fb      	strb	r3, [r7, #15]
+ 800b6fe:	797b      	ldrb	r3, [r7, #5]
+ 800b700:	743b      	strb	r3, [r7, #16]
+ 800b702:	793b      	ldrb	r3, [r7, #4]
+ 800b704:	747b      	strb	r3, [r7, #17]
+ 800b706:	78fb      	ldrb	r3, [r7, #3]
+ 800b708:	74bb      	strb	r3, [r7, #18]
+ 800b70a:	f897 3030 	ldrb.w	r3, [r7, #48]	; 0x30
+ 800b70e:	74fb      	strb	r3, [r7, #19]
+ 800b710:	f897 3034 	ldrb.w	r3, [r7, #52]	; 0x34
+ 800b714:	753b      	strb	r3, [r7, #20]
+ 800b716:	7efb      	ldrb	r3, [r7, #27]
+ 800b718:	757b      	strb	r3, [r7, #21]
+ 800b71a:	7ebb      	ldrb	r3, [r7, #26]
+ 800b71c:	75bb      	strb	r3, [r7, #22]
+			factor, last_Bits,tmp, tmpComp };
+	for (uint8_t counter = 0; counter < 11; counter++) {
+ 800b71e:	2300      	movs	r3, #0
+ 800b720:	77fb      	strb	r3, [r7, #31]
+ 800b722:	e00f      	b.n	800b744 <MDI_sendDataChannel1Ver2+0xdc>
 		MDI_writeSmallDataWithRegister(&MDI_channel1TX, sendBuff[counter]);
- 800b712:	7ffb      	ldrb	r3, [r7, #31]
- 800b714:	f107 0220 	add.w	r2, r7, #32
- 800b718:	4413      	add	r3, r2
- 800b71a:	f813 3c14 	ldrb.w	r3, [r3, #-20]
- 800b71e:	4619      	mov	r1, r3
- 800b720:	4808      	ldr	r0, [pc, #32]	; (800b744 <MDI_sendDataChannel1Ver2+0xdc>)
- 800b722:	f7ff ff81 	bl	800b628 <MDI_writeSmallDataWithRegister>
+ 800b724:	7ffb      	ldrb	r3, [r7, #31]
+ 800b726:	f107 0220 	add.w	r2, r7, #32
+ 800b72a:	4413      	add	r3, r2
+ 800b72c:	f813 3c14 	ldrb.w	r3, [r3, #-20]
+ 800b730:	4619      	mov	r1, r3
+ 800b732:	4808      	ldr	r0, [pc, #32]	; (800b754 <MDI_sendDataChannel1Ver2+0xec>)
+ 800b734:	f7ff ff78 	bl	800b628 <MDI_writeSmallDataWithRegister>
 #if SEND_VAL_CHECK==0
 		vTaskDelay(1);
- 800b726:	2001      	movs	r0, #1
- 800b728:	f7fd fda0 	bl	800926c <vTaskDelay>
-	for (uint8_t counter = 0; counter < 10; counter++) {
- 800b72c:	7ffb      	ldrb	r3, [r7, #31]
- 800b72e:	3301      	adds	r3, #1
- 800b730:	77fb      	strb	r3, [r7, #31]
- 800b732:	7ffb      	ldrb	r3, [r7, #31]
- 800b734:	2b09      	cmp	r3, #9
- 800b736:	d9ec      	bls.n	800b712 <MDI_sendDataChannel1Ver2+0xaa>
 #elif SEND_VAL_CHECK==1
 		vTaskDelay(50);
+ 800b738:	2032      	movs	r0, #50	; 0x32
+ 800b73a:	f7fd fd97 	bl	800926c <vTaskDelay>
+	for (uint8_t counter = 0; counter < 11; counter++) {
+ 800b73e:	7ffb      	ldrb	r3, [r7, #31]
+ 800b740:	3301      	adds	r3, #1
+ 800b742:	77fb      	strb	r3, [r7, #31]
+ 800b744:	7ffb      	ldrb	r3, [r7, #31]
+ 800b746:	2b0a      	cmp	r3, #10
+ 800b748:	d9ec      	bls.n	800b724 <MDI_sendDataChannel1Ver2+0xbc>
 #endif
 	}
 }
- 800b738:	bf00      	nop
- 800b73a:	bf00      	nop
- 800b73c:	3724      	adds	r7, #36	; 0x24
- 800b73e:	46bd      	mov	sp, r7
- 800b740:	bd90      	pop	{r4, r7, pc}
- 800b742:	bf00      	nop
- 800b744:	20003954 	.word	0x20003954
+ 800b74a:	bf00      	nop
+ 800b74c:	bf00      	nop
+ 800b74e:	3724      	adds	r7, #36	; 0x24
+ 800b750:	46bd      	mov	sp, r7
+ 800b752:	bd90      	pop	{r4, r7, pc}
+ 800b754:	20003958 	.word	0x20003958
 
-0800b748 <MDI_enableGetDataChannel1>:
+0800b758 <MDI_enableGetDataChannel1>:
 uint8_t  getTmpCH1 = 0;
 /**
  * @brief set enable for MDI channel 1 receive
  * @return none
  */
 void MDI_enableGetDataChannel1(void){
- 800b748:	b580      	push	{r7, lr}
- 800b74a:	af00      	add	r7, sp, #0
+ 800b758:	b580      	push	{r7, lr}
+ 800b75a:	af00      	add	r7, sp, #0
 	HAL_UART_Receive_IT(&MDI_channel1RX,&getTmpCH1,1);
- 800b74c:	2201      	movs	r2, #1
- 800b74e:	4903      	ldr	r1, [pc, #12]	; (800b75c <MDI_enableGetDataChannel1+0x14>)
- 800b750:	4803      	ldr	r0, [pc, #12]	; (800b760 <MDI_enableGetDataChannel1+0x18>)
- 800b752:	f7f8 fa08 	bl	8003b66 <HAL_UART_Receive_IT>
+ 800b75c:	2201      	movs	r2, #1
+ 800b75e:	4903      	ldr	r1, [pc, #12]	; (800b76c <MDI_enableGetDataChannel1+0x14>)
+ 800b760:	4803      	ldr	r0, [pc, #12]	; (800b770 <MDI_enableGetDataChannel1+0x18>)
+ 800b762:	f7f8 fa00 	bl	8003b66 <HAL_UART_Receive_IT>
 }
- 800b756:	bf00      	nop
- 800b758:	bd80      	pop	{r7, pc}
- 800b75a:	bf00      	nop
- 800b75c:	200038c8 	.word	0x200038c8
- 800b760:	20003954 	.word	0x20003954
+ 800b766:	bf00      	nop
+ 800b768:	bd80      	pop	{r7, pc}
+ 800b76a:	bf00      	nop
+ 800b76c:	200038c8 	.word	0x200038c8
+ 800b770:	20003958 	.word	0x20003958
 
-0800b764 <MDI_getDataChannel1_IT>:
-static uint8_t tmpArr1[10];
+0800b774 <MDI_getDataChannel1_IT>:
+static uint8_t tmpArr1[11];
 /**
  * @brief get to Motor Driver 1 values
  * @return none
  */
 void MDI_getDataChannel1_IT(UART_HandleTypeDef *callBackHandle) {
- 800b764:	b580      	push	{r7, lr}
- 800b766:	b086      	sub	sp, #24
- 800b768:	af00      	add	r7, sp, #0
- 800b76a:	6078      	str	r0, [r7, #4]
+ 800b774:	b580      	push	{r7, lr}
+ 800b776:	b086      	sub	sp, #24
+ 800b778:	af00      	add	r7, sp, #0
+ 800b77a:	6078      	str	r0, [r7, #4]
 	volatile UART_HandleTypeDef *tmpHandle;
 	tmpHandle = &MDI_channel1RX;
- 800b76c:	4b3b      	ldr	r3, [pc, #236]	; (800b85c <MDI_getDataChannel1_IT+0xf8>)
- 800b76e:	613b      	str	r3, [r7, #16]
+ 800b77c:	4b46      	ldr	r3, [pc, #280]	; (800b898 <MDI_getDataChannel1_IT+0x124>)
+ 800b77e:	613b      	str	r3, [r7, #16]
 	if(callBackHandle->Instance == tmpHandle->Instance){
- 800b770:	687b      	ldr	r3, [r7, #4]
- 800b772:	681a      	ldr	r2, [r3, #0]
- 800b774:	693b      	ldr	r3, [r7, #16]
- 800b776:	681b      	ldr	r3, [r3, #0]
- 800b778:	429a      	cmp	r2, r3
- 800b77a:	d16a      	bne.n	800b852 <MDI_getDataChannel1_IT+0xee>
+ 800b780:	687b      	ldr	r3, [r7, #4]
+ 800b782:	681a      	ldr	r2, [r3, #0]
+ 800b784:	693b      	ldr	r3, [r7, #16]
+ 800b786:	681b      	ldr	r3, [r3, #0]
+ 800b788:	429a      	cmp	r2, r3
+ 800b78a:	f040 8081 	bne.w	800b890 <MDI_getDataChannel1_IT+0x11c>
 		static uint8_t counter = 0, getTmpBeff = 0;
 			if (0xFF == getTmpCH1 && 0xFF == getTmpBeff) {
- 800b77c:	4b38      	ldr	r3, [pc, #224]	; (800b860 <MDI_getDataChannel1_IT+0xfc>)
- 800b77e:	781b      	ldrb	r3, [r3, #0]
- 800b780:	2bff      	cmp	r3, #255	; 0xff
- 800b782:	d10c      	bne.n	800b79e <MDI_getDataChannel1_IT+0x3a>
- 800b784:	4b37      	ldr	r3, [pc, #220]	; (800b864 <MDI_getDataChannel1_IT+0x100>)
- 800b786:	781b      	ldrb	r3, [r3, #0]
- 800b788:	2bff      	cmp	r3, #255	; 0xff
- 800b78a:	d108      	bne.n	800b79e <MDI_getDataChannel1_IT+0x3a>
+ 800b78e:	4b43      	ldr	r3, [pc, #268]	; (800b89c <MDI_getDataChannel1_IT+0x128>)
+ 800b790:	781b      	ldrb	r3, [r3, #0]
+ 800b792:	2bff      	cmp	r3, #255	; 0xff
+ 800b794:	d10c      	bne.n	800b7b0 <MDI_getDataChannel1_IT+0x3c>
+ 800b796:	4b42      	ldr	r3, [pc, #264]	; (800b8a0 <MDI_getDataChannel1_IT+0x12c>)
+ 800b798:	781b      	ldrb	r3, [r3, #0]
+ 800b79a:	2bff      	cmp	r3, #255	; 0xff
+ 800b79c:	d108      	bne.n	800b7b0 <MDI_getDataChannel1_IT+0x3c>
 					tmpArr1[0] = 0xFF;
- 800b78c:	4b36      	ldr	r3, [pc, #216]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b78e:	22ff      	movs	r2, #255	; 0xff
- 800b790:	701a      	strb	r2, [r3, #0]
+ 800b79e:	4b41      	ldr	r3, [pc, #260]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b7a0:	22ff      	movs	r2, #255	; 0xff
+ 800b7a2:	701a      	strb	r2, [r3, #0]
 					tmpArr1[1] = 0xFF;
- 800b792:	4b35      	ldr	r3, [pc, #212]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b794:	22ff      	movs	r2, #255	; 0xff
- 800b796:	705a      	strb	r2, [r3, #1]
+ 800b7a4:	4b3f      	ldr	r3, [pc, #252]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b7a6:	22ff      	movs	r2, #255	; 0xff
+ 800b7a8:	705a      	strb	r2, [r3, #1]
 					counter = 1;
- 800b798:	4b34      	ldr	r3, [pc, #208]	; (800b86c <MDI_getDataChannel1_IT+0x108>)
- 800b79a:	2201      	movs	r2, #1
- 800b79c:	701a      	strb	r2, [r3, #0]
+ 800b7aa:	4b3f      	ldr	r3, [pc, #252]	; (800b8a8 <MDI_getDataChannel1_IT+0x134>)
+ 800b7ac:	2201      	movs	r2, #1
+ 800b7ae:	701a      	strb	r2, [r3, #0]
 				}
 				tmpArr1[counter] = getTmpCH1;
- 800b79e:	4b33      	ldr	r3, [pc, #204]	; (800b86c <MDI_getDataChannel1_IT+0x108>)
- 800b7a0:	781b      	ldrb	r3, [r3, #0]
- 800b7a2:	461a      	mov	r2, r3
- 800b7a4:	4b2e      	ldr	r3, [pc, #184]	; (800b860 <MDI_getDataChannel1_IT+0xfc>)
- 800b7a6:	7819      	ldrb	r1, [r3, #0]
- 800b7a8:	4b2f      	ldr	r3, [pc, #188]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b7aa:	5499      	strb	r1, [r3, r2]
+ 800b7b0:	4b3d      	ldr	r3, [pc, #244]	; (800b8a8 <MDI_getDataChannel1_IT+0x134>)
+ 800b7b2:	781b      	ldrb	r3, [r3, #0]
+ 800b7b4:	461a      	mov	r2, r3
+ 800b7b6:	4b39      	ldr	r3, [pc, #228]	; (800b89c <MDI_getDataChannel1_IT+0x128>)
+ 800b7b8:	7819      	ldrb	r1, [r3, #0]
+ 800b7ba:	4b3a      	ldr	r3, [pc, #232]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b7bc:	5499      	strb	r1, [r3, r2]
 				getTmpBeff = getTmpCH1;
- 800b7ac:	4b2c      	ldr	r3, [pc, #176]	; (800b860 <MDI_getDataChannel1_IT+0xfc>)
- 800b7ae:	781a      	ldrb	r2, [r3, #0]
- 800b7b0:	4b2c      	ldr	r3, [pc, #176]	; (800b864 <MDI_getDataChannel1_IT+0x100>)
- 800b7b2:	701a      	strb	r2, [r3, #0]
+ 800b7be:	4b37      	ldr	r3, [pc, #220]	; (800b89c <MDI_getDataChannel1_IT+0x128>)
+ 800b7c0:	781a      	ldrb	r2, [r3, #0]
+ 800b7c2:	4b37      	ldr	r3, [pc, #220]	; (800b8a0 <MDI_getDataChannel1_IT+0x12c>)
+ 800b7c4:	701a      	strb	r2, [r3, #0]
 				counter++;
- 800b7b4:	4b2d      	ldr	r3, [pc, #180]	; (800b86c <MDI_getDataChannel1_IT+0x108>)
- 800b7b6:	781b      	ldrb	r3, [r3, #0]
- 800b7b8:	3301      	adds	r3, #1
- 800b7ba:	b2da      	uxtb	r2, r3
- 800b7bc:	4b2b      	ldr	r3, [pc, #172]	; (800b86c <MDI_getDataChannel1_IT+0x108>)
- 800b7be:	701a      	strb	r2, [r3, #0]
-				if (counter > 9) {
- 800b7c0:	4b2a      	ldr	r3, [pc, #168]	; (800b86c <MDI_getDataChannel1_IT+0x108>)
- 800b7c2:	781b      	ldrb	r3, [r3, #0]
- 800b7c4:	2b09      	cmp	r3, #9
- 800b7c6:	d93f      	bls.n	800b848 <MDI_getDataChannel1_IT+0xe4>
+ 800b7c6:	4b38      	ldr	r3, [pc, #224]	; (800b8a8 <MDI_getDataChannel1_IT+0x134>)
+ 800b7c8:	781b      	ldrb	r3, [r3, #0]
+ 800b7ca:	3301      	adds	r3, #1
+ 800b7cc:	b2da      	uxtb	r2, r3
+ 800b7ce:	4b36      	ldr	r3, [pc, #216]	; (800b8a8 <MDI_getDataChannel1_IT+0x134>)
+ 800b7d0:	701a      	strb	r2, [r3, #0]
+				if (counter > 10) {
+ 800b7d2:	4b35      	ldr	r3, [pc, #212]	; (800b8a8 <MDI_getDataChannel1_IT+0x134>)
+ 800b7d4:	781b      	ldrb	r3, [r3, #0]
+ 800b7d6:	2b0a      	cmp	r3, #10
+ 800b7d8:	d955      	bls.n	800b886 <MDI_getDataChannel1_IT+0x112>
 					counter = 0;
- 800b7c8:	4b28      	ldr	r3, [pc, #160]	; (800b86c <MDI_getDataChannel1_IT+0x108>)
- 800b7ca:	2200      	movs	r2, #0
- 800b7cc:	701a      	strb	r2, [r3, #0]
+ 800b7da:	4b33      	ldr	r3, [pc, #204]	; (800b8a8 <MDI_getDataChannel1_IT+0x134>)
+ 800b7dc:	2200      	movs	r2, #0
+ 800b7de:	701a      	strb	r2, [r3, #0]
 					uint16_t checksumTmp = 0;
- 800b7ce:	2300      	movs	r3, #0
- 800b7d0:	82fb      	strh	r3, [r7, #22]
-					for (uint8_t c = 2; c < 8; c++)
- 800b7d2:	2302      	movs	r3, #2
- 800b7d4:	757b      	strb	r3, [r7, #21]
- 800b7d6:	e009      	b.n	800b7ec <MDI_getDataChannel1_IT+0x88>
+ 800b7e0:	2300      	movs	r3, #0
+ 800b7e2:	82fb      	strh	r3, [r7, #22]
+					for (uint8_t c = 2; c < 9; c++)
+ 800b7e4:	2302      	movs	r3, #2
+ 800b7e6:	757b      	strb	r3, [r7, #21]
+ 800b7e8:	e009      	b.n	800b7fe <MDI_getDataChannel1_IT+0x8a>
 						checksumTmp += tmpArr1[c];
- 800b7d8:	7d7b      	ldrb	r3, [r7, #21]
- 800b7da:	4a23      	ldr	r2, [pc, #140]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b7dc:	5cd3      	ldrb	r3, [r2, r3]
- 800b7de:	b29a      	uxth	r2, r3
- 800b7e0:	8afb      	ldrh	r3, [r7, #22]
- 800b7e2:	4413      	add	r3, r2
- 800b7e4:	82fb      	strh	r3, [r7, #22]
-					for (uint8_t c = 2; c < 8; c++)
- 800b7e6:	7d7b      	ldrb	r3, [r7, #21]
- 800b7e8:	3301      	adds	r3, #1
- 800b7ea:	757b      	strb	r3, [r7, #21]
- 800b7ec:	7d7b      	ldrb	r3, [r7, #21]
- 800b7ee:	2b07      	cmp	r3, #7
- 800b7f0:	d9f2      	bls.n	800b7d8 <MDI_getDataChannel1_IT+0x74>
-					uint8_t tmp = checksumTmp % 256;
+ 800b7ea:	7d7b      	ldrb	r3, [r7, #21]
+ 800b7ec:	4a2d      	ldr	r2, [pc, #180]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b7ee:	5cd3      	ldrb	r3, [r2, r3]
+ 800b7f0:	b29a      	uxth	r2, r3
  800b7f2:	8afb      	ldrh	r3, [r7, #22]
- 800b7f4:	73fb      	strb	r3, [r7, #15]
+ 800b7f4:	4413      	add	r3, r2
+ 800b7f6:	82fb      	strh	r3, [r7, #22]
+					for (uint8_t c = 2; c < 9; c++)
+ 800b7f8:	7d7b      	ldrb	r3, [r7, #21]
+ 800b7fa:	3301      	adds	r3, #1
+ 800b7fc:	757b      	strb	r3, [r7, #21]
+ 800b7fe:	7d7b      	ldrb	r3, [r7, #21]
+ 800b800:	2b08      	cmp	r3, #8
+ 800b802:	d9f2      	bls.n	800b7ea <MDI_getDataChannel1_IT+0x76>
+					uint8_t tmp = checksumTmp % 256;
+ 800b804:	8afb      	ldrh	r3, [r7, #22]
+ 800b806:	73fb      	strb	r3, [r7, #15]
 					uint8_t tmpComp = ~tmp;
- 800b7f6:	7bfb      	ldrb	r3, [r7, #15]
- 800b7f8:	43db      	mvns	r3, r3
- 800b7fa:	73bb      	strb	r3, [r7, #14]
-					if (tmp == tmpArr1[8] && tmpComp == tmpArr1[9]) {
- 800b7fc:	4b1a      	ldr	r3, [pc, #104]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b7fe:	7a1b      	ldrb	r3, [r3, #8]
- 800b800:	7bfa      	ldrb	r2, [r7, #15]
- 800b802:	429a      	cmp	r2, r3
- 800b804:	d120      	bne.n	800b848 <MDI_getDataChannel1_IT+0xe4>
- 800b806:	4b18      	ldr	r3, [pc, #96]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b808:	7a5b      	ldrb	r3, [r3, #9]
- 800b80a:	7bba      	ldrb	r2, [r7, #14]
- 800b80c:	429a      	cmp	r2, r3
- 800b80e:	d11b      	bne.n	800b848 <MDI_getDataChannel1_IT+0xe4>
+ 800b808:	7bfb      	ldrb	r3, [r7, #15]
+ 800b80a:	43db      	mvns	r3, r3
+ 800b80c:	73bb      	strb	r3, [r7, #14]
+					if (tmp == tmpArr1[9] && tmpComp == tmpArr1[10]) {
+ 800b80e:	4b25      	ldr	r3, [pc, #148]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b810:	7a5b      	ldrb	r3, [r3, #9]
+ 800b812:	7bfa      	ldrb	r2, [r7, #15]
+ 800b814:	429a      	cmp	r2, r3
+ 800b816:	d136      	bne.n	800b886 <MDI_getDataChannel1_IT+0x112>
+ 800b818:	4b22      	ldr	r3, [pc, #136]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b81a:	7a9b      	ldrb	r3, [r3, #10]
+ 800b81c:	7bba      	ldrb	r2, [r7, #14]
+ 800b81e:	429a      	cmp	r2, r3
+ 800b820:	d131      	bne.n	800b886 <MDI_getDataChannel1_IT+0x112>
 						driver1.angle = ((uint16_t) tmpArr1[2] << 8) | tmpArr1[3];
- 800b810:	4b15      	ldr	r3, [pc, #84]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b812:	789b      	ldrb	r3, [r3, #2]
- 800b814:	021b      	lsls	r3, r3, #8
- 800b816:	b21a      	sxth	r2, r3
- 800b818:	4b13      	ldr	r3, [pc, #76]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b81a:	78db      	ldrb	r3, [r3, #3]
- 800b81c:	b21b      	sxth	r3, r3
- 800b81e:	4313      	orrs	r3, r2
- 800b820:	b21b      	sxth	r3, r3
- 800b822:	b29a      	uxth	r2, r3
- 800b824:	4b12      	ldr	r3, [pc, #72]	; (800b870 <MDI_getDataChannel1_IT+0x10c>)
- 800b826:	809a      	strh	r2, [r3, #4]
+ 800b822:	4b20      	ldr	r3, [pc, #128]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b824:	789b      	ldrb	r3, [r3, #2]
+ 800b826:	021b      	lsls	r3, r3, #8
+ 800b828:	b21a      	sxth	r2, r3
+ 800b82a:	4b1e      	ldr	r3, [pc, #120]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b82c:	78db      	ldrb	r3, [r3, #3]
+ 800b82e:	b21b      	sxth	r3, r3
+ 800b830:	4313      	orrs	r3, r2
+ 800b832:	b21b      	sxth	r3, r3
+ 800b834:	b29a      	uxth	r2, r3
+ 800b836:	4b1d      	ldr	r3, [pc, #116]	; (800b8ac <MDI_getDataChannel1_IT+0x138>)
+ 800b838:	809a      	strh	r2, [r3, #4]
 						driver1.pid_kp = tmpArr1[4];
- 800b828:	4b0f      	ldr	r3, [pc, #60]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b82a:	791a      	ldrb	r2, [r3, #4]
- 800b82c:	4b10      	ldr	r3, [pc, #64]	; (800b870 <MDI_getDataChannel1_IT+0x10c>)
- 800b82e:	709a      	strb	r2, [r3, #2]
+ 800b83a:	4b1a      	ldr	r3, [pc, #104]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b83c:	791a      	ldrb	r2, [r3, #4]
+ 800b83e:	4b1b      	ldr	r3, [pc, #108]	; (800b8ac <MDI_getDataChannel1_IT+0x138>)
+ 800b840:	709a      	strb	r2, [r3, #2]
 						driver1.pid_ki = tmpArr1[5];
- 800b830:	4b0d      	ldr	r3, [pc, #52]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b832:	795a      	ldrb	r2, [r3, #5]
- 800b834:	4b0e      	ldr	r3, [pc, #56]	; (800b870 <MDI_getDataChannel1_IT+0x10c>)
- 800b836:	705a      	strb	r2, [r3, #1]
+ 800b842:	4b18      	ldr	r3, [pc, #96]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b844:	795a      	ldrb	r2, [r3, #5]
+ 800b846:	4b19      	ldr	r3, [pc, #100]	; (800b8ac <MDI_getDataChannel1_IT+0x138>)
+ 800b848:	705a      	strb	r2, [r3, #1]
 						driver1.pid_kd = tmpArr1[6];
- 800b838:	4b0b      	ldr	r3, [pc, #44]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b83a:	799a      	ldrb	r2, [r3, #6]
- 800b83c:	4b0c      	ldr	r3, [pc, #48]	; (800b870 <MDI_getDataChannel1_IT+0x10c>)
- 800b83e:	701a      	strb	r2, [r3, #0]
+ 800b84a:	4b16      	ldr	r3, [pc, #88]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b84c:	799a      	ldrb	r2, [r3, #6]
+ 800b84e:	4b17      	ldr	r3, [pc, #92]	; (800b8ac <MDI_getDataChannel1_IT+0x138>)
+ 800b850:	701a      	strb	r2, [r3, #0]
 						driver1.factor = tmpArr1[7];
- 800b840:	4b09      	ldr	r3, [pc, #36]	; (800b868 <MDI_getDataChannel1_IT+0x104>)
- 800b842:	79da      	ldrb	r2, [r3, #7]
- 800b844:	4b0a      	ldr	r3, [pc, #40]	; (800b870 <MDI_getDataChannel1_IT+0x10c>)
- 800b846:	70da      	strb	r2, [r3, #3]
+ 800b852:	4b14      	ldr	r3, [pc, #80]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b854:	79da      	ldrb	r2, [r3, #7]
+ 800b856:	4b15      	ldr	r3, [pc, #84]	; (800b8ac <MDI_getDataChannel1_IT+0x138>)
+ 800b858:	70da      	strb	r2, [r3, #3]
+						driver1.bit_1=(MDI_BIT_0 &  tmpArr1[8]);
+ 800b85a:	4b12      	ldr	r3, [pc, #72]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b85c:	7a1b      	ldrb	r3, [r3, #8]
+ 800b85e:	f003 0301 	and.w	r3, r3, #1
+ 800b862:	b2d9      	uxtb	r1, r3
+ 800b864:	4a11      	ldr	r2, [pc, #68]	; (800b8ac <MDI_getDataChannel1_IT+0x138>)
+ 800b866:	7993      	ldrb	r3, [r2, #6]
+ 800b868:	f361 0300 	bfi	r3, r1, #0, #1
+ 800b86c:	7193      	strb	r3, [r2, #6]
+						driver1.bit_2=(MDI_BIT_1 &  tmpArr1[8])>>1;
+ 800b86e:	4b0d      	ldr	r3, [pc, #52]	; (800b8a4 <MDI_getDataChannel1_IT+0x130>)
+ 800b870:	7a1b      	ldrb	r3, [r3, #8]
+ 800b872:	085b      	lsrs	r3, r3, #1
+ 800b874:	b2db      	uxtb	r3, r3
+ 800b876:	f003 0301 	and.w	r3, r3, #1
+ 800b87a:	b2d9      	uxtb	r1, r3
+ 800b87c:	4a0b      	ldr	r2, [pc, #44]	; (800b8ac <MDI_getDataChannel1_IT+0x138>)
+ 800b87e:	7993      	ldrb	r3, [r2, #6]
+ 800b880:	f361 0341 	bfi	r3, r1, #1, #1
+ 800b884:	7193      	strb	r3, [r2, #6]
 					}
 				}
 				HAL_UART_Receive_IT(callBackHandle, &getTmpCH1, 1);
- 800b848:	2201      	movs	r2, #1
- 800b84a:	4905      	ldr	r1, [pc, #20]	; (800b860 <MDI_getDataChannel1_IT+0xfc>)
- 800b84c:	6878      	ldr	r0, [r7, #4]
- 800b84e:	f7f8 f98a 	bl	8003b66 <HAL_UART_Receive_IT>
+ 800b886:	2201      	movs	r2, #1
+ 800b888:	4904      	ldr	r1, [pc, #16]	; (800b89c <MDI_getDataChannel1_IT+0x128>)
+ 800b88a:	6878      	ldr	r0, [r7, #4]
+ 800b88c:	f7f8 f96b 	bl	8003b66 <HAL_UART_Receive_IT>
 	}
 }
- 800b852:	bf00      	nop
- 800b854:	3718      	adds	r7, #24
- 800b856:	46bd      	mov	sp, r7
- 800b858:	bd80      	pop	{r7, pc}
- 800b85a:	bf00      	nop
- 800b85c:	20003954 	.word	0x20003954
- 800b860:	200038c8 	.word	0x200038c8
- 800b864:	200038e8 	.word	0x200038e8
- 800b868:	200038cc 	.word	0x200038cc
- 800b86c:	200038e9 	.word	0x200038e9
- 800b870:	20004044 	.word	0x20004044
+ 800b890:	bf00      	nop
+ 800b892:	3718      	adds	r7, #24
+ 800b894:	46bd      	mov	sp, r7
+ 800b896:	bd80      	pop	{r7, pc}
+ 800b898:	20003958 	.word	0x20003958
+ 800b89c:	200038c8 	.word	0x200038c8
+ 800b8a0:	200038e9 	.word	0x200038e9
+ 800b8a4:	200038cc 	.word	0x200038cc
+ 800b8a8:	200038ea 	.word	0x200038ea
+ 800b8ac:	20004048 	.word	0x20004048
 
-0800b874 <MDI_sendDataChannel2Ver2>:
+0800b8b0 <MDI_sendDataChannel2Ver2>:
  * @param kd -> get Pid kd value
  * @param factor -> get factor of Pid elements
  * @return none
  */
 void MDI_sendDataChannel2Ver2(int16_t speed, uint8_t kp, uint8_t ki,uint8_t kd,
-		uint8_t soft_k, uint8_t soft_f) {
- 800b874:	b590      	push	{r4, r7, lr}
- 800b876:	b089      	sub	sp, #36	; 0x24
- 800b878:	af00      	add	r7, sp, #0
- 800b87a:	4604      	mov	r4, r0
- 800b87c:	4608      	mov	r0, r1
- 800b87e:	4611      	mov	r1, r2
- 800b880:	461a      	mov	r2, r3
- 800b882:	4623      	mov	r3, r4
- 800b884:	80fb      	strh	r3, [r7, #6]
- 800b886:	4603      	mov	r3, r0
- 800b888:	717b      	strb	r3, [r7, #5]
- 800b88a:	460b      	mov	r3, r1
- 800b88c:	713b      	strb	r3, [r7, #4]
- 800b88e:	4613      	mov	r3, r2
- 800b890:	70fb      	strb	r3, [r7, #3]
+		uint8_t soft_k, uint8_t soft_f,uint8_t last_Bits) {
+ 800b8b0:	b590      	push	{r4, r7, lr}
+ 800b8b2:	b089      	sub	sp, #36	; 0x24
+ 800b8b4:	af00      	add	r7, sp, #0
+ 800b8b6:	4604      	mov	r4, r0
+ 800b8b8:	4608      	mov	r0, r1
+ 800b8ba:	4611      	mov	r1, r2
+ 800b8bc:	461a      	mov	r2, r3
+ 800b8be:	4623      	mov	r3, r4
+ 800b8c0:	80fb      	strh	r3, [r7, #6]
+ 800b8c2:	4603      	mov	r3, r0
+ 800b8c4:	717b      	strb	r3, [r7, #5]
+ 800b8c6:	460b      	mov	r3, r1
+ 800b8c8:	713b      	strb	r3, [r7, #4]
+ 800b8ca:	4613      	mov	r3, r2
+ 800b8cc:	70fb      	strb	r3, [r7, #3]
 	uint16_t checksumTmp = 0;
- 800b892:	2300      	movs	r3, #0
- 800b894:	83bb      	strh	r3, [r7, #28]
+ 800b8ce:	2300      	movs	r3, #0
+ 800b8d0:	83bb      	strh	r3, [r7, #28]
 	uint8_t tmpArr[] = { speed >> 8, speed & 0xFF };
- 800b896:	f9b7 3006 	ldrsh.w	r3, [r7, #6]
- 800b89a:	121b      	asrs	r3, r3, #8
- 800b89c:	b21b      	sxth	r3, r3
- 800b89e:	b2db      	uxtb	r3, r3
- 800b8a0:	763b      	strb	r3, [r7, #24]
- 800b8a2:	88fb      	ldrh	r3, [r7, #6]
- 800b8a4:	b2db      	uxtb	r3, r3
- 800b8a6:	767b      	strb	r3, [r7, #25]
+ 800b8d2:	f9b7 3006 	ldrsh.w	r3, [r7, #6]
+ 800b8d6:	121b      	asrs	r3, r3, #8
+ 800b8d8:	b21b      	sxth	r3, r3
+ 800b8da:	b2db      	uxtb	r3, r3
+ 800b8dc:	763b      	strb	r3, [r7, #24]
+ 800b8de:	88fb      	ldrh	r3, [r7, #6]
+ 800b8e0:	b2db      	uxtb	r3, r3
+ 800b8e2:	767b      	strb	r3, [r7, #25]
 	checksumTmp += tmpArr[0];
- 800b8a8:	7e3b      	ldrb	r3, [r7, #24]
- 800b8aa:	b29a      	uxth	r2, r3
- 800b8ac:	8bbb      	ldrh	r3, [r7, #28]
- 800b8ae:	4413      	add	r3, r2
- 800b8b0:	83bb      	strh	r3, [r7, #28]
+ 800b8e4:	7e3b      	ldrb	r3, [r7, #24]
+ 800b8e6:	b29a      	uxth	r2, r3
+ 800b8e8:	8bbb      	ldrh	r3, [r7, #28]
+ 800b8ea:	4413      	add	r3, r2
+ 800b8ec:	83bb      	strh	r3, [r7, #28]
 	checksumTmp += tmpArr[1];
- 800b8b2:	7e7b      	ldrb	r3, [r7, #25]
- 800b8b4:	b29a      	uxth	r2, r3
- 800b8b6:	8bbb      	ldrh	r3, [r7, #28]
- 800b8b8:	4413      	add	r3, r2
- 800b8ba:	83bb      	strh	r3, [r7, #28]
-	checksumTmp += kp;
- 800b8bc:	797b      	ldrb	r3, [r7, #5]
- 800b8be:	b29a      	uxth	r2, r3
- 800b8c0:	8bbb      	ldrh	r3, [r7, #28]
- 800b8c2:	4413      	add	r3, r2
- 800b8c4:	83bb      	strh	r3, [r7, #28]
-	checksumTmp += ki;
- 800b8c6:	793b      	ldrb	r3, [r7, #4]
- 800b8c8:	b29a      	uxth	r2, r3
- 800b8ca:	8bbb      	ldrh	r3, [r7, #28]
- 800b8cc:	4413      	add	r3, r2
- 800b8ce:	83bb      	strh	r3, [r7, #28]
-	checksumTmp += kd;
- 800b8d0:	78fb      	ldrb	r3, [r7, #3]
- 800b8d2:	b29a      	uxth	r2, r3
- 800b8d4:	8bbb      	ldrh	r3, [r7, #28]
- 800b8d6:	4413      	add	r3, r2
- 800b8d8:	83bb      	strh	r3, [r7, #28]
-	checksumTmp += soft_k;
- 800b8da:	f897 3030 	ldrb.w	r3, [r7, #48]	; 0x30
- 800b8de:	b29a      	uxth	r2, r3
- 800b8e0:	8bbb      	ldrh	r3, [r7, #28]
- 800b8e2:	4413      	add	r3, r2
- 800b8e4:	83bb      	strh	r3, [r7, #28]
-	checksumTmp += soft_f;
- 800b8e6:	f897 3034 	ldrb.w	r3, [r7, #52]	; 0x34
- 800b8ea:	b29a      	uxth	r2, r3
- 800b8ec:	8bbb      	ldrh	r3, [r7, #28]
- 800b8ee:	4413      	add	r3, r2
- 800b8f0:	83bb      	strh	r3, [r7, #28]
-	uint8_t tmp = checksumTmp % 256;
+ 800b8ee:	7e7b      	ldrb	r3, [r7, #25]
+ 800b8f0:	b29a      	uxth	r2, r3
  800b8f2:	8bbb      	ldrh	r3, [r7, #28]
- 800b8f4:	76fb      	strb	r3, [r7, #27]
+ 800b8f4:	4413      	add	r3, r2
+ 800b8f6:	83bb      	strh	r3, [r7, #28]
+	checksumTmp += kp;
+ 800b8f8:	797b      	ldrb	r3, [r7, #5]
+ 800b8fa:	b29a      	uxth	r2, r3
+ 800b8fc:	8bbb      	ldrh	r3, [r7, #28]
+ 800b8fe:	4413      	add	r3, r2
+ 800b900:	83bb      	strh	r3, [r7, #28]
+	checksumTmp += ki;
+ 800b902:	793b      	ldrb	r3, [r7, #4]
+ 800b904:	b29a      	uxth	r2, r3
+ 800b906:	8bbb      	ldrh	r3, [r7, #28]
+ 800b908:	4413      	add	r3, r2
+ 800b90a:	83bb      	strh	r3, [r7, #28]
+	checksumTmp += kd;
+ 800b90c:	78fb      	ldrb	r3, [r7, #3]
+ 800b90e:	b29a      	uxth	r2, r3
+ 800b910:	8bbb      	ldrh	r3, [r7, #28]
+ 800b912:	4413      	add	r3, r2
+ 800b914:	83bb      	strh	r3, [r7, #28]
+	checksumTmp += soft_k;
+ 800b916:	f897 3030 	ldrb.w	r3, [r7, #48]	; 0x30
+ 800b91a:	b29a      	uxth	r2, r3
+ 800b91c:	8bbb      	ldrh	r3, [r7, #28]
+ 800b91e:	4413      	add	r3, r2
+ 800b920:	83bb      	strh	r3, [r7, #28]
+	checksumTmp += soft_f;
+ 800b922:	f897 3034 	ldrb.w	r3, [r7, #52]	; 0x34
+ 800b926:	b29a      	uxth	r2, r3
+ 800b928:	8bbb      	ldrh	r3, [r7, #28]
+ 800b92a:	4413      	add	r3, r2
+ 800b92c:	83bb      	strh	r3, [r7, #28]
+	checksumTmp += last_Bits;
+ 800b92e:	f897 3038 	ldrb.w	r3, [r7, #56]	; 0x38
+ 800b932:	b29a      	uxth	r2, r3
+ 800b934:	8bbb      	ldrh	r3, [r7, #28]
+ 800b936:	4413      	add	r3, r2
+ 800b938:	83bb      	strh	r3, [r7, #28]
+	uint8_t tmp = checksumTmp % 256;
+ 800b93a:	8bbb      	ldrh	r3, [r7, #28]
+ 800b93c:	76fb      	strb	r3, [r7, #27]
 	uint8_t tmpComp = ~tmp;
- 800b8f6:	7efb      	ldrb	r3, [r7, #27]
- 800b8f8:	43db      	mvns	r3, r3
- 800b8fa:	76bb      	strb	r3, [r7, #26]
-	uint8_t sendBuff[11] = { 0XFF, 0XFF,kp, tmpArr[0],ki, tmpArr[1], kd,
- 800b8fc:	23ff      	movs	r3, #255	; 0xff
- 800b8fe:	733b      	strb	r3, [r7, #12]
- 800b900:	23ff      	movs	r3, #255	; 0xff
- 800b902:	737b      	strb	r3, [r7, #13]
- 800b904:	797b      	ldrb	r3, [r7, #5]
- 800b906:	73bb      	strb	r3, [r7, #14]
- 800b908:	7e3b      	ldrb	r3, [r7, #24]
- 800b90a:	73fb      	strb	r3, [r7, #15]
- 800b90c:	793b      	ldrb	r3, [r7, #4]
- 800b90e:	743b      	strb	r3, [r7, #16]
- 800b910:	7e7b      	ldrb	r3, [r7, #25]
- 800b912:	747b      	strb	r3, [r7, #17]
- 800b914:	78fb      	ldrb	r3, [r7, #3]
- 800b916:	74bb      	strb	r3, [r7, #18]
- 800b918:	f897 3030 	ldrb.w	r3, [r7, #48]	; 0x30
- 800b91c:	74fb      	strb	r3, [r7, #19]
- 800b91e:	f897 3034 	ldrb.w	r3, [r7, #52]	; 0x34
- 800b922:	753b      	strb	r3, [r7, #20]
- 800b924:	7efb      	ldrb	r3, [r7, #27]
- 800b926:	757b      	strb	r3, [r7, #21]
- 800b928:	7ebb      	ldrb	r3, [r7, #26]
- 800b92a:	75bb      	strb	r3, [r7, #22]
-			soft_k,soft_f, tmp, tmpComp };
-	for (uint8_t counter = 0; counter < 11; counter++) {
- 800b92c:	2300      	movs	r3, #0
- 800b92e:	77fb      	strb	r3, [r7, #31]
- 800b930:	e00f      	b.n	800b952 <MDI_sendDataChannel2Ver2+0xde>
+ 800b93e:	7efb      	ldrb	r3, [r7, #27]
+ 800b940:	43db      	mvns	r3, r3
+ 800b942:	76bb      	strb	r3, [r7, #26]
+	uint8_t sendBuff[12] = { 0XFF, 0XFF,kp, tmpArr[0],ki, tmpArr[1], kd,
+ 800b944:	23ff      	movs	r3, #255	; 0xff
+ 800b946:	733b      	strb	r3, [r7, #12]
+ 800b948:	23ff      	movs	r3, #255	; 0xff
+ 800b94a:	737b      	strb	r3, [r7, #13]
+ 800b94c:	797b      	ldrb	r3, [r7, #5]
+ 800b94e:	73bb      	strb	r3, [r7, #14]
+ 800b950:	7e3b      	ldrb	r3, [r7, #24]
+ 800b952:	73fb      	strb	r3, [r7, #15]
+ 800b954:	793b      	ldrb	r3, [r7, #4]
+ 800b956:	743b      	strb	r3, [r7, #16]
+ 800b958:	7e7b      	ldrb	r3, [r7, #25]
+ 800b95a:	747b      	strb	r3, [r7, #17]
+ 800b95c:	78fb      	ldrb	r3, [r7, #3]
+ 800b95e:	74bb      	strb	r3, [r7, #18]
+ 800b960:	f897 3030 	ldrb.w	r3, [r7, #48]	; 0x30
+ 800b964:	74fb      	strb	r3, [r7, #19]
+ 800b966:	f897 3034 	ldrb.w	r3, [r7, #52]	; 0x34
+ 800b96a:	753b      	strb	r3, [r7, #20]
+ 800b96c:	f897 3038 	ldrb.w	r3, [r7, #56]	; 0x38
+ 800b970:	757b      	strb	r3, [r7, #21]
+ 800b972:	7efb      	ldrb	r3, [r7, #27]
+ 800b974:	75bb      	strb	r3, [r7, #22]
+ 800b976:	7ebb      	ldrb	r3, [r7, #26]
+ 800b978:	75fb      	strb	r3, [r7, #23]
+			soft_k,soft_f,last_Bits, tmp, tmpComp };
+	for (uint8_t counter = 0; counter < 12; counter++) {
+ 800b97a:	2300      	movs	r3, #0
+ 800b97c:	77fb      	strb	r3, [r7, #31]
+ 800b97e:	e00f      	b.n	800b9a0 <MDI_sendDataChannel2Ver2+0xf0>
 		MDI_writeSmallDataWithRegister(&MDI_channel2TX, sendBuff[counter]);
- 800b932:	7ffb      	ldrb	r3, [r7, #31]
- 800b934:	f107 0220 	add.w	r2, r7, #32
- 800b938:	4413      	add	r3, r2
- 800b93a:	f813 3c14 	ldrb.w	r3, [r3, #-20]
- 800b93e:	4619      	mov	r1, r3
- 800b940:	4808      	ldr	r0, [pc, #32]	; (800b964 <MDI_sendDataChannel2Ver2+0xf0>)
- 800b942:	f7ff fe71 	bl	800b628 <MDI_writeSmallDataWithRegister>
+ 800b980:	7ffb      	ldrb	r3, [r7, #31]
+ 800b982:	f107 0220 	add.w	r2, r7, #32
+ 800b986:	4413      	add	r3, r2
+ 800b988:	f813 3c14 	ldrb.w	r3, [r3, #-20]
+ 800b98c:	4619      	mov	r1, r3
+ 800b98e:	4808      	ldr	r0, [pc, #32]	; (800b9b0 <MDI_sendDataChannel2Ver2+0x100>)
+ 800b990:	f7ff fe4a 	bl	800b628 <MDI_writeSmallDataWithRegister>
 	#if SEND_VAL_CHECK==0
 		vTaskDelay(1);
- 800b946:	2001      	movs	r0, #1
- 800b948:	f7fd fc90 	bl	800926c <vTaskDelay>
-	for (uint8_t counter = 0; counter < 11; counter++) {
- 800b94c:	7ffb      	ldrb	r3, [r7, #31]
- 800b94e:	3301      	adds	r3, #1
- 800b950:	77fb      	strb	r3, [r7, #31]
- 800b952:	7ffb      	ldrb	r3, [r7, #31]
- 800b954:	2b0a      	cmp	r3, #10
- 800b956:	d9ec      	bls.n	800b932 <MDI_sendDataChannel2Ver2+0xbe>
 	#elif SEND_VAL_CHECK==1
 		vTaskDelay(50);
+ 800b994:	2032      	movs	r0, #50	; 0x32
+ 800b996:	f7fd fc69 	bl	800926c <vTaskDelay>
+	for (uint8_t counter = 0; counter < 12; counter++) {
+ 800b99a:	7ffb      	ldrb	r3, [r7, #31]
+ 800b99c:	3301      	adds	r3, #1
+ 800b99e:	77fb      	strb	r3, [r7, #31]
+ 800b9a0:	7ffb      	ldrb	r3, [r7, #31]
+ 800b9a2:	2b0b      	cmp	r3, #11
+ 800b9a4:	d9ec      	bls.n	800b980 <MDI_sendDataChannel2Ver2+0xd0>
 	#endif
 	}
 }
- 800b958:	bf00      	nop
- 800b95a:	bf00      	nop
- 800b95c:	3724      	adds	r7, #36	; 0x24
- 800b95e:	46bd      	mov	sp, r7
- 800b960:	bd90      	pop	{r4, r7, pc}
- 800b962:	bf00      	nop
- 800b964:	20003914 	.word	0x20003914
+ 800b9a6:	bf00      	nop
+ 800b9a8:	bf00      	nop
+ 800b9aa:	3724      	adds	r7, #36	; 0x24
+ 800b9ac:	46bd      	mov	sp, r7
+ 800b9ae:	bd90      	pop	{r4, r7, pc}
+ 800b9b0:	20003918 	.word	0x20003918
 
-0800b968 <MDI_enableGetDataChannel2>:
+0800b9b4 <MDI_enableGetDataChannel2>:
 /**
  * @brief set enable for MDI channel 2 receive
  * @return none
  */
 uint8_t  getTmpCH2 = 0;
 void MDI_enableGetDataChannel2(void){
- 800b968:	b580      	push	{r7, lr}
- 800b96a:	af00      	add	r7, sp, #0
+ 800b9b4:	b580      	push	{r7, lr}
+ 800b9b6:	af00      	add	r7, sp, #0
 	HAL_UART_Receive_IT(&MDI_channel2RX,&getTmpCH2,1);
- 800b96c:	2201      	movs	r2, #1
- 800b96e:	4903      	ldr	r1, [pc, #12]	; (800b97c <MDI_enableGetDataChannel2+0x14>)
- 800b970:	4803      	ldr	r0, [pc, #12]	; (800b980 <MDI_enableGetDataChannel2+0x18>)
- 800b972:	f7f8 f8f8 	bl	8003b66 <HAL_UART_Receive_IT>
+ 800b9b8:	2201      	movs	r2, #1
+ 800b9ba:	4903      	ldr	r1, [pc, #12]	; (800b9c8 <MDI_enableGetDataChannel2+0x14>)
+ 800b9bc:	4803      	ldr	r0, [pc, #12]	; (800b9cc <MDI_enableGetDataChannel2+0x18>)
+ 800b9be:	f7f8 f8d2 	bl	8003b66 <HAL_UART_Receive_IT>
 }
- 800b976:	bf00      	nop
- 800b978:	bd80      	pop	{r7, pc}
- 800b97a:	bf00      	nop
- 800b97c:	200038d6 	.word	0x200038d6
- 800b980:	20003914 	.word	0x20003914
+ 800b9c2:	bf00      	nop
+ 800b9c4:	bd80      	pop	{r7, pc}
+ 800b9c6:	bf00      	nop
+ 800b9c8:	200038d7 	.word	0x200038d7
+ 800b9cc:	20003918 	.word	0x20003918
 
-0800b984 <MDI_getDataChannel2_IT>:
+0800b9d0 <MDI_getDataChannel2_IT>:
 /**
  * @brief get to Motor Driver 2 values
  * @return callBackHandle-> get u(s)art handle
  */
-static uint8_t tmpArr2[16];
+static uint8_t tmpArr2[17];
 void MDI_getDataChannel2_IT(UART_HandleTypeDef *callBackHandle) {
- 800b984:	b580      	push	{r7, lr}
- 800b986:	b086      	sub	sp, #24
- 800b988:	af00      	add	r7, sp, #0
- 800b98a:	6078      	str	r0, [r7, #4]
+ 800b9d0:	b580      	push	{r7, lr}
+ 800b9d2:	b086      	sub	sp, #24
+ 800b9d4:	af00      	add	r7, sp, #0
+ 800b9d6:	6078      	str	r0, [r7, #4]
 	volatile UART_HandleTypeDef *tmpHandle;
 	tmpHandle = &MDI_channel2RX;
- 800b98c:	4b44      	ldr	r3, [pc, #272]	; (800baa0 <MDI_getDataChannel2_IT+0x11c>)
- 800b98e:	613b      	str	r3, [r7, #16]
+ 800b9d8:	4b50      	ldr	r3, [pc, #320]	; (800bb1c <MDI_getDataChannel2_IT+0x14c>)
+ 800b9da:	613b      	str	r3, [r7, #16]
 	if(callBackHandle->Instance == tmpHandle->Instance){
- 800b990:	687b      	ldr	r3, [r7, #4]
- 800b992:	681a      	ldr	r2, [r3, #0]
- 800b994:	693b      	ldr	r3, [r7, #16]
- 800b996:	681b      	ldr	r3, [r3, #0]
- 800b998:	429a      	cmp	r2, r3
- 800b99a:	d17d      	bne.n	800ba98 <MDI_getDataChannel2_IT+0x114>
+ 800b9dc:	687b      	ldr	r3, [r7, #4]
+ 800b9de:	681a      	ldr	r2, [r3, #0]
+ 800b9e0:	693b      	ldr	r3, [r7, #16]
+ 800b9e2:	681b      	ldr	r3, [r3, #0]
+ 800b9e4:	429a      	cmp	r2, r3
+ 800b9e6:	f040 8094 	bne.w	800bb12 <MDI_getDataChannel2_IT+0x142>
 		static uint8_t counter = 0, getTmpBeff = 0;
 			if (0xFF == getTmpCH2 && 0xFF == getTmpBeff) {
- 800b99c:	4b41      	ldr	r3, [pc, #260]	; (800baa4 <MDI_getDataChannel2_IT+0x120>)
- 800b99e:	781b      	ldrb	r3, [r3, #0]
- 800b9a0:	2bff      	cmp	r3, #255	; 0xff
- 800b9a2:	d10c      	bne.n	800b9be <MDI_getDataChannel2_IT+0x3a>
- 800b9a4:	4b40      	ldr	r3, [pc, #256]	; (800baa8 <MDI_getDataChannel2_IT+0x124>)
- 800b9a6:	781b      	ldrb	r3, [r3, #0]
- 800b9a8:	2bff      	cmp	r3, #255	; 0xff
- 800b9aa:	d108      	bne.n	800b9be <MDI_getDataChannel2_IT+0x3a>
+ 800b9ea:	4b4d      	ldr	r3, [pc, #308]	; (800bb20 <MDI_getDataChannel2_IT+0x150>)
+ 800b9ec:	781b      	ldrb	r3, [r3, #0]
+ 800b9ee:	2bff      	cmp	r3, #255	; 0xff
+ 800b9f0:	d10c      	bne.n	800ba0c <MDI_getDataChannel2_IT+0x3c>
+ 800b9f2:	4b4c      	ldr	r3, [pc, #304]	; (800bb24 <MDI_getDataChannel2_IT+0x154>)
+ 800b9f4:	781b      	ldrb	r3, [r3, #0]
+ 800b9f6:	2bff      	cmp	r3, #255	; 0xff
+ 800b9f8:	d108      	bne.n	800ba0c <MDI_getDataChannel2_IT+0x3c>
 				tmpArr2[0] = 0xFF;
- 800b9ac:	4b3f      	ldr	r3, [pc, #252]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800b9ae:	22ff      	movs	r2, #255	; 0xff
- 800b9b0:	701a      	strb	r2, [r3, #0]
+ 800b9fa:	4b4b      	ldr	r3, [pc, #300]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800b9fc:	22ff      	movs	r2, #255	; 0xff
+ 800b9fe:	701a      	strb	r2, [r3, #0]
 				tmpArr2[1] = 0xFF;
- 800b9b2:	4b3e      	ldr	r3, [pc, #248]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800b9b4:	22ff      	movs	r2, #255	; 0xff
- 800b9b6:	705a      	strb	r2, [r3, #1]
+ 800ba00:	4b49      	ldr	r3, [pc, #292]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800ba02:	22ff      	movs	r2, #255	; 0xff
+ 800ba04:	705a      	strb	r2, [r3, #1]
 				counter = 1;
- 800b9b8:	4b3d      	ldr	r3, [pc, #244]	; (800bab0 <MDI_getDataChannel2_IT+0x12c>)
- 800b9ba:	2201      	movs	r2, #1
- 800b9bc:	701a      	strb	r2, [r3, #0]
+ 800ba06:	4b49      	ldr	r3, [pc, #292]	; (800bb2c <MDI_getDataChannel2_IT+0x15c>)
+ 800ba08:	2201      	movs	r2, #1
+ 800ba0a:	701a      	strb	r2, [r3, #0]
 			}
 			tmpArr2[counter] = getTmpCH2;
- 800b9be:	4b3c      	ldr	r3, [pc, #240]	; (800bab0 <MDI_getDataChannel2_IT+0x12c>)
- 800b9c0:	781b      	ldrb	r3, [r3, #0]
- 800b9c2:	461a      	mov	r2, r3
- 800b9c4:	4b37      	ldr	r3, [pc, #220]	; (800baa4 <MDI_getDataChannel2_IT+0x120>)
- 800b9c6:	7819      	ldrb	r1, [r3, #0]
- 800b9c8:	4b38      	ldr	r3, [pc, #224]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800b9ca:	5499      	strb	r1, [r3, r2]
+ 800ba0c:	4b47      	ldr	r3, [pc, #284]	; (800bb2c <MDI_getDataChannel2_IT+0x15c>)
+ 800ba0e:	781b      	ldrb	r3, [r3, #0]
+ 800ba10:	461a      	mov	r2, r3
+ 800ba12:	4b43      	ldr	r3, [pc, #268]	; (800bb20 <MDI_getDataChannel2_IT+0x150>)
+ 800ba14:	7819      	ldrb	r1, [r3, #0]
+ 800ba16:	4b44      	ldr	r3, [pc, #272]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800ba18:	5499      	strb	r1, [r3, r2]
 			getTmpBeff = getTmpCH2;
- 800b9cc:	4b35      	ldr	r3, [pc, #212]	; (800baa4 <MDI_getDataChannel2_IT+0x120>)
- 800b9ce:	781a      	ldrb	r2, [r3, #0]
- 800b9d0:	4b35      	ldr	r3, [pc, #212]	; (800baa8 <MDI_getDataChannel2_IT+0x124>)
- 800b9d2:	701a      	strb	r2, [r3, #0]
+ 800ba1a:	4b41      	ldr	r3, [pc, #260]	; (800bb20 <MDI_getDataChannel2_IT+0x150>)
+ 800ba1c:	781a      	ldrb	r2, [r3, #0]
+ 800ba1e:	4b41      	ldr	r3, [pc, #260]	; (800bb24 <MDI_getDataChannel2_IT+0x154>)
+ 800ba20:	701a      	strb	r2, [r3, #0]
 			counter++;
- 800b9d4:	4b36      	ldr	r3, [pc, #216]	; (800bab0 <MDI_getDataChannel2_IT+0x12c>)
- 800b9d6:	781b      	ldrb	r3, [r3, #0]
- 800b9d8:	3301      	adds	r3, #1
- 800b9da:	b2da      	uxtb	r2, r3
- 800b9dc:	4b34      	ldr	r3, [pc, #208]	; (800bab0 <MDI_getDataChannel2_IT+0x12c>)
- 800b9de:	701a      	strb	r2, [r3, #0]
-			if (counter > 15) {
- 800b9e0:	4b33      	ldr	r3, [pc, #204]	; (800bab0 <MDI_getDataChannel2_IT+0x12c>)
- 800b9e2:	781b      	ldrb	r3, [r3, #0]
- 800b9e4:	2b0f      	cmp	r3, #15
- 800b9e6:	d952      	bls.n	800ba8e <MDI_getDataChannel2_IT+0x10a>
+ 800ba22:	4b42      	ldr	r3, [pc, #264]	; (800bb2c <MDI_getDataChannel2_IT+0x15c>)
+ 800ba24:	781b      	ldrb	r3, [r3, #0]
+ 800ba26:	3301      	adds	r3, #1
+ 800ba28:	b2da      	uxtb	r2, r3
+ 800ba2a:	4b40      	ldr	r3, [pc, #256]	; (800bb2c <MDI_getDataChannel2_IT+0x15c>)
+ 800ba2c:	701a      	strb	r2, [r3, #0]
+			if (counter > 16) {
+ 800ba2e:	4b3f      	ldr	r3, [pc, #252]	; (800bb2c <MDI_getDataChannel2_IT+0x15c>)
+ 800ba30:	781b      	ldrb	r3, [r3, #0]
+ 800ba32:	2b10      	cmp	r3, #16
+ 800ba34:	d968      	bls.n	800bb08 <MDI_getDataChannel2_IT+0x138>
 				counter = 0;
- 800b9e8:	4b31      	ldr	r3, [pc, #196]	; (800bab0 <MDI_getDataChannel2_IT+0x12c>)
- 800b9ea:	2200      	movs	r2, #0
- 800b9ec:	701a      	strb	r2, [r3, #0]
+ 800ba36:	4b3d      	ldr	r3, [pc, #244]	; (800bb2c <MDI_getDataChannel2_IT+0x15c>)
+ 800ba38:	2200      	movs	r2, #0
+ 800ba3a:	701a      	strb	r2, [r3, #0]
 				uint16_t checksumTmp = 0;
- 800b9ee:	2300      	movs	r3, #0
- 800b9f0:	82fb      	strh	r3, [r7, #22]
-				for (uint8_t c = 2; c < 14; c++)
- 800b9f2:	2302      	movs	r3, #2
- 800b9f4:	757b      	strb	r3, [r7, #21]
- 800b9f6:	e009      	b.n	800ba0c <MDI_getDataChannel2_IT+0x88>
+ 800ba3c:	2300      	movs	r3, #0
+ 800ba3e:	82fb      	strh	r3, [r7, #22]
+				for (uint8_t c = 2; c < 15; c++)
+ 800ba40:	2302      	movs	r3, #2
+ 800ba42:	757b      	strb	r3, [r7, #21]
+ 800ba44:	e009      	b.n	800ba5a <MDI_getDataChannel2_IT+0x8a>
 					checksumTmp += tmpArr2[c];
- 800b9f8:	7d7b      	ldrb	r3, [r7, #21]
- 800b9fa:	4a2c      	ldr	r2, [pc, #176]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800b9fc:	5cd3      	ldrb	r3, [r2, r3]
- 800b9fe:	b29a      	uxth	r2, r3
- 800ba00:	8afb      	ldrh	r3, [r7, #22]
- 800ba02:	4413      	add	r3, r2
- 800ba04:	82fb      	strh	r3, [r7, #22]
-				for (uint8_t c = 2; c < 14; c++)
- 800ba06:	7d7b      	ldrb	r3, [r7, #21]
- 800ba08:	3301      	adds	r3, #1
- 800ba0a:	757b      	strb	r3, [r7, #21]
- 800ba0c:	7d7b      	ldrb	r3, [r7, #21]
- 800ba0e:	2b0d      	cmp	r3, #13
- 800ba10:	d9f2      	bls.n	800b9f8 <MDI_getDataChannel2_IT+0x74>
+ 800ba46:	7d7b      	ldrb	r3, [r7, #21]
+ 800ba48:	4a37      	ldr	r2, [pc, #220]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800ba4a:	5cd3      	ldrb	r3, [r2, r3]
+ 800ba4c:	b29a      	uxth	r2, r3
+ 800ba4e:	8afb      	ldrh	r3, [r7, #22]
+ 800ba50:	4413      	add	r3, r2
+ 800ba52:	82fb      	strh	r3, [r7, #22]
+				for (uint8_t c = 2; c < 15; c++)
+ 800ba54:	7d7b      	ldrb	r3, [r7, #21]
+ 800ba56:	3301      	adds	r3, #1
+ 800ba58:	757b      	strb	r3, [r7, #21]
+ 800ba5a:	7d7b      	ldrb	r3, [r7, #21]
+ 800ba5c:	2b0e      	cmp	r3, #14
+ 800ba5e:	d9f2      	bls.n	800ba46 <MDI_getDataChannel2_IT+0x76>
 				uint8_t tmp = checksumTmp % 256;
- 800ba12:	8afb      	ldrh	r3, [r7, #22]
- 800ba14:	73fb      	strb	r3, [r7, #15]
+ 800ba60:	8afb      	ldrh	r3, [r7, #22]
+ 800ba62:	73fb      	strb	r3, [r7, #15]
 				uint8_t tmpComp = ~tmp;
- 800ba16:	7bfb      	ldrb	r3, [r7, #15]
- 800ba18:	43db      	mvns	r3, r3
- 800ba1a:	73bb      	strb	r3, [r7, #14]
-				if (tmp == tmpArr2[14] && tmpComp == tmpArr2[15]) {
- 800ba1c:	4b23      	ldr	r3, [pc, #140]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba1e:	7b9b      	ldrb	r3, [r3, #14]
- 800ba20:	7bfa      	ldrb	r2, [r7, #15]
- 800ba22:	429a      	cmp	r2, r3
- 800ba24:	d133      	bne.n	800ba8e <MDI_getDataChannel2_IT+0x10a>
- 800ba26:	4b21      	ldr	r3, [pc, #132]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba28:	7bdb      	ldrb	r3, [r3, #15]
- 800ba2a:	7bba      	ldrb	r2, [r7, #14]
- 800ba2c:	429a      	cmp	r2, r3
- 800ba2e:	d12e      	bne.n	800ba8e <MDI_getDataChannel2_IT+0x10a>
+ 800ba64:	7bfb      	ldrb	r3, [r7, #15]
+ 800ba66:	43db      	mvns	r3, r3
+ 800ba68:	73bb      	strb	r3, [r7, #14]
+				if (tmp == tmpArr2[15] && tmpComp == tmpArr2[16]) {
+ 800ba6a:	4b2f      	ldr	r3, [pc, #188]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800ba6c:	7bdb      	ldrb	r3, [r3, #15]
+ 800ba6e:	7bfa      	ldrb	r2, [r7, #15]
+ 800ba70:	429a      	cmp	r2, r3
+ 800ba72:	d149      	bne.n	800bb08 <MDI_getDataChannel2_IT+0x138>
+ 800ba74:	4b2c      	ldr	r3, [pc, #176]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800ba76:	7c1b      	ldrb	r3, [r3, #16]
+ 800ba78:	7bba      	ldrb	r2, [r7, #14]
+ 800ba7a:	429a      	cmp	r2, r3
+ 800ba7c:	d144      	bne.n	800bb08 <MDI_getDataChannel2_IT+0x138>
 					travelMotor.encoder =(((tmpArr2[7] << 24)) | ((tmpArr2[9]<< 16)) | ((tmpArr2[11]<< 8)) | (tmpArr2[13] & 0xFF));
- 800ba30:	4b1e      	ldr	r3, [pc, #120]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba32:	79db      	ldrb	r3, [r3, #7]
- 800ba34:	061a      	lsls	r2, r3, #24
- 800ba36:	4b1d      	ldr	r3, [pc, #116]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba38:	7a5b      	ldrb	r3, [r3, #9]
- 800ba3a:	041b      	lsls	r3, r3, #16
- 800ba3c:	431a      	orrs	r2, r3
- 800ba3e:	4b1b      	ldr	r3, [pc, #108]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba40:	7adb      	ldrb	r3, [r3, #11]
- 800ba42:	021b      	lsls	r3, r3, #8
- 800ba44:	4313      	orrs	r3, r2
- 800ba46:	4a19      	ldr	r2, [pc, #100]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba48:	7b52      	ldrb	r2, [r2, #13]
- 800ba4a:	4313      	orrs	r3, r2
- 800ba4c:	4a19      	ldr	r2, [pc, #100]	; (800bab4 <MDI_getDataChannel2_IT+0x130>)
- 800ba4e:	6093      	str	r3, [r2, #8]
+ 800ba7e:	4b2a      	ldr	r3, [pc, #168]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800ba80:	79db      	ldrb	r3, [r3, #7]
+ 800ba82:	061a      	lsls	r2, r3, #24
+ 800ba84:	4b28      	ldr	r3, [pc, #160]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800ba86:	7a5b      	ldrb	r3, [r3, #9]
+ 800ba88:	041b      	lsls	r3, r3, #16
+ 800ba8a:	431a      	orrs	r2, r3
+ 800ba8c:	4b26      	ldr	r3, [pc, #152]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800ba8e:	7adb      	ldrb	r3, [r3, #11]
+ 800ba90:	021b      	lsls	r3, r3, #8
+ 800ba92:	4313      	orrs	r3, r2
+ 800ba94:	4a24      	ldr	r2, [pc, #144]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800ba96:	7b52      	ldrb	r2, [r2, #13]
+ 800ba98:	4313      	orrs	r3, r2
+ 800ba9a:	4a25      	ldr	r2, [pc, #148]	; (800bb30 <MDI_getDataChannel2_IT+0x160>)
+ 800ba9c:	6093      	str	r3, [r2, #8]
 					travelMotor.speed = ( (tmpArr2[3] << 8) |(tmpArr2[5] & 0xFF));
- 800ba50:	4b16      	ldr	r3, [pc, #88]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba52:	78db      	ldrb	r3, [r3, #3]
- 800ba54:	021b      	lsls	r3, r3, #8
- 800ba56:	b21a      	sxth	r2, r3
- 800ba58:	4b14      	ldr	r3, [pc, #80]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba5a:	795b      	ldrb	r3, [r3, #5]
- 800ba5c:	b21b      	sxth	r3, r3
- 800ba5e:	4313      	orrs	r3, r2
- 800ba60:	b21a      	sxth	r2, r3
- 800ba62:	4b14      	ldr	r3, [pc, #80]	; (800bab4 <MDI_getDataChannel2_IT+0x130>)
- 800ba64:	809a      	strh	r2, [r3, #4]
+ 800ba9e:	4b22      	ldr	r3, [pc, #136]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800baa0:	78db      	ldrb	r3, [r3, #3]
+ 800baa2:	021b      	lsls	r3, r3, #8
+ 800baa4:	b21a      	sxth	r2, r3
+ 800baa6:	4b20      	ldr	r3, [pc, #128]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800baa8:	795b      	ldrb	r3, [r3, #5]
+ 800baaa:	b21b      	sxth	r3, r3
+ 800baac:	4313      	orrs	r3, r2
+ 800baae:	b21a      	sxth	r2, r3
+ 800bab0:	4b1f      	ldr	r3, [pc, #124]	; (800bb30 <MDI_getDataChannel2_IT+0x160>)
+ 800bab2:	809a      	strh	r2, [r3, #4]
 					travelMotor.pid_kp = tmpArr2[2];
- 800ba66:	4b11      	ldr	r3, [pc, #68]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba68:	789a      	ldrb	r2, [r3, #2]
- 800ba6a:	4b12      	ldr	r3, [pc, #72]	; (800bab4 <MDI_getDataChannel2_IT+0x130>)
- 800ba6c:	701a      	strb	r2, [r3, #0]
+ 800bab4:	4b1c      	ldr	r3, [pc, #112]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800bab6:	789a      	ldrb	r2, [r3, #2]
+ 800bab8:	4b1d      	ldr	r3, [pc, #116]	; (800bb30 <MDI_getDataChannel2_IT+0x160>)
+ 800baba:	701a      	strb	r2, [r3, #0]
 					travelMotor.pid_ki = tmpArr2[4];
- 800ba6e:	4b0f      	ldr	r3, [pc, #60]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba70:	791a      	ldrb	r2, [r3, #4]
- 800ba72:	4b10      	ldr	r3, [pc, #64]	; (800bab4 <MDI_getDataChannel2_IT+0x130>)
- 800ba74:	705a      	strb	r2, [r3, #1]
+ 800babc:	4b1a      	ldr	r3, [pc, #104]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800babe:	791a      	ldrb	r2, [r3, #4]
+ 800bac0:	4b1b      	ldr	r3, [pc, #108]	; (800bb30 <MDI_getDataChannel2_IT+0x160>)
+ 800bac2:	705a      	strb	r2, [r3, #1]
 					travelMotor.pid_kd = tmpArr2[6];
- 800ba76:	4b0d      	ldr	r3, [pc, #52]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba78:	799a      	ldrb	r2, [r3, #6]
- 800ba7a:	4b0e      	ldr	r3, [pc, #56]	; (800bab4 <MDI_getDataChannel2_IT+0x130>)
- 800ba7c:	709a      	strb	r2, [r3, #2]
+ 800bac4:	4b18      	ldr	r3, [pc, #96]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800bac6:	799a      	ldrb	r2, [r3, #6]
+ 800bac8:	4b19      	ldr	r3, [pc, #100]	; (800bb30 <MDI_getDataChannel2_IT+0x160>)
+ 800baca:	709a      	strb	r2, [r3, #2]
 					travelMotor.soft_k = tmpArr2[8];
- 800ba7e:	4b0b      	ldr	r3, [pc, #44]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba80:	7a1a      	ldrb	r2, [r3, #8]
- 800ba82:	4b0c      	ldr	r3, [pc, #48]	; (800bab4 <MDI_getDataChannel2_IT+0x130>)
- 800ba84:	71da      	strb	r2, [r3, #7]
+ 800bacc:	4b16      	ldr	r3, [pc, #88]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800bace:	7a1a      	ldrb	r2, [r3, #8]
+ 800bad0:	4b17      	ldr	r3, [pc, #92]	; (800bb30 <MDI_getDataChannel2_IT+0x160>)
+ 800bad2:	71da      	strb	r2, [r3, #7]
 					travelMotor.soft_f = tmpArr2[10];
- 800ba86:	4b09      	ldr	r3, [pc, #36]	; (800baac <MDI_getDataChannel2_IT+0x128>)
- 800ba88:	7a9a      	ldrb	r2, [r3, #10]
- 800ba8a:	4b0a      	ldr	r3, [pc, #40]	; (800bab4 <MDI_getDataChannel2_IT+0x130>)
- 800ba8c:	719a      	strb	r2, [r3, #6]
+ 800bad4:	4b14      	ldr	r3, [pc, #80]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800bad6:	7a9a      	ldrb	r2, [r3, #10]
+ 800bad8:	4b15      	ldr	r3, [pc, #84]	; (800bb30 <MDI_getDataChannel2_IT+0x160>)
+ 800bada:	719a      	strb	r2, [r3, #6]
+					travelMotor.bit_1=(MDI_BIT_0 &  tmpArr2[14]);
+ 800badc:	4b12      	ldr	r3, [pc, #72]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800bade:	7b9b      	ldrb	r3, [r3, #14]
+ 800bae0:	f003 0301 	and.w	r3, r3, #1
+ 800bae4:	b2d9      	uxtb	r1, r3
+ 800bae6:	4a12      	ldr	r2, [pc, #72]	; (800bb30 <MDI_getDataChannel2_IT+0x160>)
+ 800bae8:	7b13      	ldrb	r3, [r2, #12]
+ 800baea:	f361 0300 	bfi	r3, r1, #0, #1
+ 800baee:	7313      	strb	r3, [r2, #12]
+					travelMotor.bit_2=(MDI_BIT_1 &  tmpArr2[14])>>1;
+ 800baf0:	4b0d      	ldr	r3, [pc, #52]	; (800bb28 <MDI_getDataChannel2_IT+0x158>)
+ 800baf2:	7b9b      	ldrb	r3, [r3, #14]
+ 800baf4:	085b      	lsrs	r3, r3, #1
+ 800baf6:	b2db      	uxtb	r3, r3
+ 800baf8:	f003 0301 	and.w	r3, r3, #1
+ 800bafc:	b2d9      	uxtb	r1, r3
+ 800bafe:	4a0c      	ldr	r2, [pc, #48]	; (800bb30 <MDI_getDataChannel2_IT+0x160>)
+ 800bb00:	7b13      	ldrb	r3, [r2, #12]
+ 800bb02:	f361 0341 	bfi	r3, r1, #1, #1
+ 800bb06:	7313      	strb	r3, [r2, #12]
 				}
 			}
 			HAL_UART_Receive_IT(callBackHandle, &getTmpCH2, 1);
- 800ba8e:	2201      	movs	r2, #1
- 800ba90:	4904      	ldr	r1, [pc, #16]	; (800baa4 <MDI_getDataChannel2_IT+0x120>)
- 800ba92:	6878      	ldr	r0, [r7, #4]
- 800ba94:	f7f8 f867 	bl	8003b66 <HAL_UART_Receive_IT>
+ 800bb08:	2201      	movs	r2, #1
+ 800bb0a:	4905      	ldr	r1, [pc, #20]	; (800bb20 <MDI_getDataChannel2_IT+0x150>)
+ 800bb0c:	6878      	ldr	r0, [r7, #4]
+ 800bb0e:	f7f8 f82a 	bl	8003b66 <HAL_UART_Receive_IT>
 	}
 }
- 800ba98:	bf00      	nop
- 800ba9a:	3718      	adds	r7, #24
- 800ba9c:	46bd      	mov	sp, r7
- 800ba9e:	bd80      	pop	{r7, pc}
- 800baa0:	20003914 	.word	0x20003914
- 800baa4:	200038d6 	.word	0x200038d6
- 800baa8:	200038ea 	.word	0x200038ea
- 800baac:	200038d8 	.word	0x200038d8
- 800bab0:	200038eb 	.word	0x200038eb
- 800bab4:	20004064 	.word	0x20004064
+ 800bb12:	bf00      	nop
+ 800bb14:	3718      	adds	r7, #24
+ 800bb16:	46bd      	mov	sp, r7
+ 800bb18:	bd80      	pop	{r7, pc}
+ 800bb1a:	bf00      	nop
+ 800bb1c:	20003918 	.word	0x20003918
+ 800bb20:	200038d7 	.word	0x200038d7
+ 800bb24:	200038eb 	.word	0x200038eb
+ 800bb28:	200038d8 	.word	0x200038d8
+ 800bb2c:	200038ec 	.word	0x200038ec
+ 800bb30:	20004068 	.word	0x20004068
 
-0800bab8 <getDriver1ReceiveVal>:
+0800bb34 <getDriver1ReceiveVal>:
 }
 uint16_t getDriver2angle(void) {
 	return driver2.factor;
 }
 
 mD_interface getDriver1ReceiveVal(void) {
- 800bab8:	b480      	push	{r7}
- 800baba:	b083      	sub	sp, #12
- 800babc:	af00      	add	r7, sp, #0
- 800babe:	6078      	str	r0, [r7, #4]
+ 800bb34:	b480      	push	{r7}
+ 800bb36:	b083      	sub	sp, #12
+ 800bb38:	af00      	add	r7, sp, #0
+ 800bb3a:	6078      	str	r0, [r7, #4]
 	return driver1;
- 800bac0:	687b      	ldr	r3, [r7, #4]
- 800bac2:	4a05      	ldr	r2, [pc, #20]	; (800bad8 <getDriver1ReceiveVal+0x20>)
- 800bac4:	6811      	ldr	r1, [r2, #0]
- 800bac6:	6019      	str	r1, [r3, #0]
- 800bac8:	8892      	ldrh	r2, [r2, #4]
- 800baca:	809a      	strh	r2, [r3, #4]
+ 800bb3c:	687b      	ldr	r3, [r7, #4]
+ 800bb3e:	4a05      	ldr	r2, [pc, #20]	; (800bb54 <getDriver1ReceiveVal+0x20>)
+ 800bb40:	6811      	ldr	r1, [r2, #0]
+ 800bb42:	6852      	ldr	r2, [r2, #4]
+ 800bb44:	6019      	str	r1, [r3, #0]
+ 800bb46:	605a      	str	r2, [r3, #4]
 }
- 800bacc:	6878      	ldr	r0, [r7, #4]
- 800bace:	370c      	adds	r7, #12
- 800bad0:	46bd      	mov	sp, r7
- 800bad2:	bc80      	pop	{r7}
- 800bad4:	4770      	bx	lr
- 800bad6:	bf00      	nop
- 800bad8:	20004044 	.word	0x20004044
+ 800bb48:	6878      	ldr	r0, [r7, #4]
+ 800bb4a:	370c      	adds	r7, #12
+ 800bb4c:	46bd      	mov	sp, r7
+ 800bb4e:	bc80      	pop	{r7}
+ 800bb50:	4770      	bx	lr
+ 800bb52:	bf00      	nop
+ 800bb54:	20004048 	.word	0x20004048
 
-0800badc <getDriver2ReceiveVal>:
+0800bb58 <getDriver2ReceiveVal>:
 tMD_interface getDriver2ReceiveVal(void) {
- 800badc:	b480      	push	{r7}
- 800bade:	b083      	sub	sp, #12
- 800bae0:	af00      	add	r7, sp, #0
- 800bae2:	6078      	str	r0, [r7, #4]
+ 800bb58:	b490      	push	{r4, r7}
+ 800bb5a:	b082      	sub	sp, #8
+ 800bb5c:	af00      	add	r7, sp, #0
+ 800bb5e:	6078      	str	r0, [r7, #4]
 	return travelMotor;
- 800bae4:	687b      	ldr	r3, [r7, #4]
- 800bae6:	4a04      	ldr	r2, [pc, #16]	; (800baf8 <getDriver2ReceiveVal+0x1c>)
- 800bae8:	ca07      	ldmia	r2, {r0, r1, r2}
- 800baea:	e883 0007 	stmia.w	r3, {r0, r1, r2}
+ 800bb60:	687b      	ldr	r3, [r7, #4]
+ 800bb62:	4a05      	ldr	r2, [pc, #20]	; (800bb78 <getDriver2ReceiveVal+0x20>)
+ 800bb64:	461c      	mov	r4, r3
+ 800bb66:	4613      	mov	r3, r2
+ 800bb68:	cb0f      	ldmia	r3, {r0, r1, r2, r3}
+ 800bb6a:	e884 000f 	stmia.w	r4, {r0, r1, r2, r3}
 }
- 800baee:	6878      	ldr	r0, [r7, #4]
- 800baf0:	370c      	adds	r7, #12
- 800baf2:	46bd      	mov	sp, r7
- 800baf4:	bc80      	pop	{r7}
- 800baf6:	4770      	bx	lr
- 800baf8:	20004064 	.word	0x20004064
+ 800bb6e:	6878      	ldr	r0, [r7, #4]
+ 800bb70:	3708      	adds	r7, #8
+ 800bb72:	46bd      	mov	sp, r7
+ 800bb74:	bc90      	pop	{r4, r7}
+ 800bb76:	4770      	bx	lr
+ 800bb78:	20004068 	.word	0x20004068
 
-0800bafc <HAL_UART_RxCpltCallback>:
+0800bb7c <HAL_UART_RxCpltCallback>:
 xSemaphoreHandle uart1SemphrHandle=NULL;
 xSemaphoreHandle uart2SemphrHandle=NULL;
 xSemaphoreHandle uart3SemphrHandle=NULL;
 
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
- 800bafc:	b580      	push	{r7, lr}
- 800bafe:	b082      	sub	sp, #8
- 800bb00:	af00      	add	r7, sp, #0
- 800bb02:	6078      	str	r0, [r7, #4]
+ 800bb7c:	b580      	push	{r7, lr}
+ 800bb7e:	b082      	sub	sp, #8
+ 800bb80:	af00      	add	r7, sp, #0
+ 800bb82:	6078      	str	r0, [r7, #4]
 	MDI_getDataChannel1_IT(huart);
- 800bb04:	6878      	ldr	r0, [r7, #4]
- 800bb06:	f7ff fe2d 	bl	800b764 <MDI_getDataChannel1_IT>
+ 800bb84:	6878      	ldr	r0, [r7, #4]
+ 800bb86:	f7ff fdf5 	bl	800b774 <MDI_getDataChannel1_IT>
 	MDI_getDataChannel2_IT(huart);
- 800bb0a:	6878      	ldr	r0, [r7, #4]
- 800bb0c:	f7ff ff3a 	bl	800b984 <MDI_getDataChannel2_IT>
+ 800bb8a:	6878      	ldr	r0, [r7, #4]
+ 800bb8c:	f7ff ff20 	bl	800b9d0 <MDI_getDataChannel2_IT>
 
 }
- 800bb10:	bf00      	nop
- 800bb12:	3708      	adds	r7, #8
- 800bb14:	46bd      	mov	sp, r7
- 800bb16:	bd80      	pop	{r7, pc}
+ 800bb90:	bf00      	nop
+ 800bb92:	3708      	adds	r7, #8
+ 800bb94:	46bd      	mov	sp, r7
+ 800bb96:	bd80      	pop	{r7, pc}
 
-0800bb18 <tasks_init>:
+0800bb98 <tasks_init>:
 
 void tasks_init(void){
- 800bb18:	b580      	push	{r7, lr}
- 800bb1a:	b082      	sub	sp, #8
- 800bb1c:	af02      	add	r7, sp, #8
+ 800bb98:	b580      	push	{r7, lr}
+ 800bb9a:	b082      	sub	sp, #8
+ 800bb9c:	af02      	add	r7, sp, #8
 
 	 MX_USB_DEVICE_Init();
- 800bb1e:	f7ff f8e5 	bl	800acec <MX_USB_DEVICE_Init>
+ 800bb9e:	f7ff f8a5 	bl	800acec <MX_USB_DEVICE_Init>
 	 * @param usStackDepth-> stack size
 	 * @param pvParameters-> function parameters
 	 * @param uxPriority -> Priority
 	 * @param pxCreatedTask -> handle so id
 	 * */
 	vSemaphoreCreateBinary(uart1SemphrHandle);
- 800bb22:	2203      	movs	r2, #3
- 800bb24:	2100      	movs	r1, #0
- 800bb26:	2001      	movs	r0, #1
- 800bb28:	f7fc fca1 	bl	800846e <xQueueGenericCreate>
- 800bb2c:	4603      	mov	r3, r0
- 800bb2e:	4a4c      	ldr	r2, [pc, #304]	; (800bc60 <tasks_init+0x148>)
- 800bb30:	6013      	str	r3, [r2, #0]
- 800bb32:	4b4b      	ldr	r3, [pc, #300]	; (800bc60 <tasks_init+0x148>)
- 800bb34:	681b      	ldr	r3, [r3, #0]
- 800bb36:	2b00      	cmp	r3, #0
- 800bb38:	d006      	beq.n	800bb48 <tasks_init+0x30>
- 800bb3a:	4b49      	ldr	r3, [pc, #292]	; (800bc60 <tasks_init+0x148>)
- 800bb3c:	6818      	ldr	r0, [r3, #0]
- 800bb3e:	2300      	movs	r3, #0
- 800bb40:	2200      	movs	r2, #0
- 800bb42:	2100      	movs	r1, #0
- 800bb44:	f7fc fcf4 	bl	8008530 <xQueueGenericSend>
+ 800bba2:	2203      	movs	r2, #3
+ 800bba4:	2100      	movs	r1, #0
+ 800bba6:	2001      	movs	r0, #1
+ 800bba8:	f7fc fc61 	bl	800846e <xQueueGenericCreate>
+ 800bbac:	4603      	mov	r3, r0
+ 800bbae:	4a4c      	ldr	r2, [pc, #304]	; (800bce0 <tasks_init+0x148>)
+ 800bbb0:	6013      	str	r3, [r2, #0]
+ 800bbb2:	4b4b      	ldr	r3, [pc, #300]	; (800bce0 <tasks_init+0x148>)
+ 800bbb4:	681b      	ldr	r3, [r3, #0]
+ 800bbb6:	2b00      	cmp	r3, #0
+ 800bbb8:	d006      	beq.n	800bbc8 <tasks_init+0x30>
+ 800bbba:	4b49      	ldr	r3, [pc, #292]	; (800bce0 <tasks_init+0x148>)
+ 800bbbc:	6818      	ldr	r0, [r3, #0]
+ 800bbbe:	2300      	movs	r3, #0
+ 800bbc0:	2200      	movs	r2, #0
+ 800bbc2:	2100      	movs	r1, #0
+ 800bbc4:	f7fc fcb4 	bl	8008530 <xQueueGenericSend>
 	vSemaphoreCreateBinary(uart2SemphrHandle);
- 800bb48:	2203      	movs	r2, #3
- 800bb4a:	2100      	movs	r1, #0
- 800bb4c:	2001      	movs	r0, #1
- 800bb4e:	f7fc fc8e 	bl	800846e <xQueueGenericCreate>
- 800bb52:	4603      	mov	r3, r0
- 800bb54:	4a43      	ldr	r2, [pc, #268]	; (800bc64 <tasks_init+0x14c>)
- 800bb56:	6013      	str	r3, [r2, #0]
- 800bb58:	4b42      	ldr	r3, [pc, #264]	; (800bc64 <tasks_init+0x14c>)
- 800bb5a:	681b      	ldr	r3, [r3, #0]
- 800bb5c:	2b00      	cmp	r3, #0
- 800bb5e:	d006      	beq.n	800bb6e <tasks_init+0x56>
- 800bb60:	4b40      	ldr	r3, [pc, #256]	; (800bc64 <tasks_init+0x14c>)
- 800bb62:	6818      	ldr	r0, [r3, #0]
- 800bb64:	2300      	movs	r3, #0
- 800bb66:	2200      	movs	r2, #0
- 800bb68:	2100      	movs	r1, #0
- 800bb6a:	f7fc fce1 	bl	8008530 <xQueueGenericSend>
+ 800bbc8:	2203      	movs	r2, #3
+ 800bbca:	2100      	movs	r1, #0
+ 800bbcc:	2001      	movs	r0, #1
+ 800bbce:	f7fc fc4e 	bl	800846e <xQueueGenericCreate>
+ 800bbd2:	4603      	mov	r3, r0
+ 800bbd4:	4a43      	ldr	r2, [pc, #268]	; (800bce4 <tasks_init+0x14c>)
+ 800bbd6:	6013      	str	r3, [r2, #0]
+ 800bbd8:	4b42      	ldr	r3, [pc, #264]	; (800bce4 <tasks_init+0x14c>)
+ 800bbda:	681b      	ldr	r3, [r3, #0]
+ 800bbdc:	2b00      	cmp	r3, #0
+ 800bbde:	d006      	beq.n	800bbee <tasks_init+0x56>
+ 800bbe0:	4b40      	ldr	r3, [pc, #256]	; (800bce4 <tasks_init+0x14c>)
+ 800bbe2:	6818      	ldr	r0, [r3, #0]
+ 800bbe4:	2300      	movs	r3, #0
+ 800bbe6:	2200      	movs	r2, #0
+ 800bbe8:	2100      	movs	r1, #0
+ 800bbea:	f7fc fca1 	bl	8008530 <xQueueGenericSend>
 	vSemaphoreCreateBinary(uart3SemphrHandle);
- 800bb6e:	2203      	movs	r2, #3
- 800bb70:	2100      	movs	r1, #0
- 800bb72:	2001      	movs	r0, #1
- 800bb74:	f7fc fc7b 	bl	800846e <xQueueGenericCreate>
- 800bb78:	4603      	mov	r3, r0
- 800bb7a:	4a3b      	ldr	r2, [pc, #236]	; (800bc68 <tasks_init+0x150>)
- 800bb7c:	6013      	str	r3, [r2, #0]
- 800bb7e:	4b3a      	ldr	r3, [pc, #232]	; (800bc68 <tasks_init+0x150>)
- 800bb80:	681b      	ldr	r3, [r3, #0]
- 800bb82:	2b00      	cmp	r3, #0
- 800bb84:	d006      	beq.n	800bb94 <tasks_init+0x7c>
- 800bb86:	4b38      	ldr	r3, [pc, #224]	; (800bc68 <tasks_init+0x150>)
- 800bb88:	6818      	ldr	r0, [r3, #0]
- 800bb8a:	2300      	movs	r3, #0
- 800bb8c:	2200      	movs	r2, #0
- 800bb8e:	2100      	movs	r1, #0
- 800bb90:	f7fc fcce 	bl	8008530 <xQueueGenericSend>
+ 800bbee:	2203      	movs	r2, #3
+ 800bbf0:	2100      	movs	r1, #0
+ 800bbf2:	2001      	movs	r0, #1
+ 800bbf4:	f7fc fc3b 	bl	800846e <xQueueGenericCreate>
+ 800bbf8:	4603      	mov	r3, r0
+ 800bbfa:	4a3b      	ldr	r2, [pc, #236]	; (800bce8 <tasks_init+0x150>)
+ 800bbfc:	6013      	str	r3, [r2, #0]
+ 800bbfe:	4b3a      	ldr	r3, [pc, #232]	; (800bce8 <tasks_init+0x150>)
+ 800bc00:	681b      	ldr	r3, [r3, #0]
+ 800bc02:	2b00      	cmp	r3, #0
+ 800bc04:	d006      	beq.n	800bc14 <tasks_init+0x7c>
+ 800bc06:	4b38      	ldr	r3, [pc, #224]	; (800bce8 <tasks_init+0x150>)
+ 800bc08:	6818      	ldr	r0, [r3, #0]
+ 800bc0a:	2300      	movs	r3, #0
+ 800bc0c:	2200      	movs	r2, #0
+ 800bc0e:	2100      	movs	r1, #0
+ 800bc10:	f7fc fc8e 	bl	8008530 <xQueueGenericSend>
 
 
 	if(uart1SemphrHandle!=NULL && uart2SemphrHandle!=NULL && uart3SemphrHandle!=NULL){
- 800bb94:	4b32      	ldr	r3, [pc, #200]	; (800bc60 <tasks_init+0x148>)
- 800bb96:	681b      	ldr	r3, [r3, #0]
- 800bb98:	2b00      	cmp	r3, #0
- 800bb9a:	d05d      	beq.n	800bc58 <tasks_init+0x140>
- 800bb9c:	4b31      	ldr	r3, [pc, #196]	; (800bc64 <tasks_init+0x14c>)
- 800bb9e:	681b      	ldr	r3, [r3, #0]
- 800bba0:	2b00      	cmp	r3, #0
- 800bba2:	d059      	beq.n	800bc58 <tasks_init+0x140>
- 800bba4:	4b30      	ldr	r3, [pc, #192]	; (800bc68 <tasks_init+0x150>)
- 800bba6:	681b      	ldr	r3, [r3, #0]
- 800bba8:	2b00      	cmp	r3, #0
- 800bbaa:	d055      	beq.n	800bc58 <tasks_init+0x140>
+ 800bc14:	4b32      	ldr	r3, [pc, #200]	; (800bce0 <tasks_init+0x148>)
+ 800bc16:	681b      	ldr	r3, [r3, #0]
+ 800bc18:	2b00      	cmp	r3, #0
+ 800bc1a:	d05d      	beq.n	800bcd8 <tasks_init+0x140>
+ 800bc1c:	4b31      	ldr	r3, [pc, #196]	; (800bce4 <tasks_init+0x14c>)
+ 800bc1e:	681b      	ldr	r3, [r3, #0]
+ 800bc20:	2b00      	cmp	r3, #0
+ 800bc22:	d059      	beq.n	800bcd8 <tasks_init+0x140>
+ 800bc24:	4b30      	ldr	r3, [pc, #192]	; (800bce8 <tasks_init+0x150>)
+ 800bc26:	681b      	ldr	r3, [r3, #0]
+ 800bc28:	2b00      	cmp	r3, #0
+ 800bc2a:	d055      	beq.n	800bcd8 <tasks_init+0x140>
 
 
 		xTaskCreate(computerValTask, "calc Uart 3val", configMINIMAL_STACK_SIZE, NULL,  55, NULL);
- 800bbac:	2300      	movs	r3, #0
- 800bbae:	9301      	str	r3, [sp, #4]
- 800bbb0:	2337      	movs	r3, #55	; 0x37
- 800bbb2:	9300      	str	r3, [sp, #0]
- 800bbb4:	2300      	movs	r3, #0
- 800bbb6:	2280      	movs	r2, #128	; 0x80
- 800bbb8:	492c      	ldr	r1, [pc, #176]	; (800bc6c <tasks_init+0x154>)
- 800bbba:	482d      	ldr	r0, [pc, #180]	; (800bc70 <tasks_init+0x158>)
- 800bbbc:	f7fd fa1a 	bl	8008ff4 <xTaskCreate>
+ 800bc2c:	2300      	movs	r3, #0
+ 800bc2e:	9301      	str	r3, [sp, #4]
+ 800bc30:	2337      	movs	r3, #55	; 0x37
+ 800bc32:	9300      	str	r3, [sp, #0]
+ 800bc34:	2300      	movs	r3, #0
+ 800bc36:	2280      	movs	r2, #128	; 0x80
+ 800bc38:	492c      	ldr	r1, [pc, #176]	; (800bcec <tasks_init+0x154>)
+ 800bc3a:	482d      	ldr	r0, [pc, #180]	; (800bcf0 <tasks_init+0x158>)
+ 800bc3c:	f7fd f9da 	bl	8008ff4 <xTaskCreate>
 		xTaskCreate(computerSendTask, "send Uart 3", configMINIMAL_STACK_SIZE, NULL,  55, NULL);
- 800bbc0:	2300      	movs	r3, #0
- 800bbc2:	9301      	str	r3, [sp, #4]
- 800bbc4:	2337      	movs	r3, #55	; 0x37
- 800bbc6:	9300      	str	r3, [sp, #0]
- 800bbc8:	2300      	movs	r3, #0
- 800bbca:	2280      	movs	r2, #128	; 0x80
- 800bbcc:	4929      	ldr	r1, [pc, #164]	; (800bc74 <tasks_init+0x15c>)
- 800bbce:	482a      	ldr	r0, [pc, #168]	; (800bc78 <tasks_init+0x160>)
- 800bbd0:	f7fd fa10 	bl	8008ff4 <xTaskCreate>
+ 800bc40:	2300      	movs	r3, #0
+ 800bc42:	9301      	str	r3, [sp, #4]
+ 800bc44:	2337      	movs	r3, #55	; 0x37
+ 800bc46:	9300      	str	r3, [sp, #0]
+ 800bc48:	2300      	movs	r3, #0
+ 800bc4a:	2280      	movs	r2, #128	; 0x80
+ 800bc4c:	4929      	ldr	r1, [pc, #164]	; (800bcf4 <tasks_init+0x15c>)
+ 800bc4e:	482a      	ldr	r0, [pc, #168]	; (800bcf8 <tasks_init+0x160>)
+ 800bc50:	f7fd f9d0 	bl	8008ff4 <xTaskCreate>
 		//xTaskCreate(computerGetTask, "get Uart 3", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
 
 		xTaskCreate(sendDataUart1Task, "send Uart 1", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
- 800bbd4:	2300      	movs	r3, #0
- 800bbd6:	9301      	str	r3, [sp, #4]
- 800bbd8:	2337      	movs	r3, #55	; 0x37
- 800bbda:	9300      	str	r3, [sp, #0]
- 800bbdc:	2300      	movs	r3, #0
- 800bbde:	2280      	movs	r2, #128	; 0x80
- 800bbe0:	4926      	ldr	r1, [pc, #152]	; (800bc7c <tasks_init+0x164>)
- 800bbe2:	4827      	ldr	r0, [pc, #156]	; (800bc80 <tasks_init+0x168>)
- 800bbe4:	f7fd fa06 	bl	8008ff4 <xTaskCreate>
+ 800bc54:	2300      	movs	r3, #0
+ 800bc56:	9301      	str	r3, [sp, #4]
+ 800bc58:	2337      	movs	r3, #55	; 0x37
+ 800bc5a:	9300      	str	r3, [sp, #0]
+ 800bc5c:	2300      	movs	r3, #0
+ 800bc5e:	2280      	movs	r2, #128	; 0x80
+ 800bc60:	4926      	ldr	r1, [pc, #152]	; (800bcfc <tasks_init+0x164>)
+ 800bc62:	4827      	ldr	r0, [pc, #156]	; (800bd00 <tasks_init+0x168>)
+ 800bc64:	f7fd f9c6 	bl	8008ff4 <xTaskCreate>
 		xTaskCreate(sendDataUart2Task, "send Uart 2", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
- 800bbe8:	2300      	movs	r3, #0
- 800bbea:	9301      	str	r3, [sp, #4]
- 800bbec:	2337      	movs	r3, #55	; 0x37
- 800bbee:	9300      	str	r3, [sp, #0]
- 800bbf0:	2300      	movs	r3, #0
- 800bbf2:	2280      	movs	r2, #128	; 0x80
- 800bbf4:	4923      	ldr	r1, [pc, #140]	; (800bc84 <tasks_init+0x16c>)
- 800bbf6:	4824      	ldr	r0, [pc, #144]	; (800bc88 <tasks_init+0x170>)
- 800bbf8:	f7fd f9fc 	bl	8008ff4 <xTaskCreate>
+ 800bc68:	2300      	movs	r3, #0
+ 800bc6a:	9301      	str	r3, [sp, #4]
+ 800bc6c:	2337      	movs	r3, #55	; 0x37
+ 800bc6e:	9300      	str	r3, [sp, #0]
+ 800bc70:	2300      	movs	r3, #0
+ 800bc72:	2280      	movs	r2, #128	; 0x80
+ 800bc74:	4923      	ldr	r1, [pc, #140]	; (800bd04 <tasks_init+0x16c>)
+ 800bc76:	4824      	ldr	r0, [pc, #144]	; (800bd08 <tasks_init+0x170>)
+ 800bc78:	f7fd f9bc 	bl	8008ff4 <xTaskCreate>
 
 		xTaskCreate(getDataUart1Task, "get Uart 1", configMINIMAL_STACK_SIZE, NULL,  55, NULL);
- 800bbfc:	2300      	movs	r3, #0
- 800bbfe:	9301      	str	r3, [sp, #4]
- 800bc00:	2337      	movs	r3, #55	; 0x37
- 800bc02:	9300      	str	r3, [sp, #0]
- 800bc04:	2300      	movs	r3, #0
- 800bc06:	2280      	movs	r2, #128	; 0x80
- 800bc08:	4920      	ldr	r1, [pc, #128]	; (800bc8c <tasks_init+0x174>)
- 800bc0a:	4821      	ldr	r0, [pc, #132]	; (800bc90 <tasks_init+0x178>)
- 800bc0c:	f7fd f9f2 	bl	8008ff4 <xTaskCreate>
+ 800bc7c:	2300      	movs	r3, #0
+ 800bc7e:	9301      	str	r3, [sp, #4]
+ 800bc80:	2337      	movs	r3, #55	; 0x37
+ 800bc82:	9300      	str	r3, [sp, #0]
+ 800bc84:	2300      	movs	r3, #0
+ 800bc86:	2280      	movs	r2, #128	; 0x80
+ 800bc88:	4920      	ldr	r1, [pc, #128]	; (800bd0c <tasks_init+0x174>)
+ 800bc8a:	4821      	ldr	r0, [pc, #132]	; (800bd10 <tasks_init+0x178>)
+ 800bc8c:	f7fd f9b2 	bl	8008ff4 <xTaskCreate>
 		xTaskCreate(getDataUart2Task, "get Uart 2", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
- 800bc10:	2300      	movs	r3, #0
- 800bc12:	9301      	str	r3, [sp, #4]
- 800bc14:	2337      	movs	r3, #55	; 0x37
- 800bc16:	9300      	str	r3, [sp, #0]
- 800bc18:	2300      	movs	r3, #0
- 800bc1a:	2280      	movs	r2, #128	; 0x80
- 800bc1c:	491d      	ldr	r1, [pc, #116]	; (800bc94 <tasks_init+0x17c>)
- 800bc1e:	481e      	ldr	r0, [pc, #120]	; (800bc98 <tasks_init+0x180>)
- 800bc20:	f7fd f9e8 	bl	8008ff4 <xTaskCreate>
+ 800bc90:	2300      	movs	r3, #0
+ 800bc92:	9301      	str	r3, [sp, #4]
+ 800bc94:	2337      	movs	r3, #55	; 0x37
+ 800bc96:	9300      	str	r3, [sp, #0]
+ 800bc98:	2300      	movs	r3, #0
+ 800bc9a:	2280      	movs	r2, #128	; 0x80
+ 800bc9c:	491d      	ldr	r1, [pc, #116]	; (800bd14 <tasks_init+0x17c>)
+ 800bc9e:	481e      	ldr	r0, [pc, #120]	; (800bd18 <tasks_init+0x180>)
+ 800bca0:	f7fd f9a8 	bl	8008ff4 <xTaskCreate>
 
 		xTaskCreate(readSwitchsTask, "read switchs", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
- 800bc24:	2300      	movs	r3, #0
- 800bc26:	9301      	str	r3, [sp, #4]
- 800bc28:	2337      	movs	r3, #55	; 0x37
- 800bc2a:	9300      	str	r3, [sp, #0]
- 800bc2c:	2300      	movs	r3, #0
- 800bc2e:	2280      	movs	r2, #128	; 0x80
- 800bc30:	491a      	ldr	r1, [pc, #104]	; (800bc9c <tasks_init+0x184>)
- 800bc32:	481b      	ldr	r0, [pc, #108]	; (800bca0 <tasks_init+0x188>)
- 800bc34:	f7fd f9de 	bl	8008ff4 <xTaskCreate>
+ 800bca4:	2300      	movs	r3, #0
+ 800bca6:	9301      	str	r3, [sp, #4]
+ 800bca8:	2337      	movs	r3, #55	; 0x37
+ 800bcaa:	9300      	str	r3, [sp, #0]
+ 800bcac:	2300      	movs	r3, #0
+ 800bcae:	2280      	movs	r2, #128	; 0x80
+ 800bcb0:	491a      	ldr	r1, [pc, #104]	; (800bd1c <tasks_init+0x184>)
+ 800bcb2:	481b      	ldr	r0, [pc, #108]	; (800bd20 <tasks_init+0x188>)
+ 800bcb4:	f7fd f99e 	bl	8008ff4 <xTaskCreate>
 		xTaskCreate(writeRelaysTask, "write relays", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
- 800bc38:	2300      	movs	r3, #0
- 800bc3a:	9301      	str	r3, [sp, #4]
- 800bc3c:	2337      	movs	r3, #55	; 0x37
- 800bc3e:	9300      	str	r3, [sp, #0]
- 800bc40:	2300      	movs	r3, #0
- 800bc42:	2280      	movs	r2, #128	; 0x80
- 800bc44:	4917      	ldr	r1, [pc, #92]	; (800bca4 <tasks_init+0x18c>)
- 800bc46:	4818      	ldr	r0, [pc, #96]	; (800bca8 <tasks_init+0x190>)
- 800bc48:	f7fd f9d4 	bl	8008ff4 <xTaskCreate>
+ 800bcb8:	2300      	movs	r3, #0
+ 800bcba:	9301      	str	r3, [sp, #4]
+ 800bcbc:	2337      	movs	r3, #55	; 0x37
+ 800bcbe:	9300      	str	r3, [sp, #0]
+ 800bcc0:	2300      	movs	r3, #0
+ 800bcc2:	2280      	movs	r2, #128	; 0x80
+ 800bcc4:	4917      	ldr	r1, [pc, #92]	; (800bd24 <tasks_init+0x18c>)
+ 800bcc6:	4818      	ldr	r0, [pc, #96]	; (800bd28 <tasks_init+0x190>)
+ 800bcc8:	f7fd f994 	bl	8008ff4 <xTaskCreate>
 
 
 	//	xTaskCreate(ledTestTask, "led task", configMINIMAL_STACK_SIZE, NULL,  55 , NULL);
 
 
 		driverInit();
- 800bc4c:	f000 f9bc 	bl	800bfc8 <driverInit>
+ 800bccc:	f000 f9bc 	bl	800c048 <driverInit>
 		IO_init();
- 800bc50:	f7fa fb4a 	bl	80062e8 <IO_init>
+ 800bcd0:	f7fa fb0a 	bl	80062e8 <IO_init>
 		vTaskStartScheduler();
- 800bc54:	f7fd fb3e 	bl	80092d4 <vTaskStartScheduler>
+ 800bcd4:	f7fd fafe 	bl	80092d4 <vTaskStartScheduler>
 	}
 }
- 800bc58:	bf00      	nop
- 800bc5a:	46bd      	mov	sp, r7
- 800bc5c:	bd80      	pop	{r7, pc}
- 800bc5e:	bf00      	nop
- 800bc60:	200038ec 	.word	0x200038ec
- 800bc64:	200038f0 	.word	0x200038f0
- 800bc68:	200038f4 	.word	0x200038f4
- 800bc6c:	0800c180 	.word	0x0800c180
- 800bc70:	0800bcc9 	.word	0x0800bcc9
- 800bc74:	0800c190 	.word	0x0800c190
- 800bc78:	0800be55 	.word	0x0800be55
- 800bc7c:	0800c19c 	.word	0x0800c19c
- 800bc80:	0800be81 	.word	0x0800be81
- 800bc84:	0800c1a8 	.word	0x0800c1a8
- 800bc88:	0800bedd 	.word	0x0800bedd
- 800bc8c:	0800c1b4 	.word	0x0800c1b4
- 800bc90:	0800bf69 	.word	0x0800bf69
- 800bc94:	0800c1c0 	.word	0x0800c1c0
- 800bc98:	0800bf99 	.word	0x0800bf99
- 800bc9c:	0800c1cc 	.word	0x0800c1cc
- 800bca0:	0800bcad 	.word	0x0800bcad
- 800bca4:	0800c1dc 	.word	0x0800c1dc
- 800bca8:	0800bcbb 	.word	0x0800bcbb
+ 800bcd8:	bf00      	nop
+ 800bcda:	46bd      	mov	sp, r7
+ 800bcdc:	bd80      	pop	{r7, pc}
+ 800bcde:	bf00      	nop
+ 800bce0:	200038f0 	.word	0x200038f0
+ 800bce4:	200038f4 	.word	0x200038f4
+ 800bce8:	200038f8 	.word	0x200038f8
+ 800bcec:	0800c200 	.word	0x0800c200
+ 800bcf0:	0800bd49 	.word	0x0800bd49
+ 800bcf4:	0800c210 	.word	0x0800c210
+ 800bcf8:	0800bf0d 	.word	0x0800bf0d
+ 800bcfc:	0800c21c 	.word	0x0800c21c
+ 800bd00:	0800bf39 	.word	0x0800bf39
+ 800bd04:	0800c228 	.word	0x0800c228
+ 800bd08:	0800bf99 	.word	0x0800bf99
+ 800bd0c:	0800c234 	.word	0x0800c234
+ 800bd10:	0800bfe9 	.word	0x0800bfe9
+ 800bd14:	0800c240 	.word	0x0800c240
+ 800bd18:	0800c019 	.word	0x0800c019
+ 800bd1c:	0800c24c 	.word	0x0800c24c
+ 800bd20:	0800bd2d 	.word	0x0800bd2d
+ 800bd24:	0800c25c 	.word	0x0800c25c
+ 800bd28:	0800bd3b 	.word	0x0800bd3b
 
-0800bcac <readSwitchsTask>:
+0800bd2c <readSwitchsTask>:
 
 void readSwitchsTask(void *params){
- 800bcac:	b580      	push	{r7, lr}
- 800bcae:	b082      	sub	sp, #8
- 800bcb0:	af00      	add	r7, sp, #0
- 800bcb2:	6078      	str	r0, [r7, #4]
+ 800bd2c:	b580      	push	{r7, lr}
+ 800bd2e:	b082      	sub	sp, #8
+ 800bd30:	af00      	add	r7, sp, #0
+ 800bd32:	6078      	str	r0, [r7, #4]
 	while(1){
 		IO_readInputSwitchs();
- 800bcb4:	f7fa fb70 	bl	8006398 <IO_readInputSwitchs>
+ 800bd34:	f7fa fb30 	bl	8006398 <IO_readInputSwitchs>
 	while(1){
- 800bcb8:	e7fc      	b.n	800bcb4 <readSwitchsTask+0x8>
+ 800bd38:	e7fc      	b.n	800bd34 <readSwitchsTask+0x8>
 
-0800bcba <writeRelaysTask>:
+0800bd3a <writeRelaysTask>:
 	}
 }
 void writeRelaysTask(void *params){
- 800bcba:	b580      	push	{r7, lr}
- 800bcbc:	b082      	sub	sp, #8
- 800bcbe:	af00      	add	r7, sp, #0
- 800bcc0:	6078      	str	r0, [r7, #4]
+ 800bd3a:	b580      	push	{r7, lr}
+ 800bd3c:	b082      	sub	sp, #8
+ 800bd3e:	af00      	add	r7, sp, #0
+ 800bd40:	6078      	str	r0, [r7, #4]
 	while(1){
 		IO_writeOutputRelay();
- 800bcc2:	f7fa fbeb 	bl	800649c <IO_writeOutputRelay>
+ 800bd42:	f7fa fbab 	bl	800649c <IO_writeOutputRelay>
 	while(1){
- 800bcc6:	e7fc      	b.n	800bcc2 <writeRelaysTask+0x8>
+ 800bd46:	e7fc      	b.n	800bd42 <writeRelaysTask+0x8>
 
-0800bcc8 <computerValTask>:
-		xSemaphoreTake(uart3SemphrHandle, portMAX_DELAY);
-		CI_enableGetDataChannel();
+0800bd48 <computerValTask>:
 		xSemaphoreGive(uart3SemphrHandle);
 	}
 }
+
+uint16_t mySpeed;
 void computerValTask(void *params){
- 800bcc8:	b590      	push	{r4, r7, lr}
- 800bcca:	b099      	sub	sp, #100	; 0x64
- 800bccc:	af02      	add	r7, sp, #8
- 800bcce:	6078      	str	r0, [r7, #4]
+ 800bd48:	b590      	push	{r4, r7, lr}
+ 800bd4a:	b09f      	sub	sp, #124	; 0x7c
+ 800bd4c:	af02      	add	r7, sp, #8
+ 800bd4e:	6078      	str	r0, [r7, #4]
 	while(1){
 		llsendComputerVals.drive_speed=(int32_t)(getDriver2ReceiveVal().speed)*10000;
- 800bcd0:	f107 0308 	add.w	r3, r7, #8
- 800bcd4:	4618      	mov	r0, r3
- 800bcd6:	f7ff ff01 	bl	800badc <getDriver2ReceiveVal>
- 800bcda:	f9b7 300c 	ldrsh.w	r3, [r7, #12]
- 800bcde:	461a      	mov	r2, r3
- 800bce0:	f242 7310 	movw	r3, #10000	; 0x2710
- 800bce4:	fb03 f302 	mul.w	r3, r3, r2
- 800bce8:	4a57      	ldr	r2, [pc, #348]	; (800be48 <computerValTask+0x180>)
- 800bcea:	6053      	str	r3, [r2, #4]
+ 800bd50:	f107 030c 	add.w	r3, r7, #12
+ 800bd54:	4618      	mov	r0, r3
+ 800bd56:	f7ff feff 	bl	800bb58 <getDriver2ReceiveVal>
+ 800bd5a:	f9b7 3010 	ldrsh.w	r3, [r7, #16]
+ 800bd5e:	461a      	mov	r2, r3
+ 800bd60:	f242 7310 	movw	r3, #10000	; 0x2710
+ 800bd64:	fb03 f302 	mul.w	r3, r3, r2
+ 800bd68:	4a63      	ldr	r2, [pc, #396]	; (800bef8 <computerValTask+0x1b0>)
+ 800bd6a:	6053      	str	r3, [r2, #4]
 			llsendComputerVals.steer_pos =(int32_t)(getDriver1ReceiveVal().angle)*10000;
- 800bcec:	f107 0314 	add.w	r3, r7, #20
- 800bcf0:	4618      	mov	r0, r3
- 800bcf2:	f7ff fee1 	bl	800bab8 <getDriver1ReceiveVal>
- 800bcf6:	8b3b      	ldrh	r3, [r7, #24]
- 800bcf8:	461a      	mov	r2, r3
- 800bcfa:	f242 7310 	movw	r3, #10000	; 0x2710
- 800bcfe:	fb03 f302 	mul.w	r3, r3, r2
- 800bd02:	4a51      	ldr	r2, [pc, #324]	; (800be48 <computerValTask+0x180>)
- 800bd04:	6013      	str	r3, [r2, #0]
+ 800bd6c:	f107 031c 	add.w	r3, r7, #28
+ 800bd70:	4618      	mov	r0, r3
+ 800bd72:	f7ff fedf 	bl	800bb34 <getDriver1ReceiveVal>
+ 800bd76:	8c3b      	ldrh	r3, [r7, #32]
+ 800bd78:	461a      	mov	r2, r3
+ 800bd7a:	f242 7310 	movw	r3, #10000	; 0x2710
+ 800bd7e:	fb03 f302 	mul.w	r3, r3, r2
+ 800bd82:	4a5d      	ldr	r2, [pc, #372]	; (800bef8 <computerValTask+0x1b0>)
+ 800bd84:	6013      	str	r3, [r2, #0]
 			if(getDriver2ReceiveVal().encoder<0){
- 800bd06:	f107 031c 	add.w	r3, r7, #28
- 800bd0a:	4618      	mov	r0, r3
- 800bd0c:	f7ff fee6 	bl	800badc <getDriver2ReceiveVal>
- 800bd10:	6a7b      	ldr	r3, [r7, #36]	; 0x24
- 800bd12:	2b00      	cmp	r3, #0
- 800bd14:	da47      	bge.n	800bda6 <computerValTask+0xde>
+ 800bd86:	f107 0324 	add.w	r3, r7, #36	; 0x24
+ 800bd8a:	4618      	mov	r0, r3
+ 800bd8c:	f7ff fee4 	bl	800bb58 <getDriver2ReceiveVal>
+ 800bd90:	6afb      	ldr	r3, [r7, #44]	; 0x2c
+ 800bd92:	2b00      	cmp	r3, #0
+ 800bd94:	da47      	bge.n	800be26 <computerValTask+0xde>
 				int intToUint =getDriver2ReceiveVal().encoder;
- 800bd16:	f107 0328 	add.w	r3, r7, #40	; 0x28
- 800bd1a:	4618      	mov	r0, r3
- 800bd1c:	f7ff fede 	bl	800badc <getDriver2ReceiveVal>
- 800bd20:	6b3b      	ldr	r3, [r7, #48]	; 0x30
- 800bd22:	653b      	str	r3, [r7, #80]	; 0x50
+ 800bd96:	f107 0334 	add.w	r3, r7, #52	; 0x34
+ 800bd9a:	4618      	mov	r0, r3
+ 800bd9c:	f7ff fedc 	bl	800bb58 <getDriver2ReceiveVal>
+ 800bda0:	6bfb      	ldr	r3, [r7, #60]	; 0x3c
+ 800bda2:	66bb      	str	r3, [r7, #104]	; 0x68
 				intToUint=(~intToUint+1);
- 800bd24:	6d3b      	ldr	r3, [r7, #80]	; 0x50
- 800bd26:	425b      	negs	r3, r3
- 800bd28:	653b      	str	r3, [r7, #80]	; 0x50
+ 800bda4:	6ebb      	ldr	r3, [r7, #104]	; 0x68
+ 800bda6:	425b      	negs	r3, r3
+ 800bda8:	66bb      	str	r3, [r7, #104]	; 0x68
 				uint16_t tmp =(intToUint/800);
- 800bd2a:	6d3b      	ldr	r3, [r7, #80]	; 0x50
- 800bd2c:	4a47      	ldr	r2, [pc, #284]	; (800be4c <computerValTask+0x184>)
- 800bd2e:	fb82 1203 	smull	r1, r2, r2, r3
- 800bd32:	1212      	asrs	r2, r2, #8
- 800bd34:	17db      	asrs	r3, r3, #31
- 800bd36:	1ad3      	subs	r3, r2, r3
- 800bd38:	f8a7 304e 	strh.w	r3, [r7, #78]	; 0x4e
+ 800bdaa:	6ebb      	ldr	r3, [r7, #104]	; 0x68
+ 800bdac:	4a53      	ldr	r2, [pc, #332]	; (800befc <computerValTask+0x1b4>)
+ 800bdae:	fb82 1203 	smull	r1, r2, r2, r3
+ 800bdb2:	1212      	asrs	r2, r2, #8
+ 800bdb4:	17db      	asrs	r3, r3, #31
+ 800bdb6:	1ad3      	subs	r3, r2, r3
+ 800bdb8:	f8a7 3066 	strh.w	r3, [r7, #102]	; 0x66
 				uint16_t tmp2=(intToUint%800);
- 800bd3c:	6d3b      	ldr	r3, [r7, #80]	; 0x50
- 800bd3e:	4a43      	ldr	r2, [pc, #268]	; (800be4c <computerValTask+0x184>)
- 800bd40:	fb82 1203 	smull	r1, r2, r2, r3
- 800bd44:	1211      	asrs	r1, r2, #8
- 800bd46:	17da      	asrs	r2, r3, #31
- 800bd48:	1a8a      	subs	r2, r1, r2
- 800bd4a:	f44f 7148 	mov.w	r1, #800	; 0x320
- 800bd4e:	fb01 f202 	mul.w	r2, r1, r2
- 800bd52:	1a9a      	subs	r2, r3, r2
- 800bd54:	4613      	mov	r3, r2
- 800bd56:	f8a7 304c 	strh.w	r3, [r7, #76]	; 0x4c
+ 800bdbc:	6ebb      	ldr	r3, [r7, #104]	; 0x68
+ 800bdbe:	4a4f      	ldr	r2, [pc, #316]	; (800befc <computerValTask+0x1b4>)
+ 800bdc0:	fb82 1203 	smull	r1, r2, r2, r3
+ 800bdc4:	1211      	asrs	r1, r2, #8
+ 800bdc6:	17da      	asrs	r2, r3, #31
+ 800bdc8:	1a8a      	subs	r2, r1, r2
+ 800bdca:	f44f 7148 	mov.w	r1, #800	; 0x320
+ 800bdce:	fb01 f202 	mul.w	r2, r1, r2
+ 800bdd2:	1a9a      	subs	r2, r3, r2
+ 800bdd4:	4613      	mov	r3, r2
+ 800bdd6:	f8a7 3064 	strh.w	r3, [r7, #100]	; 0x64
 				llsendComputerVals.drive_pos= -(tmp+valuesMapforFloat(tmp2,0,800,0.0f,1.0f))*10000;
- 800bd5a:	f8b7 304e 	ldrh.w	r3, [r7, #78]	; 0x4e
- 800bd5e:	4618      	mov	r0, r3
- 800bd60:	f7f4 fab0 	bl	80002c4 <__aeabi_i2f>
- 800bd64:	4604      	mov	r4, r0
- 800bd66:	f8b7 004c 	ldrh.w	r0, [r7, #76]	; 0x4c
- 800bd6a:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
- 800bd6e:	9300      	str	r3, [sp, #0]
- 800bd70:	f04f 0300 	mov.w	r3, #0
- 800bd74:	f44f 7248 	mov.w	r2, #800	; 0x320
- 800bd78:	2100      	movs	r1, #0
- 800bd7a:	f000 f951 	bl	800c020 <valuesMapforFloat>
- 800bd7e:	4603      	mov	r3, r0
- 800bd80:	4619      	mov	r1, r3
- 800bd82:	4620      	mov	r0, r4
- 800bd84:	f7f4 f9ea 	bl	800015c <__addsf3>
- 800bd88:	4603      	mov	r3, r0
- 800bd8a:	f083 4300 	eor.w	r3, r3, #2147483648	; 0x80000000
- 800bd8e:	4930      	ldr	r1, [pc, #192]	; (800be50 <computerValTask+0x188>)
- 800bd90:	4618      	mov	r0, r3
- 800bd92:	f7f4 faeb 	bl	800036c <__aeabi_fmul>
- 800bd96:	4603      	mov	r3, r0
- 800bd98:	4618      	mov	r0, r3
- 800bd9a:	f7f4 fc37 	bl	800060c <__aeabi_f2iz>
- 800bd9e:	4603      	mov	r3, r0
- 800bda0:	4a29      	ldr	r2, [pc, #164]	; (800be48 <computerValTask+0x180>)
- 800bda2:	6093      	str	r3, [r2, #8]
- 800bda4:	e044      	b.n	800be30 <computerValTask+0x168>
+ 800bdda:	f8b7 3066 	ldrh.w	r3, [r7, #102]	; 0x66
+ 800bdde:	4618      	mov	r0, r3
+ 800bde0:	f7f4 fa70 	bl	80002c4 <__aeabi_i2f>
+ 800bde4:	4604      	mov	r4, r0
+ 800bde6:	f8b7 0064 	ldrh.w	r0, [r7, #100]	; 0x64
+ 800bdea:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
+ 800bdee:	9300      	str	r3, [sp, #0]
+ 800bdf0:	f04f 0300 	mov.w	r3, #0
+ 800bdf4:	f44f 7248 	mov.w	r2, #800	; 0x320
+ 800bdf8:	2100      	movs	r1, #0
+ 800bdfa:	f000 f951 	bl	800c0a0 <valuesMapforFloat>
+ 800bdfe:	4603      	mov	r3, r0
+ 800be00:	4619      	mov	r1, r3
+ 800be02:	4620      	mov	r0, r4
+ 800be04:	f7f4 f9aa 	bl	800015c <__addsf3>
+ 800be08:	4603      	mov	r3, r0
+ 800be0a:	f083 4300 	eor.w	r3, r3, #2147483648	; 0x80000000
+ 800be0e:	493c      	ldr	r1, [pc, #240]	; (800bf00 <computerValTask+0x1b8>)
+ 800be10:	4618      	mov	r0, r3
+ 800be12:	f7f4 faab 	bl	800036c <__aeabi_fmul>
+ 800be16:	4603      	mov	r3, r0
+ 800be18:	4618      	mov	r0, r3
+ 800be1a:	f7f4 fbf7 	bl	800060c <__aeabi_f2iz>
+ 800be1e:	4603      	mov	r3, r0
+ 800be20:	4a35      	ldr	r2, [pc, #212]	; (800bef8 <computerValTask+0x1b0>)
+ 800be22:	6093      	str	r3, [r2, #8]
+ 800be24:	e044      	b.n	800beb0 <computerValTask+0x168>
 			}
 			else {
 				uint16_t tmp =((getDriver2ReceiveVal().encoder)/800);
- 800bda6:	f107 0334 	add.w	r3, r7, #52	; 0x34
- 800bdaa:	4618      	mov	r0, r3
- 800bdac:	f7ff fe96 	bl	800badc <getDriver2ReceiveVal>
- 800bdb0:	6bfb      	ldr	r3, [r7, #60]	; 0x3c
- 800bdb2:	4a26      	ldr	r2, [pc, #152]	; (800be4c <computerValTask+0x184>)
- 800bdb4:	fb82 1203 	smull	r1, r2, r2, r3
- 800bdb8:	1212      	asrs	r2, r2, #8
- 800bdba:	17db      	asrs	r3, r3, #31
- 800bdbc:	1ad3      	subs	r3, r2, r3
- 800bdbe:	f8a7 3056 	strh.w	r3, [r7, #86]	; 0x56
+ 800be26:	f107 0344 	add.w	r3, r7, #68	; 0x44
+ 800be2a:	4618      	mov	r0, r3
+ 800be2c:	f7ff fe94 	bl	800bb58 <getDriver2ReceiveVal>
+ 800be30:	6cfb      	ldr	r3, [r7, #76]	; 0x4c
+ 800be32:	4a32      	ldr	r2, [pc, #200]	; (800befc <computerValTask+0x1b4>)
+ 800be34:	fb82 1203 	smull	r1, r2, r2, r3
+ 800be38:	1212      	asrs	r2, r2, #8
+ 800be3a:	17db      	asrs	r3, r3, #31
+ 800be3c:	1ad3      	subs	r3, r2, r3
+ 800be3e:	f8a7 306e 	strh.w	r3, [r7, #110]	; 0x6e
 				uint16_t tmp2=((getDriver2ReceiveVal().encoder)%800);
- 800bdc2:	f107 0340 	add.w	r3, r7, #64	; 0x40
- 800bdc6:	4618      	mov	r0, r3
- 800bdc8:	f7ff fe88 	bl	800badc <getDriver2ReceiveVal>
- 800bdcc:	6cbb      	ldr	r3, [r7, #72]	; 0x48
- 800bdce:	4a1f      	ldr	r2, [pc, #124]	; (800be4c <computerValTask+0x184>)
- 800bdd0:	fb82 1203 	smull	r1, r2, r2, r3
- 800bdd4:	1211      	asrs	r1, r2, #8
- 800bdd6:	17da      	asrs	r2, r3, #31
- 800bdd8:	1a8a      	subs	r2, r1, r2
- 800bdda:	f44f 7148 	mov.w	r1, #800	; 0x320
- 800bdde:	fb01 f202 	mul.w	r2, r1, r2
- 800bde2:	1a9a      	subs	r2, r3, r2
- 800bde4:	4613      	mov	r3, r2
- 800bde6:	f8a7 3054 	strh.w	r3, [r7, #84]	; 0x54
+ 800be42:	f107 0354 	add.w	r3, r7, #84	; 0x54
+ 800be46:	4618      	mov	r0, r3
+ 800be48:	f7ff fe86 	bl	800bb58 <getDriver2ReceiveVal>
+ 800be4c:	6dfb      	ldr	r3, [r7, #92]	; 0x5c
+ 800be4e:	4a2b      	ldr	r2, [pc, #172]	; (800befc <computerValTask+0x1b4>)
+ 800be50:	fb82 1203 	smull	r1, r2, r2, r3
+ 800be54:	1211      	asrs	r1, r2, #8
+ 800be56:	17da      	asrs	r2, r3, #31
+ 800be58:	1a8a      	subs	r2, r1, r2
+ 800be5a:	f44f 7148 	mov.w	r1, #800	; 0x320
+ 800be5e:	fb01 f202 	mul.w	r2, r1, r2
+ 800be62:	1a9a      	subs	r2, r3, r2
+ 800be64:	4613      	mov	r3, r2
+ 800be66:	f8a7 306c 	strh.w	r3, [r7, #108]	; 0x6c
 				llsendComputerVals.drive_pos= (tmp+valuesMapforFloat(tmp2,0,800,0.0f,1.0f))*10000;
- 800bdea:	f8b7 3056 	ldrh.w	r3, [r7, #86]	; 0x56
- 800bdee:	4618      	mov	r0, r3
- 800bdf0:	f7f4 fa68 	bl	80002c4 <__aeabi_i2f>
- 800bdf4:	4604      	mov	r4, r0
- 800bdf6:	f8b7 0054 	ldrh.w	r0, [r7, #84]	; 0x54
- 800bdfa:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
- 800bdfe:	9300      	str	r3, [sp, #0]
- 800be00:	f04f 0300 	mov.w	r3, #0
- 800be04:	f44f 7248 	mov.w	r2, #800	; 0x320
- 800be08:	2100      	movs	r1, #0
- 800be0a:	f000 f909 	bl	800c020 <valuesMapforFloat>
- 800be0e:	4603      	mov	r3, r0
- 800be10:	4619      	mov	r1, r3
- 800be12:	4620      	mov	r0, r4
- 800be14:	f7f4 f9a2 	bl	800015c <__addsf3>
- 800be18:	4603      	mov	r3, r0
- 800be1a:	490d      	ldr	r1, [pc, #52]	; (800be50 <computerValTask+0x188>)
- 800be1c:	4618      	mov	r0, r3
- 800be1e:	f7f4 faa5 	bl	800036c <__aeabi_fmul>
- 800be22:	4603      	mov	r3, r0
- 800be24:	4618      	mov	r0, r3
- 800be26:	f7f4 fbf1 	bl	800060c <__aeabi_f2iz>
- 800be2a:	4603      	mov	r3, r0
- 800be2c:	4a06      	ldr	r2, [pc, #24]	; (800be48 <computerValTask+0x180>)
- 800be2e:	6093      	str	r3, [r2, #8]
+ 800be6a:	f8b7 306e 	ldrh.w	r3, [r7, #110]	; 0x6e
+ 800be6e:	4618      	mov	r0, r3
+ 800be70:	f7f4 fa28 	bl	80002c4 <__aeabi_i2f>
+ 800be74:	4604      	mov	r4, r0
+ 800be76:	f8b7 006c 	ldrh.w	r0, [r7, #108]	; 0x6c
+ 800be7a:	f04f 537e 	mov.w	r3, #1065353216	; 0x3f800000
+ 800be7e:	9300      	str	r3, [sp, #0]
+ 800be80:	f04f 0300 	mov.w	r3, #0
+ 800be84:	f44f 7248 	mov.w	r2, #800	; 0x320
+ 800be88:	2100      	movs	r1, #0
+ 800be8a:	f000 f909 	bl	800c0a0 <valuesMapforFloat>
+ 800be8e:	4603      	mov	r3, r0
+ 800be90:	4619      	mov	r1, r3
+ 800be92:	4620      	mov	r0, r4
+ 800be94:	f7f4 f962 	bl	800015c <__addsf3>
+ 800be98:	4603      	mov	r3, r0
+ 800be9a:	4919      	ldr	r1, [pc, #100]	; (800bf00 <computerValTask+0x1b8>)
+ 800be9c:	4618      	mov	r0, r3
+ 800be9e:	f7f4 fa65 	bl	800036c <__aeabi_fmul>
+ 800bea2:	4603      	mov	r3, r0
+ 800bea4:	4618      	mov	r0, r3
+ 800bea6:	f7f4 fbb1 	bl	800060c <__aeabi_f2iz>
+ 800beaa:	4603      	mov	r3, r0
+ 800beac:	4a12      	ldr	r2, [pc, #72]	; (800bef8 <computerValTask+0x1b0>)
+ 800beae:	6093      	str	r3, [r2, #8]
 			}
 			llsendComputerVals.switch_vals=IO_inputsBitsPackageToByte(IO_getInputOutputsVal());
- 800be30:	f7fa fc98 	bl	8006764 <IO_getInputOutputsVal>
- 800be34:	4603      	mov	r3, r0
- 800be36:	4618      	mov	r0, r3
- 800be38:	f7fa fbda 	bl	80065f0 <IO_inputsBitsPackageToByte>
- 800be3c:	4603      	mov	r3, r0
- 800be3e:	b2da      	uxtb	r2, r3
- 800be40:	4b01      	ldr	r3, [pc, #4]	; (800be48 <computerValTask+0x180>)
- 800be42:	731a      	strb	r2, [r3, #12]
+ 800beb0:	f7fa fc58 	bl	8006764 <IO_getInputOutputsVal>
+ 800beb4:	4603      	mov	r3, r0
+ 800beb6:	4618      	mov	r0, r3
+ 800beb8:	f7fa fb9a 	bl	80065f0 <IO_inputsBitsPackageToByte>
+ 800bebc:	4603      	mov	r3, r0
+ 800bebe:	b2da      	uxtb	r2, r3
+ 800bec0:	4b0d      	ldr	r3, [pc, #52]	; (800bef8 <computerValTask+0x1b0>)
+ 800bec2:	731a      	strb	r2, [r3, #12]
+			if(mySpeed<5000)mySpeed+=10;
+ 800bec4:	4b0f      	ldr	r3, [pc, #60]	; (800bf04 <computerValTask+0x1bc>)
+ 800bec6:	881b      	ldrh	r3, [r3, #0]
+ 800bec8:	f241 3287 	movw	r2, #4999	; 0x1387
+ 800becc:	4293      	cmp	r3, r2
+ 800bece:	d806      	bhi.n	800bede <computerValTask+0x196>
+ 800bed0:	4b0c      	ldr	r3, [pc, #48]	; (800bf04 <computerValTask+0x1bc>)
+ 800bed2:	881b      	ldrh	r3, [r3, #0]
+ 800bed4:	330a      	adds	r3, #10
+ 800bed6:	b29a      	uxth	r2, r3
+ 800bed8:	4b0a      	ldr	r3, [pc, #40]	; (800bf04 <computerValTask+0x1bc>)
+ 800beda:	801a      	strh	r2, [r3, #0]
+ 800bedc:	e002      	b.n	800bee4 <computerValTask+0x19c>
+			else mySpeed=0;
+ 800bede:	4b09      	ldr	r3, [pc, #36]	; (800bf04 <computerValTask+0x1bc>)
+ 800bee0:	2200      	movs	r2, #0
+ 800bee2:	801a      	strh	r2, [r3, #0]
+			travelDriver.speed=mySpeed;
+ 800bee4:	4b07      	ldr	r3, [pc, #28]	; (800bf04 <computerValTask+0x1bc>)
+ 800bee6:	881b      	ldrh	r3, [r3, #0]
+ 800bee8:	b21a      	sxth	r2, r3
+ 800beea:	4b07      	ldr	r3, [pc, #28]	; (800bf08 <computerValTask+0x1c0>)
+ 800beec:	809a      	strh	r2, [r3, #4]
+			vTaskDelay(250);
+ 800beee:	20fa      	movs	r0, #250	; 0xfa
+ 800bef0:	f7fd f9bc 	bl	800926c <vTaskDelay>
 	while(1){
- 800be44:	e744      	b.n	800bcd0 <computerValTask+0x8>
- 800be46:	bf00      	nop
- 800be48:	20004098 	.word	0x20004098
- 800be4c:	51eb851f 	.word	0x51eb851f
- 800be50:	461c4000 	.word	0x461c4000
+ 800bef4:	e72c      	b.n	800bd50 <computerValTask+0x8>
+ 800bef6:	bf00      	nop
+ 800bef8:	200040a4 	.word	0x200040a4
+ 800befc:	51eb851f 	.word	0x51eb851f
+ 800bf00:	461c4000 	.word	0x461c4000
+ 800bf04:	20004092 	.word	0x20004092
+ 800bf08:	20004094 	.word	0x20004094
 
-0800be54 <computerSendTask>:
+0800bf0c <computerSendTask>:
 
 	}
 
 }
 
 void computerSendTask(void *params){
- 800be54:	b590      	push	{r4, r7, lr}
- 800be56:	b085      	sub	sp, #20
- 800be58:	af02      	add	r7, sp, #8
- 800be5a:	6078      	str	r0, [r7, #4]
+ 800bf0c:	b590      	push	{r4, r7, lr}
+ 800bf0e:	b085      	sub	sp, #20
+ 800bf10:	af02      	add	r7, sp, #8
+ 800bf12:	6078      	str	r0, [r7, #4]
 	while(1){
 	CI_sendDataChannel(0x11,llsendComputerVals.steer_pos ,llsendComputerVals.drive_pos,
- 800be5c:	4b07      	ldr	r3, [pc, #28]	; (800be7c <computerSendTask+0x28>)
- 800be5e:	6819      	ldr	r1, [r3, #0]
- 800be60:	4b06      	ldr	r3, [pc, #24]	; (800be7c <computerSendTask+0x28>)
- 800be62:	689a      	ldr	r2, [r3, #8]
- 800be64:	4b05      	ldr	r3, [pc, #20]	; (800be7c <computerSendTask+0x28>)
- 800be66:	6858      	ldr	r0, [r3, #4]
- 800be68:	4b04      	ldr	r3, [pc, #16]	; (800be7c <computerSendTask+0x28>)
- 800be6a:	7b1b      	ldrb	r3, [r3, #12]
- 800be6c:	2432      	movs	r4, #50	; 0x32
- 800be6e:	9401      	str	r4, [sp, #4]
- 800be70:	9300      	str	r3, [sp, #0]
- 800be72:	4603      	mov	r3, r0
- 800be74:	2011      	movs	r0, #17
- 800be76:	f7f4 fbef 	bl	8000658 <CI_sendDataChannel>
- 800be7a:	e7ef      	b.n	800be5c <computerSendTask+0x8>
- 800be7c:	20004098 	.word	0x20004098
+ 800bf14:	4b07      	ldr	r3, [pc, #28]	; (800bf34 <computerSendTask+0x28>)
+ 800bf16:	6819      	ldr	r1, [r3, #0]
+ 800bf18:	4b06      	ldr	r3, [pc, #24]	; (800bf34 <computerSendTask+0x28>)
+ 800bf1a:	689a      	ldr	r2, [r3, #8]
+ 800bf1c:	4b05      	ldr	r3, [pc, #20]	; (800bf34 <computerSendTask+0x28>)
+ 800bf1e:	6858      	ldr	r0, [r3, #4]
+ 800bf20:	4b04      	ldr	r3, [pc, #16]	; (800bf34 <computerSendTask+0x28>)
+ 800bf22:	7b1b      	ldrb	r3, [r3, #12]
+ 800bf24:	2432      	movs	r4, #50	; 0x32
+ 800bf26:	9401      	str	r4, [sp, #4]
+ 800bf28:	9300      	str	r3, [sp, #0]
+ 800bf2a:	4603      	mov	r3, r0
+ 800bf2c:	2011      	movs	r0, #17
+ 800bf2e:	f7f4 fb93 	bl	8000658 <CI_sendDataChannel>
+ 800bf32:	e7ef      	b.n	800bf14 <computerSendTask+0x8>
+ 800bf34:	200040a4 	.word	0x200040a4
 
-0800be80 <sendDataUart1Task>:
+0800bf38 <sendDataUart1Task>:
 				llsendComputerVals.drive_speed,llsendComputerVals.switch_vals,50);
 
 	}
 }
 
 void sendDataUart1Task(void *params){
- 800be80:	b590      	push	{r4, r7, lr}
- 800be82:	b08b      	sub	sp, #44	; 0x2c
- 800be84:	af02      	add	r7, sp, #8
- 800be86:	6078      	str	r0, [r7, #4]
+ 800bf38:	b5b0      	push	{r4, r5, r7, lr}
+ 800bf3a:	b08a      	sub	sp, #40	; 0x28
+ 800bf3c:	af02      	add	r7, sp, #8
+ 800bf3e:	6078      	str	r0, [r7, #4]
 
 	while(1){
 		if(getComputerVals().size)	driveDriver.angle=(uint16_t)((getComputerVals().steer_pos)/10000);
- 800be88:	f107 0308 	add.w	r3, r7, #8
- 800be8c:	4618      	mov	r0, r3
- 800be8e:	f7f4 fcc7 	bl	8000820 <getComputerVals>
- 800be92:	893b      	ldrh	r3, [r7, #8]
- 800be94:	2b00      	cmp	r3, #0
- 800be96:	d00e      	beq.n	800beb6 <sendDataUart1Task+0x36>
- 800be98:	f107 0314 	add.w	r3, r7, #20
- 800be9c:	4618      	mov	r0, r3
- 800be9e:	f7f4 fcbf 	bl	8000820 <getComputerVals>
- 800bea2:	69bb      	ldr	r3, [r7, #24]
- 800bea4:	4a0b      	ldr	r2, [pc, #44]	; (800bed4 <sendDataUart1Task+0x54>)
- 800bea6:	fb82 1203 	smull	r1, r2, r2, r3
- 800beaa:	1312      	asrs	r2, r2, #12
- 800beac:	17db      	asrs	r3, r3, #31
- 800beae:	1ad3      	subs	r3, r2, r3
- 800beb0:	b29a      	uxth	r2, r3
- 800beb2:	4b09      	ldr	r3, [pc, #36]	; (800bed8 <sendDataUart1Task+0x58>)
- 800beb4:	809a      	strh	r2, [r3, #4]
-			MDI_sendDataChannel1Ver2(driveDriver.angle,driveDriver.pid_kp,driveDriver.pid_ki,driveDriver.pid_kd,driveDriver.factor);
- 800beb6:	4b08      	ldr	r3, [pc, #32]	; (800bed8 <sendDataUart1Task+0x58>)
- 800beb8:	8898      	ldrh	r0, [r3, #4]
- 800beba:	4b07      	ldr	r3, [pc, #28]	; (800bed8 <sendDataUart1Task+0x58>)
- 800bebc:	7899      	ldrb	r1, [r3, #2]
- 800bebe:	4b06      	ldr	r3, [pc, #24]	; (800bed8 <sendDataUart1Task+0x58>)
- 800bec0:	785a      	ldrb	r2, [r3, #1]
- 800bec2:	4b05      	ldr	r3, [pc, #20]	; (800bed8 <sendDataUart1Task+0x58>)
- 800bec4:	781c      	ldrb	r4, [r3, #0]
- 800bec6:	4b04      	ldr	r3, [pc, #16]	; (800bed8 <sendDataUart1Task+0x58>)
- 800bec8:	78db      	ldrb	r3, [r3, #3]
- 800beca:	9300      	str	r3, [sp, #0]
- 800becc:	4623      	mov	r3, r4
- 800bece:	f7ff fbcb 	bl	800b668 <MDI_sendDataChannel1Ver2>
+ 800bf40:	f107 0308 	add.w	r3, r7, #8
+ 800bf44:	4618      	mov	r0, r3
+ 800bf46:	f7f4 fc6b 	bl	8000820 <getComputerVals>
+ 800bf4a:	893b      	ldrh	r3, [r7, #8]
+ 800bf4c:	2b00      	cmp	r3, #0
+ 800bf4e:	d00e      	beq.n	800bf6e <sendDataUart1Task+0x36>
+ 800bf50:	f107 0314 	add.w	r3, r7, #20
+ 800bf54:	4618      	mov	r0, r3
+ 800bf56:	f7f4 fc63 	bl	8000820 <getComputerVals>
+ 800bf5a:	69bb      	ldr	r3, [r7, #24]
+ 800bf5c:	4a0c      	ldr	r2, [pc, #48]	; (800bf90 <sendDataUart1Task+0x58>)
+ 800bf5e:	fb82 1203 	smull	r1, r2, r2, r3
+ 800bf62:	1312      	asrs	r2, r2, #12
+ 800bf64:	17db      	asrs	r3, r3, #31
+ 800bf66:	1ad3      	subs	r3, r2, r3
+ 800bf68:	b29a      	uxth	r2, r3
+ 800bf6a:	4b0a      	ldr	r3, [pc, #40]	; (800bf94 <sendDataUart1Task+0x5c>)
+ 800bf6c:	809a      	strh	r2, [r3, #4]
+			MDI_sendDataChannel1Ver2(driveDriver.angle,driveDriver.pid_kp,driveDriver.pid_ki,driveDriver.pid_kd,driveDriver.factor,0);
+ 800bf6e:	4b09      	ldr	r3, [pc, #36]	; (800bf94 <sendDataUart1Task+0x5c>)
+ 800bf70:	8898      	ldrh	r0, [r3, #4]
+ 800bf72:	4b08      	ldr	r3, [pc, #32]	; (800bf94 <sendDataUart1Task+0x5c>)
+ 800bf74:	7899      	ldrb	r1, [r3, #2]
+ 800bf76:	4b07      	ldr	r3, [pc, #28]	; (800bf94 <sendDataUart1Task+0x5c>)
+ 800bf78:	785a      	ldrb	r2, [r3, #1]
+ 800bf7a:	4b06      	ldr	r3, [pc, #24]	; (800bf94 <sendDataUart1Task+0x5c>)
+ 800bf7c:	781c      	ldrb	r4, [r3, #0]
+ 800bf7e:	4b05      	ldr	r3, [pc, #20]	; (800bf94 <sendDataUart1Task+0x5c>)
+ 800bf80:	78db      	ldrb	r3, [r3, #3]
+ 800bf82:	2500      	movs	r5, #0
+ 800bf84:	9501      	str	r5, [sp, #4]
+ 800bf86:	9300      	str	r3, [sp, #0]
+ 800bf88:	4623      	mov	r3, r4
+ 800bf8a:	f7ff fb6d 	bl	800b668 <MDI_sendDataChannel1Ver2>
 		if(getComputerVals().size)	driveDriver.angle=(uint16_t)((getComputerVals().steer_pos)/10000);
- 800bed2:	e7d9      	b.n	800be88 <sendDataUart1Task+0x8>
- 800bed4:	68db8bad 	.word	0x68db8bad
- 800bed8:	200040a8 	.word	0x200040a8
+ 800bf8e:	e7d7      	b.n	800bf40 <sendDataUart1Task+0x8>
+ 800bf90:	68db8bad 	.word	0x68db8bad
+ 800bf94:	200040b4 	.word	0x200040b4
 
-0800bedc <sendDataUart2Task>:
+0800bf98 <sendDataUart2Task>:
 
 	}
 }
 uint8_t messageWait;
 void sendDataUart2Task(void *params){
- 800bedc:	b5b0      	push	{r4, r5, r7, lr}
- 800bede:	b08a      	sub	sp, #40	; 0x28
- 800bee0:	af02      	add	r7, sp, #8
- 800bee2:	6078      	str	r0, [r7, #4]
+ 800bf98:	b5f0      	push	{r4, r5, r6, r7, lr}
+ 800bf9a:	b087      	sub	sp, #28
+ 800bf9c:	af04      	add	r7, sp, #16
+ 800bf9e:	6078      	str	r0, [r7, #4]
 	while(1){
-		if(getComputerVals().size){	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000); messageWait=0;}
- 800bee4:	f107 0308 	add.w	r3, r7, #8
- 800bee8:	4618      	mov	r0, r3
- 800beea:	f7f4 fc99 	bl	8000820 <getComputerVals>
- 800beee:	893b      	ldrh	r3, [r7, #8]
- 800bef0:	2b00      	cmp	r3, #0
- 800bef2:	d012      	beq.n	800bf1a <sendDataUart2Task+0x3e>
- 800bef4:	f107 0314 	add.w	r3, r7, #20
- 800bef8:	4618      	mov	r0, r3
- 800befa:	f7f4 fc91 	bl	8000820 <getComputerVals>
- 800befe:	69fb      	ldr	r3, [r7, #28]
- 800bf00:	4a16      	ldr	r2, [pc, #88]	; (800bf5c <sendDataUart2Task+0x80>)
- 800bf02:	fb82 1203 	smull	r1, r2, r2, r3
- 800bf06:	1312      	asrs	r2, r2, #12
- 800bf08:	17db      	asrs	r3, r3, #31
- 800bf0a:	1ad3      	subs	r3, r2, r3
- 800bf0c:	b21a      	sxth	r2, r3
- 800bf0e:	4b14      	ldr	r3, [pc, #80]	; (800bf60 <sendDataUart2Task+0x84>)
- 800bf10:	809a      	strh	r2, [r3, #4]
- 800bf12:	4b14      	ldr	r3, [pc, #80]	; (800bf64 <sendDataUart2Task+0x88>)
- 800bf14:	2200      	movs	r2, #0
- 800bf16:	701a      	strb	r2, [r3, #0]
- 800bf18:	e005      	b.n	800bf26 <sendDataUart2Task+0x4a>
+		/*if(getComputerVals().size){	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000); messageWait=0;}
 		else messageWait++;
- 800bf1a:	4b12      	ldr	r3, [pc, #72]	; (800bf64 <sendDataUart2Task+0x88>)
- 800bf1c:	781b      	ldrb	r3, [r3, #0]
- 800bf1e:	3301      	adds	r3, #1
- 800bf20:	b2da      	uxtb	r2, r3
- 800bf22:	4b10      	ldr	r3, [pc, #64]	; (800bf64 <sendDataUart2Task+0x88>)
- 800bf24:	701a      	strb	r2, [r3, #0]
-		if(messageWait>50)travelDriver.speed=0;
- 800bf26:	4b0f      	ldr	r3, [pc, #60]	; (800bf64 <sendDataUart2Task+0x88>)
- 800bf28:	781b      	ldrb	r3, [r3, #0]
- 800bf2a:	2b32      	cmp	r3, #50	; 0x32
- 800bf2c:	d902      	bls.n	800bf34 <sendDataUart2Task+0x58>
- 800bf2e:	4b0c      	ldr	r3, [pc, #48]	; (800bf60 <sendDataUart2Task+0x84>)
- 800bf30:	2200      	movs	r2, #0
- 800bf32:	809a      	strh	r2, [r3, #4]
-				MDI_sendDataChannel2Ver2(travelDriver.speed,travelDriver.pid_kp,travelDriver.pid_ki,travelDriver.pid_kd,travelDriver.soft_k,travelDriver.soft_f);
- 800bf34:	4b0a      	ldr	r3, [pc, #40]	; (800bf60 <sendDataUart2Task+0x84>)
- 800bf36:	f9b3 0004 	ldrsh.w	r0, [r3, #4]
- 800bf3a:	4b09      	ldr	r3, [pc, #36]	; (800bf60 <sendDataUart2Task+0x84>)
- 800bf3c:	7819      	ldrb	r1, [r3, #0]
- 800bf3e:	4b08      	ldr	r3, [pc, #32]	; (800bf60 <sendDataUart2Task+0x84>)
- 800bf40:	785c      	ldrb	r4, [r3, #1]
- 800bf42:	4b07      	ldr	r3, [pc, #28]	; (800bf60 <sendDataUart2Task+0x84>)
- 800bf44:	789d      	ldrb	r5, [r3, #2]
- 800bf46:	4b06      	ldr	r3, [pc, #24]	; (800bf60 <sendDataUart2Task+0x84>)
- 800bf48:	79db      	ldrb	r3, [r3, #7]
- 800bf4a:	4a05      	ldr	r2, [pc, #20]	; (800bf60 <sendDataUart2Task+0x84>)
- 800bf4c:	7992      	ldrb	r2, [r2, #6]
- 800bf4e:	9201      	str	r2, [sp, #4]
- 800bf50:	9300      	str	r3, [sp, #0]
- 800bf52:	462b      	mov	r3, r5
- 800bf54:	4622      	mov	r2, r4
- 800bf56:	f7ff fc8d 	bl	800b874 <MDI_sendDataChannel2Ver2>
-		if(getComputerVals().size){	travelDriver.speed=(int16_t)((getComputerVals().drive_speed)/10000); messageWait=0;}
- 800bf5a:	e7c3      	b.n	800bee4 <sendDataUart2Task+0x8>
- 800bf5c:	68db8bad 	.word	0x68db8bad
- 800bf60:	2000408c 	.word	0x2000408c
- 800bf64:	20004088 	.word	0x20004088
+		if(messageWait>50)travelDriver.speed=0;*/
+		messageWait=IO_getInputOutputsVal() >> 6;
+ 800bfa0:	f7fa fbe0 	bl	8006764 <IO_getInputOutputsVal>
+ 800bfa4:	4603      	mov	r3, r0
+ 800bfa6:	119b      	asrs	r3, r3, #6
+ 800bfa8:	b2da      	uxtb	r2, r3
+ 800bfaa:	4b0d      	ldr	r3, [pc, #52]	; (800bfe0 <sendDataUart2Task+0x48>)
+ 800bfac:	701a      	strb	r2, [r3, #0]
+				MDI_sendDataChannel2Ver2(travelDriver.speed,travelDriver.pid_kp,travelDriver.pid_ki,travelDriver.pid_kd,travelDriver.soft_k,travelDriver.soft_f,messageWait);
+ 800bfae:	4b0d      	ldr	r3, [pc, #52]	; (800bfe4 <sendDataUart2Task+0x4c>)
+ 800bfb0:	f9b3 0004 	ldrsh.w	r0, [r3, #4]
+ 800bfb4:	4b0b      	ldr	r3, [pc, #44]	; (800bfe4 <sendDataUart2Task+0x4c>)
+ 800bfb6:	781c      	ldrb	r4, [r3, #0]
+ 800bfb8:	4b0a      	ldr	r3, [pc, #40]	; (800bfe4 <sendDataUart2Task+0x4c>)
+ 800bfba:	785d      	ldrb	r5, [r3, #1]
+ 800bfbc:	4b09      	ldr	r3, [pc, #36]	; (800bfe4 <sendDataUart2Task+0x4c>)
+ 800bfbe:	789e      	ldrb	r6, [r3, #2]
+ 800bfc0:	4b08      	ldr	r3, [pc, #32]	; (800bfe4 <sendDataUart2Task+0x4c>)
+ 800bfc2:	79db      	ldrb	r3, [r3, #7]
+ 800bfc4:	4a07      	ldr	r2, [pc, #28]	; (800bfe4 <sendDataUart2Task+0x4c>)
+ 800bfc6:	7992      	ldrb	r2, [r2, #6]
+ 800bfc8:	4905      	ldr	r1, [pc, #20]	; (800bfe0 <sendDataUart2Task+0x48>)
+ 800bfca:	7809      	ldrb	r1, [r1, #0]
+ 800bfcc:	9102      	str	r1, [sp, #8]
+ 800bfce:	9201      	str	r2, [sp, #4]
+ 800bfd0:	9300      	str	r3, [sp, #0]
+ 800bfd2:	4633      	mov	r3, r6
+ 800bfd4:	462a      	mov	r2, r5
+ 800bfd6:	4621      	mov	r1, r4
+ 800bfd8:	f7ff fc6a 	bl	800b8b0 <MDI_sendDataChannel2Ver2>
+	while(1){
+ 800bfdc:	e7e0      	b.n	800bfa0 <sendDataUart2Task+0x8>
+ 800bfde:	bf00      	nop
+ 800bfe0:	20004090 	.word	0x20004090
+ 800bfe4:	20004094 	.word	0x20004094
 
-0800bf68 <getDataUart1Task>:
+0800bfe8 <getDataUart1Task>:
 	}
 }
 void getDataUart1Task(void *params){
- 800bf68:	b580      	push	{r7, lr}
- 800bf6a:	b082      	sub	sp, #8
- 800bf6c:	af00      	add	r7, sp, #0
- 800bf6e:	6078      	str	r0, [r7, #4]
+ 800bfe8:	b580      	push	{r7, lr}
+ 800bfea:	b082      	sub	sp, #8
+ 800bfec:	af00      	add	r7, sp, #0
+ 800bfee:	6078      	str	r0, [r7, #4]
 	while(1){
 		xSemaphoreTake(uart1SemphrHandle, portMAX_DELAY);
- 800bf70:	4b08      	ldr	r3, [pc, #32]	; (800bf94 <getDataUart1Task+0x2c>)
- 800bf72:	681b      	ldr	r3, [r3, #0]
- 800bf74:	f04f 31ff 	mov.w	r1, #4294967295
- 800bf78:	4618      	mov	r0, r3
- 800bf7a:	f7fc fd4f 	bl	8008a1c <xQueueSemaphoreTake>
+ 800bff0:	4b08      	ldr	r3, [pc, #32]	; (800c014 <getDataUart1Task+0x2c>)
+ 800bff2:	681b      	ldr	r3, [r3, #0]
+ 800bff4:	f04f 31ff 	mov.w	r1, #4294967295
+ 800bff8:	4618      	mov	r0, r3
+ 800bffa:	f7fc fd0f 	bl	8008a1c <xQueueSemaphoreTake>
 		MDI_enableGetDataChannel1();
- 800bf7e:	f7ff fbe3 	bl	800b748 <MDI_enableGetDataChannel1>
+ 800bffe:	f7ff fbab 	bl	800b758 <MDI_enableGetDataChannel1>
 		xSemaphoreGive(uart1SemphrHandle);
- 800bf82:	4b04      	ldr	r3, [pc, #16]	; (800bf94 <getDataUart1Task+0x2c>)
- 800bf84:	6818      	ldr	r0, [r3, #0]
- 800bf86:	2300      	movs	r3, #0
- 800bf88:	2200      	movs	r2, #0
- 800bf8a:	2100      	movs	r1, #0
- 800bf8c:	f7fc fad0 	bl	8008530 <xQueueGenericSend>
+ 800c002:	4b04      	ldr	r3, [pc, #16]	; (800c014 <getDataUart1Task+0x2c>)
+ 800c004:	6818      	ldr	r0, [r3, #0]
+ 800c006:	2300      	movs	r3, #0
+ 800c008:	2200      	movs	r2, #0
+ 800c00a:	2100      	movs	r1, #0
+ 800c00c:	f7fc fa90 	bl	8008530 <xQueueGenericSend>
 		xSemaphoreTake(uart1SemphrHandle, portMAX_DELAY);
- 800bf90:	e7ee      	b.n	800bf70 <getDataUart1Task+0x8>
- 800bf92:	bf00      	nop
- 800bf94:	200038ec 	.word	0x200038ec
+ 800c010:	e7ee      	b.n	800bff0 <getDataUart1Task+0x8>
+ 800c012:	bf00      	nop
+ 800c014:	200038f0 	.word	0x200038f0
 
-0800bf98 <getDataUart2Task>:
+0800c018 <getDataUart2Task>:
 
 	}
 }
 void getDataUart2Task(void *params){
- 800bf98:	b580      	push	{r7, lr}
- 800bf9a:	b082      	sub	sp, #8
- 800bf9c:	af00      	add	r7, sp, #0
- 800bf9e:	6078      	str	r0, [r7, #4]
+ 800c018:	b580      	push	{r7, lr}
+ 800c01a:	b082      	sub	sp, #8
+ 800c01c:	af00      	add	r7, sp, #0
+ 800c01e:	6078      	str	r0, [r7, #4]
 	while(1){
 		xSemaphoreTake(uart2SemphrHandle, portMAX_DELAY);
- 800bfa0:	4b08      	ldr	r3, [pc, #32]	; (800bfc4 <getDataUart2Task+0x2c>)
- 800bfa2:	681b      	ldr	r3, [r3, #0]
- 800bfa4:	f04f 31ff 	mov.w	r1, #4294967295
- 800bfa8:	4618      	mov	r0, r3
- 800bfaa:	f7fc fd37 	bl	8008a1c <xQueueSemaphoreTake>
+ 800c020:	4b08      	ldr	r3, [pc, #32]	; (800c044 <getDataUart2Task+0x2c>)
+ 800c022:	681b      	ldr	r3, [r3, #0]
+ 800c024:	f04f 31ff 	mov.w	r1, #4294967295
+ 800c028:	4618      	mov	r0, r3
+ 800c02a:	f7fc fcf7 	bl	8008a1c <xQueueSemaphoreTake>
 		MDI_enableGetDataChannel2();
- 800bfae:	f7ff fcdb 	bl	800b968 <MDI_enableGetDataChannel2>
+ 800c02e:	f7ff fcc1 	bl	800b9b4 <MDI_enableGetDataChannel2>
 		xSemaphoreGive(uart2SemphrHandle);
- 800bfb2:	4b04      	ldr	r3, [pc, #16]	; (800bfc4 <getDataUart2Task+0x2c>)
- 800bfb4:	6818      	ldr	r0, [r3, #0]
- 800bfb6:	2300      	movs	r3, #0
- 800bfb8:	2200      	movs	r2, #0
- 800bfba:	2100      	movs	r1, #0
- 800bfbc:	f7fc fab8 	bl	8008530 <xQueueGenericSend>
+ 800c032:	4b04      	ldr	r3, [pc, #16]	; (800c044 <getDataUart2Task+0x2c>)
+ 800c034:	6818      	ldr	r0, [r3, #0]
+ 800c036:	2300      	movs	r3, #0
+ 800c038:	2200      	movs	r2, #0
+ 800c03a:	2100      	movs	r1, #0
+ 800c03c:	f7fc fa78 	bl	8008530 <xQueueGenericSend>
 		xSemaphoreTake(uart2SemphrHandle, portMAX_DELAY);
- 800bfc0:	e7ee      	b.n	800bfa0 <getDataUart2Task+0x8>
- 800bfc2:	bf00      	nop
- 800bfc4:	200038f0 	.word	0x200038f0
+ 800c040:	e7ee      	b.n	800c020 <getDataUart2Task+0x8>
+ 800c042:	bf00      	nop
+ 800c044:	200038f4 	.word	0x200038f4
 
-0800bfc8 <driverInit>:
+0800c048 <driverInit>:
 	}
 }
 
 void driverInit(void){
- 800bfc8:	b480      	push	{r7}
- 800bfca:	af00      	add	r7, sp, #0
+ 800c048:	b480      	push	{r7}
+ 800c04a:	af00      	add	r7, sp, #0
 	driveDriver.angle=500;
- 800bfcc:	4b12      	ldr	r3, [pc, #72]	; (800c018 <driverInit+0x50>)
- 800bfce:	f44f 72fa 	mov.w	r2, #500	; 0x1f4
- 800bfd2:	809a      	strh	r2, [r3, #4]
+ 800c04c:	4b12      	ldr	r3, [pc, #72]	; (800c098 <driverInit+0x50>)
+ 800c04e:	f44f 72fa 	mov.w	r2, #500	; 0x1f4
+ 800c052:	809a      	strh	r2, [r3, #4]
 	driveDriver.pid_kp=100;
- 800bfd4:	4b10      	ldr	r3, [pc, #64]	; (800c018 <driverInit+0x50>)
- 800bfd6:	2264      	movs	r2, #100	; 0x64
- 800bfd8:	709a      	strb	r2, [r3, #2]
+ 800c054:	4b10      	ldr	r3, [pc, #64]	; (800c098 <driverInit+0x50>)
+ 800c056:	2264      	movs	r2, #100	; 0x64
+ 800c058:	709a      	strb	r2, [r3, #2]
 	driveDriver.pid_ki=1;
- 800bfda:	4b0f      	ldr	r3, [pc, #60]	; (800c018 <driverInit+0x50>)
- 800bfdc:	2201      	movs	r2, #1
- 800bfde:	705a      	strb	r2, [r3, #1]
+ 800c05a:	4b0f      	ldr	r3, [pc, #60]	; (800c098 <driverInit+0x50>)
+ 800c05c:	2201      	movs	r2, #1
+ 800c05e:	705a      	strb	r2, [r3, #1]
 	driveDriver.pid_kd=200;
- 800bfe0:	4b0d      	ldr	r3, [pc, #52]	; (800c018 <driverInit+0x50>)
- 800bfe2:	22c8      	movs	r2, #200	; 0xc8
- 800bfe4:	701a      	strb	r2, [r3, #0]
+ 800c060:	4b0d      	ldr	r3, [pc, #52]	; (800c098 <driverInit+0x50>)
+ 800c062:	22c8      	movs	r2, #200	; 0xc8
+ 800c064:	701a      	strb	r2, [r3, #0]
 	driveDriver.factor=100;
- 800bfe6:	4b0c      	ldr	r3, [pc, #48]	; (800c018 <driverInit+0x50>)
- 800bfe8:	2264      	movs	r2, #100	; 0x64
- 800bfea:	70da      	strb	r2, [r3, #3]
+ 800c066:	4b0c      	ldr	r3, [pc, #48]	; (800c098 <driverInit+0x50>)
+ 800c068:	2264      	movs	r2, #100	; 0x64
+ 800c06a:	70da      	strb	r2, [r3, #3]
 
 	travelDriver.speed =0;
- 800bfec:	4b0b      	ldr	r3, [pc, #44]	; (800c01c <driverInit+0x54>)
- 800bfee:	2200      	movs	r2, #0
- 800bff0:	809a      	strh	r2, [r3, #4]
+ 800c06c:	4b0b      	ldr	r3, [pc, #44]	; (800c09c <driverInit+0x54>)
+ 800c06e:	2200      	movs	r2, #0
+ 800c070:	809a      	strh	r2, [r3, #4]
 	travelDriver.pid_kp=70;
- 800bff2:	4b0a      	ldr	r3, [pc, #40]	; (800c01c <driverInit+0x54>)
- 800bff4:	2246      	movs	r2, #70	; 0x46
- 800bff6:	701a      	strb	r2, [r3, #0]
+ 800c072:	4b0a      	ldr	r3, [pc, #40]	; (800c09c <driverInit+0x54>)
+ 800c074:	2246      	movs	r2, #70	; 0x46
+ 800c076:	701a      	strb	r2, [r3, #0]
 	travelDriver.pid_ki=1;
- 800bff8:	4b08      	ldr	r3, [pc, #32]	; (800c01c <driverInit+0x54>)
- 800bffa:	2201      	movs	r2, #1
- 800bffc:	705a      	strb	r2, [r3, #1]
+ 800c078:	4b08      	ldr	r3, [pc, #32]	; (800c09c <driverInit+0x54>)
+ 800c07a:	2201      	movs	r2, #1
+ 800c07c:	705a      	strb	r2, [r3, #1]
 	travelDriver.pid_kd=1;
- 800bffe:	4b07      	ldr	r3, [pc, #28]	; (800c01c <driverInit+0x54>)
- 800c000:	2201      	movs	r2, #1
- 800c002:	709a      	strb	r2, [r3, #2]
+ 800c07e:	4b07      	ldr	r3, [pc, #28]	; (800c09c <driverInit+0x54>)
+ 800c080:	2201      	movs	r2, #1
+ 800c082:	709a      	strb	r2, [r3, #2]
 	travelDriver.soft_k =1;
- 800c004:	4b05      	ldr	r3, [pc, #20]	; (800c01c <driverInit+0x54>)
- 800c006:	2201      	movs	r2, #1
- 800c008:	71da      	strb	r2, [r3, #7]
+ 800c084:	4b05      	ldr	r3, [pc, #20]	; (800c09c <driverInit+0x54>)
+ 800c086:	2201      	movs	r2, #1
+ 800c088:	71da      	strb	r2, [r3, #7]
 	travelDriver.soft_f =1;
- 800c00a:	4b04      	ldr	r3, [pc, #16]	; (800c01c <driverInit+0x54>)
- 800c00c:	2201      	movs	r2, #1
- 800c00e:	719a      	strb	r2, [r3, #6]
+ 800c08a:	4b04      	ldr	r3, [pc, #16]	; (800c09c <driverInit+0x54>)
+ 800c08c:	2201      	movs	r2, #1
+ 800c08e:	719a      	strb	r2, [r3, #6]
 
 }
- 800c010:	bf00      	nop
- 800c012:	46bd      	mov	sp, r7
- 800c014:	bc80      	pop	{r7}
- 800c016:	4770      	bx	lr
- 800c018:	200040a8 	.word	0x200040a8
- 800c01c:	2000408c 	.word	0x2000408c
+ 800c090:	bf00      	nop
+ 800c092:	46bd      	mov	sp, r7
+ 800c094:	bc80      	pop	{r7}
+ 800c096:	4770      	bx	lr
+ 800c098:	200040b4 	.word	0x200040b4
+ 800c09c:	20004094 	.word	0x20004094
 
-0800c020 <valuesMapforFloat>:
+0800c0a0 <valuesMapforFloat>:
 	return (inValue - inMin)*(outMax - outMin) / (inMax - inMin) + outMin;
 }
 int16_t valuesMapFloat(float inValue, float inMin, float inMax, int16_t outMin, int16_t outMax) {
 	return (inValue - inMin)*(outMax - outMin) / (inMax - inMin) + outMin;
 }
 float valuesMapforFloat(uint16_t inValue, uint16_t inMin, uint16_t inMax, float outMin, float outMax) {
- 800c020:	b590      	push	{r4, r7, lr}
- 800c022:	b085      	sub	sp, #20
- 800c024:	af00      	add	r7, sp, #0
- 800c026:	607b      	str	r3, [r7, #4]
- 800c028:	4603      	mov	r3, r0
- 800c02a:	81fb      	strh	r3, [r7, #14]
- 800c02c:	460b      	mov	r3, r1
- 800c02e:	81bb      	strh	r3, [r7, #12]
- 800c030:	4613      	mov	r3, r2
- 800c032:	817b      	strh	r3, [r7, #10]
+ 800c0a0:	b590      	push	{r4, r7, lr}
+ 800c0a2:	b085      	sub	sp, #20
+ 800c0a4:	af00      	add	r7, sp, #0
+ 800c0a6:	607b      	str	r3, [r7, #4]
+ 800c0a8:	4603      	mov	r3, r0
+ 800c0aa:	81fb      	strh	r3, [r7, #14]
+ 800c0ac:	460b      	mov	r3, r1
+ 800c0ae:	81bb      	strh	r3, [r7, #12]
+ 800c0b0:	4613      	mov	r3, r2
+ 800c0b2:	817b      	strh	r3, [r7, #10]
 	return (inValue - inMin)*(outMax - outMin) / (inMax - inMin) + outMin;
- 800c034:	89fa      	ldrh	r2, [r7, #14]
- 800c036:	89bb      	ldrh	r3, [r7, #12]
- 800c038:	1ad3      	subs	r3, r2, r3
- 800c03a:	4618      	mov	r0, r3
- 800c03c:	f7f4 f942 	bl	80002c4 <__aeabi_i2f>
- 800c040:	4604      	mov	r4, r0
- 800c042:	6879      	ldr	r1, [r7, #4]
- 800c044:	6a38      	ldr	r0, [r7, #32]
- 800c046:	f7f4 f887 	bl	8000158 <__aeabi_fsub>
- 800c04a:	4603      	mov	r3, r0
- 800c04c:	4619      	mov	r1, r3
- 800c04e:	4620      	mov	r0, r4
- 800c050:	f7f4 f98c 	bl	800036c <__aeabi_fmul>
- 800c054:	4603      	mov	r3, r0
- 800c056:	461c      	mov	r4, r3
- 800c058:	897a      	ldrh	r2, [r7, #10]
- 800c05a:	89bb      	ldrh	r3, [r7, #12]
- 800c05c:	1ad3      	subs	r3, r2, r3
- 800c05e:	4618      	mov	r0, r3
- 800c060:	f7f4 f930 	bl	80002c4 <__aeabi_i2f>
- 800c064:	4603      	mov	r3, r0
- 800c066:	4619      	mov	r1, r3
- 800c068:	4620      	mov	r0, r4
- 800c06a:	f7f4 fa33 	bl	80004d4 <__aeabi_fdiv>
- 800c06e:	4603      	mov	r3, r0
- 800c070:	6879      	ldr	r1, [r7, #4]
- 800c072:	4618      	mov	r0, r3
- 800c074:	f7f4 f872 	bl	800015c <__addsf3>
- 800c078:	4603      	mov	r3, r0
+ 800c0b4:	89fa      	ldrh	r2, [r7, #14]
+ 800c0b6:	89bb      	ldrh	r3, [r7, #12]
+ 800c0b8:	1ad3      	subs	r3, r2, r3
+ 800c0ba:	4618      	mov	r0, r3
+ 800c0bc:	f7f4 f902 	bl	80002c4 <__aeabi_i2f>
+ 800c0c0:	4604      	mov	r4, r0
+ 800c0c2:	6879      	ldr	r1, [r7, #4]
+ 800c0c4:	6a38      	ldr	r0, [r7, #32]
+ 800c0c6:	f7f4 f847 	bl	8000158 <__aeabi_fsub>
+ 800c0ca:	4603      	mov	r3, r0
+ 800c0cc:	4619      	mov	r1, r3
+ 800c0ce:	4620      	mov	r0, r4
+ 800c0d0:	f7f4 f94c 	bl	800036c <__aeabi_fmul>
+ 800c0d4:	4603      	mov	r3, r0
+ 800c0d6:	461c      	mov	r4, r3
+ 800c0d8:	897a      	ldrh	r2, [r7, #10]
+ 800c0da:	89bb      	ldrh	r3, [r7, #12]
+ 800c0dc:	1ad3      	subs	r3, r2, r3
+ 800c0de:	4618      	mov	r0, r3
+ 800c0e0:	f7f4 f8f0 	bl	80002c4 <__aeabi_i2f>
+ 800c0e4:	4603      	mov	r3, r0
+ 800c0e6:	4619      	mov	r1, r3
+ 800c0e8:	4620      	mov	r0, r4
+ 800c0ea:	f7f4 f9f3 	bl	80004d4 <__aeabi_fdiv>
+ 800c0ee:	4603      	mov	r3, r0
+ 800c0f0:	6879      	ldr	r1, [r7, #4]
+ 800c0f2:	4618      	mov	r0, r3
+ 800c0f4:	f7f4 f832 	bl	800015c <__addsf3>
+ 800c0f8:	4603      	mov	r3, r0
 }
- 800c07a:	4618      	mov	r0, r3
- 800c07c:	3714      	adds	r7, #20
- 800c07e:	46bd      	mov	sp, r7
- 800c080:	bd90      	pop	{r4, r7, pc}
+ 800c0fa:	4618      	mov	r0, r3
+ 800c0fc:	3714      	adds	r7, #20
+ 800c0fe:	46bd      	mov	sp, r7
+ 800c100:	bd90      	pop	{r4, r7, pc}
 	...
 
-0800c084 <__libc_init_array>:
- 800c084:	b570      	push	{r4, r5, r6, lr}
- 800c086:	2600      	movs	r6, #0
- 800c088:	4d0c      	ldr	r5, [pc, #48]	; (800c0bc <__libc_init_array+0x38>)
- 800c08a:	4c0d      	ldr	r4, [pc, #52]	; (800c0c0 <__libc_init_array+0x3c>)
- 800c08c:	1b64      	subs	r4, r4, r5
- 800c08e:	10a4      	asrs	r4, r4, #2
- 800c090:	42a6      	cmp	r6, r4
- 800c092:	d109      	bne.n	800c0a8 <__libc_init_array+0x24>
- 800c094:	f000 f830 	bl	800c0f8 <_init>
- 800c098:	2600      	movs	r6, #0
- 800c09a:	4d0a      	ldr	r5, [pc, #40]	; (800c0c4 <__libc_init_array+0x40>)
- 800c09c:	4c0a      	ldr	r4, [pc, #40]	; (800c0c8 <__libc_init_array+0x44>)
- 800c09e:	1b64      	subs	r4, r4, r5
- 800c0a0:	10a4      	asrs	r4, r4, #2
- 800c0a2:	42a6      	cmp	r6, r4
- 800c0a4:	d105      	bne.n	800c0b2 <__libc_init_array+0x2e>
- 800c0a6:	bd70      	pop	{r4, r5, r6, pc}
- 800c0a8:	f855 3b04 	ldr.w	r3, [r5], #4
- 800c0ac:	4798      	blx	r3
- 800c0ae:	3601      	adds	r6, #1
- 800c0b0:	e7ee      	b.n	800c090 <__libc_init_array+0xc>
- 800c0b2:	f855 3b04 	ldr.w	r3, [r5], #4
- 800c0b6:	4798      	blx	r3
- 800c0b8:	3601      	adds	r6, #1
- 800c0ba:	e7f2      	b.n	800c0a2 <__libc_init_array+0x1e>
- 800c0bc:	0800c228 	.word	0x0800c228
- 800c0c0:	0800c228 	.word	0x0800c228
- 800c0c4:	0800c228 	.word	0x0800c228
- 800c0c8:	0800c22c 	.word	0x0800c22c
+0800c104 <__libc_init_array>:
+ 800c104:	b570      	push	{r4, r5, r6, lr}
+ 800c106:	2600      	movs	r6, #0
+ 800c108:	4d0c      	ldr	r5, [pc, #48]	; (800c13c <__libc_init_array+0x38>)
+ 800c10a:	4c0d      	ldr	r4, [pc, #52]	; (800c140 <__libc_init_array+0x3c>)
+ 800c10c:	1b64      	subs	r4, r4, r5
+ 800c10e:	10a4      	asrs	r4, r4, #2
+ 800c110:	42a6      	cmp	r6, r4
+ 800c112:	d109      	bne.n	800c128 <__libc_init_array+0x24>
+ 800c114:	f000 f830 	bl	800c178 <_init>
+ 800c118:	2600      	movs	r6, #0
+ 800c11a:	4d0a      	ldr	r5, [pc, #40]	; (800c144 <__libc_init_array+0x40>)
+ 800c11c:	4c0a      	ldr	r4, [pc, #40]	; (800c148 <__libc_init_array+0x44>)
+ 800c11e:	1b64      	subs	r4, r4, r5
+ 800c120:	10a4      	asrs	r4, r4, #2
+ 800c122:	42a6      	cmp	r6, r4
+ 800c124:	d105      	bne.n	800c132 <__libc_init_array+0x2e>
+ 800c126:	bd70      	pop	{r4, r5, r6, pc}
+ 800c128:	f855 3b04 	ldr.w	r3, [r5], #4
+ 800c12c:	4798      	blx	r3
+ 800c12e:	3601      	adds	r6, #1
+ 800c130:	e7ee      	b.n	800c110 <__libc_init_array+0xc>
+ 800c132:	f855 3b04 	ldr.w	r3, [r5], #4
+ 800c136:	4798      	blx	r3
+ 800c138:	3601      	adds	r6, #1
+ 800c13a:	e7f2      	b.n	800c122 <__libc_init_array+0x1e>
+ 800c13c:	0800c2a8 	.word	0x0800c2a8
+ 800c140:	0800c2a8 	.word	0x0800c2a8
+ 800c144:	0800c2a8 	.word	0x0800c2a8
+ 800c148:	0800c2ac 	.word	0x0800c2ac
 
-0800c0cc <memcpy>:
- 800c0cc:	440a      	add	r2, r1
- 800c0ce:	4291      	cmp	r1, r2
- 800c0d0:	f100 33ff 	add.w	r3, r0, #4294967295
- 800c0d4:	d100      	bne.n	800c0d8 <memcpy+0xc>
- 800c0d6:	4770      	bx	lr
- 800c0d8:	b510      	push	{r4, lr}
- 800c0da:	f811 4b01 	ldrb.w	r4, [r1], #1
- 800c0de:	4291      	cmp	r1, r2
- 800c0e0:	f803 4f01 	strb.w	r4, [r3, #1]!
- 800c0e4:	d1f9      	bne.n	800c0da <memcpy+0xe>
- 800c0e6:	bd10      	pop	{r4, pc}
+0800c14c <memcpy>:
+ 800c14c:	440a      	add	r2, r1
+ 800c14e:	4291      	cmp	r1, r2
+ 800c150:	f100 33ff 	add.w	r3, r0, #4294967295
+ 800c154:	d100      	bne.n	800c158 <memcpy+0xc>
+ 800c156:	4770      	bx	lr
+ 800c158:	b510      	push	{r4, lr}
+ 800c15a:	f811 4b01 	ldrb.w	r4, [r1], #1
+ 800c15e:	4291      	cmp	r1, r2
+ 800c160:	f803 4f01 	strb.w	r4, [r3, #1]!
+ 800c164:	d1f9      	bne.n	800c15a <memcpy+0xe>
+ 800c166:	bd10      	pop	{r4, pc}
 
-0800c0e8 <memset>:
- 800c0e8:	4603      	mov	r3, r0
- 800c0ea:	4402      	add	r2, r0
- 800c0ec:	4293      	cmp	r3, r2
- 800c0ee:	d100      	bne.n	800c0f2 <memset+0xa>
- 800c0f0:	4770      	bx	lr
- 800c0f2:	f803 1b01 	strb.w	r1, [r3], #1
- 800c0f6:	e7f9      	b.n	800c0ec <memset+0x4>
+0800c168 <memset>:
+ 800c168:	4603      	mov	r3, r0
+ 800c16a:	4402      	add	r2, r0
+ 800c16c:	4293      	cmp	r3, r2
+ 800c16e:	d100      	bne.n	800c172 <memset+0xa>
+ 800c170:	4770      	bx	lr
+ 800c172:	f803 1b01 	strb.w	r1, [r3], #1
+ 800c176:	e7f9      	b.n	800c16c <memset+0x4>
 
-0800c0f8 <_init>:
- 800c0f8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800c0fa:	bf00      	nop
- 800c0fc:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800c0fe:	bc08      	pop	{r3}
- 800c100:	469e      	mov	lr, r3
- 800c102:	4770      	bx	lr
+0800c178 <_init>:
+ 800c178:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800c17a:	bf00      	nop
+ 800c17c:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800c17e:	bc08      	pop	{r3}
+ 800c180:	469e      	mov	lr, r3
+ 800c182:	4770      	bx	lr
 
-0800c104 <_fini>:
- 800c104:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800c106:	bf00      	nop
- 800c108:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 800c10a:	bc08      	pop	{r3}
- 800c10c:	469e      	mov	lr, r3
- 800c10e:	4770      	bx	lr
+0800c184 <_fini>:
+ 800c184:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 800c186:	bf00      	nop
+ 800c188:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 800c18a:	bc08      	pop	{r3}
+ 800c18c:	469e      	mov	lr, r3
+ 800c18e:	4770      	bx	lr
